@@ -1,0 +1,34 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_books"
+        app:showAsAction="always"
+        android:icon="@drawable/books"
+        android:title="Ksiażki">
+    </item>
+    <item
+        android:id="@+id/navigation_user_quotes"
+        app:showAsAction="always"
+        android:icon="@drawable/userquotes"
+        android:title="Moje">
+    </item>
+    <item
+        android:id="@+id/navigation_books_quotes"
+        app:showAsAction="always"
+        android:icon="@drawable/bookquotes"
+        android:title="Innych">
+    </item>
+    <item
+        android:id="@+id/navigation_news"
+        app:showAsAction="always"
+        android:icon="@drawable/news"
+        android:title="Aktualności">
+    </item>
+    <item
+        android:id="@+id/navigation_menu"
+        app:showAsAction="always"
+        android:icon="@drawable/menu"
+        android:title="Menu">
+    </item>
+
+</menu>
