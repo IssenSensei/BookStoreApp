@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        version_core = "1.1.0"
+        version_core = '1.1.0'
         version_coroutine = "1.1.0"
         version_navigation = '1.0.0'
         version_constraint_layout = "2.0.0-beta3"

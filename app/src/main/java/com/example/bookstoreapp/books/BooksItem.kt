@@ -10,6 +10,9 @@ data class BooksItem (
     var file: String = "",
     var picture: String = "",
     var description: String = "",
-    var idAuthor: String = ""
+    var idAuthor: String = "",
+
+    var expanded: Boolean = false
+
 ): Serializable
 

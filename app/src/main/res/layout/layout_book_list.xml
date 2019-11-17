@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/books_item_list"
-        android:name="com.example.bookstoreapp.books.BooksFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:context="com.example.bookstoreapp.books.BooksFragment"
-        tools:listitem="@layout/fragment_books" />
-
-    <ProgressBar
-        android:id="@+id/loader_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#55000000"
-        android:clickable="true"
-        android:padding="100dp"
-        android:visibility="gone" />
+        android:scrollbars="vertical"
+        android:scrollingCache="true" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+
+
+<com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,4 +25,4 @@
         android:layout_gravity="bottom|right"
         app:backgroundTint="#00FFC5C5"
         app:srcCompat="@drawable/search" />
-</FrameLayout>
+</LinearLayout>

@@ -7,6 +7,9 @@ data class NewsItem (
     var content: String = "",
     var title: String = "",
     var login: String = "",
-    var picture: String = ""
+    var picture: String = "",
+
+    var expanded: Boolean = false
+
 ): Serializable
 
