@@ -1,10 +1,13 @@
 package com.example.bookstoreapp.news
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,7 +16,8 @@ import com.example.bookstoreapp.utils.ItemAnimation
 import com.example.bookstoreapp.utils.Tools
 import com.example.bookstoreapp.utils.ViewAnimation
 
-class NewsRecyclerViewAdapter(private val newsMap: MutableList<NewsItem>)
+class NewsRecyclerViewAdapter(private val newsMap: MutableList<NewsItem>,
+                              private val context: Context)
                                     : RecyclerView.Adapter<NewsRecyclerViewAdapter.ViewHolder>() {
     private val animation_type = ItemAnimation.FADE_IN
 
@@ -43,7 +47,19 @@ class NewsRecyclerViewAdapter(private val newsMap: MutableList<NewsItem>)
         Tools.toggleArrow(second.expanded, holder.expand, false)
         setAnimation(holder.itemView, position)
 
+        holder.linearListener.setOnClickListener {
+            seeDetails(context, second)
+        }
 
+    }
+
+    private fun seeDetails(context: Context, data: NewsItem){
+
+        val intent = Intent(context, NewsDetailActivity::class.java)
+        intent.apply {
+            putExtra("data", data)
+        }
+        context.startActivity(intent)
     }
 
     private var lastPosition = -1
@@ -81,6 +97,8 @@ class NewsRecyclerViewAdapter(private val newsMap: MutableList<NewsItem>)
         val newsTitle = mView.findViewById<TextView>(R.id.newsTitle)!!
         val newsContent = mView.findViewById<TextView>(R.id.newsContent)!!
         val image = mView.findViewById<ImageView>(R.id.imgvw)!!
+
+        val linearListener = mView.findViewById<LinearLayout>(R.id.linear_listener)
 
     }
 }

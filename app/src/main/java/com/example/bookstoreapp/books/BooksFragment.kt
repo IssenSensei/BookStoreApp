@@ -1,5 +1,6 @@
 package com.example.bookstoreapp.books
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,7 @@ class BooksFragment: Fragment() {
     private fun setUpRecycler() {
         books_item_list.layoutManager = LinearLayoutManager(context)
         books_item_list.addItemDecoration(LineItemDecoration(this.context, LinearLayout.VERTICAL))
-        books_item_list.adapter = BooksRecyclerViewAdapter(booksMap)
+        books_item_list.adapter = BooksRecyclerViewAdapter(booksMap, this.context!!)
     }
 
     private fun loadBooks() {
@@ -48,7 +49,7 @@ class BooksFragment: Fragment() {
             Response.Listener<String> { s ->
                 try {
 
-                    val obj = JSONObject(s)
+                        val obj = JSONObject(s)
 
                     if (!obj.getBoolean("error")) {
 
@@ -64,7 +65,7 @@ class BooksFragment: Fragment() {
                                 objectBook.getString("file"),
                                 objectBook.getString("picture"),
                                 objectBook.getString("description"),
-                                objectBook.getString("idAuthor")
+                                objectBook.getString("author")
                             )
                             booksMap.add(book)
                         }
@@ -80,5 +81,4 @@ class BooksFragment: Fragment() {
         val requestQueue = Volley.newRequestQueue(this.context)
         requestQueue.add<String>(stringRequest)
     }
-
 }

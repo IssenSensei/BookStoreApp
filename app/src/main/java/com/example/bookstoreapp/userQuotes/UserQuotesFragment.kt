@@ -1,5 +1,6 @@
 package com.example.bookstoreapp.userQuotes
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,7 @@ class UserQuotesFragment: Fragment() {
     private fun setUpRecycler() {
         user_quote_item_list.layoutManager = LinearLayoutManager(context)
         user_quote_item_list.addItemDecoration(LineItemDecoration(this.context, LinearLayout.VERTICAL))
-        user_quote_item_list.adapter = UserQuotesRecyclerViewAdapter(userQuotesMap)
+        user_quote_item_list.adapter = UserQuotesRecyclerViewAdapter(userQuotesMap, this.context!!)
     }
 
     private fun loadQuotes() {
@@ -59,7 +60,8 @@ class UserQuotesFragment: Fragment() {
                             val userQuote = UserQuotesItem(
                                 objectQuote.getInt("id"),
                                 objectQuote.getString("bookTitle"),
-                                objectQuote.getString("content")
+                                objectQuote.getString("content"),
+                                objectQuote.getString("picture")
                             )
                             userQuotesMap.add(userQuote)
                         }
@@ -75,4 +77,5 @@ class UserQuotesFragment: Fragment() {
         val requestQueue = Volley.newRequestQueue(this.context)
         requestQueue.add<String>(stringRequest)
     }
+
 }

@@ -38,7 +38,7 @@ class NewsFragment: Fragment() {
     private fun setUpRecycler() {
         news_item_list.layoutManager = LinearLayoutManager(context)
         news_item_list.addItemDecoration(LineItemDecoration(this.context, LinearLayout.VERTICAL))
-        news_item_list.adapter = NewsRecyclerViewAdapter(newsMap)
+        news_item_list.adapter = NewsRecyclerViewAdapter(newsMap, this.context!!)
     }
 
     private fun loadNews() {

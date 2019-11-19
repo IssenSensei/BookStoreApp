@@ -1,9 +1,12 @@
 package com.example.bookstoreapp.bookQuotes
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
@@ -11,7 +14,8 @@ import com.example.bookstoreapp.utils.ItemAnimation
 import com.example.bookstoreapp.utils.Tools
 import com.example.bookstoreapp.utils.ViewAnimation
 
-class BookQuotesRecyclerViewAdapter(private val bookQuotesMap: MutableList<BookQuotesItem>)
+class BookQuotesRecyclerViewAdapter(private val bookQuotesMap: MutableList<BookQuotesItem>,
+                                    private val context: Context)
                                     : RecyclerView.Adapter<BookQuotesRecyclerViewAdapter.ViewHolder>() {
     private val animation_type = ItemAnimation.FADE_IN
 
@@ -23,7 +27,6 @@ class BookQuotesRecyclerViewAdapter(private val bookQuotesMap: MutableList<BookQ
 
         holder.bookTitle.text = second.bookTitle
         holder.quoteContent.text = second.content
-        holder.userName.text = second.userName
 
         holder.expand.setOnClickListener { v ->
             val show = toggleLayoutExpand(!second.expanded, v, holder.lytExpand)
@@ -38,7 +41,19 @@ class BookQuotesRecyclerViewAdapter(private val bookQuotesMap: MutableList<BookQ
         Tools.toggleArrow(second.expanded, holder.expand, false)
         setAnimation(holder.itemView, position)
 
+        holder.linearListener.setOnClickListener {
+            seeDetails(context, second)
+        }
 
+    }
+
+    private fun seeDetails(context: Context, data: BookQuotesItem){
+
+        val intent = Intent(context, BookQuoteDetailActivity::class.java)
+        intent.apply {
+            putExtra("data", data)
+        }
+        context.startActivity(intent)
     }
 
     private var lastPosition = -1
@@ -74,6 +89,8 @@ class BookQuotesRecyclerViewAdapter(private val bookQuotesMap: MutableList<BookQ
 
         val bookTitle = mView.findViewById<TextView>(R.id.bookTitle)!!
         val quoteContent = mView.findViewById<TextView>(R.id.quoteContent)!!
-        val userName = mView.findViewById<TextView>(R.id.userName)!!
+
+        val linearListener = mView.findViewById<LinearLayout>(R.id.linear_listener)
+
     }
 }

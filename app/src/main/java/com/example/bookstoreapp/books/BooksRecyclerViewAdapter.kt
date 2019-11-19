@@ -1,11 +1,11 @@
 package com.example.bookstoreapp.books
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bookstoreapp.R
@@ -13,10 +13,12 @@ import com.example.bookstoreapp.utils.ItemAnimation
 import com.example.bookstoreapp.utils.Tools
 import com.example.bookstoreapp.utils.ViewAnimation
 
-class BooksRecyclerViewAdapter(private val booksMap: MutableList<BooksItem>)
+class BooksRecyclerViewAdapter(
+    private val booksMap: MutableList<BooksItem>,
+    private val context: Context
+)
     : RecyclerView.Adapter<BooksRecyclerViewAdapter.ViewHolder>() {
     private val animation_type = ItemAnimation.FADE_IN
-
     override fun getItemCount() = booksMap.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -42,8 +44,21 @@ class BooksRecyclerViewAdapter(private val booksMap: MutableList<BooksItem>)
         Tools.toggleArrow(second.expanded, holder.expand, false)
         setAnimation(holder.itemView, position)
 
+        holder.linearListener.setOnClickListener { view ->
+            seeDetails(context, second)
+        }
 
     }
+
+    private fun seeDetails(context: Context, data: BooksItem){
+
+        val intent = Intent(context, BookDetailActivity::class.java)
+        intent.apply {
+            putExtra("data", data)
+        }
+        context.startActivity(intent)
+    }
+
 
     private var lastPosition = -1
     private var on_attach = true
@@ -78,5 +93,8 @@ class BooksRecyclerViewAdapter(private val booksMap: MutableList<BooksItem>)
         val bookTitle = mView.findViewById<TextView>(R.id.bookTitle)!!
         val bookDescription = mView.findViewById<TextView>(R.id.bookDescription)!!
         val image = mView.findViewById<ImageView>(R.id.imgvw)!!
+
+        val linearListener = mView.findViewById<LinearLayout>(R.id.linear_listener)
+
     }
 }

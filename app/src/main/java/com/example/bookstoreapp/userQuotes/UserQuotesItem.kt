@@ -6,7 +6,7 @@ data class UserQuotesItem (
     var id: Int = 0,
     var bookTitle: String = "",
     var content: String = "",
-    var userName: String = "",
+    var picture: String = "",
 
     var expanded: Boolean = false
 

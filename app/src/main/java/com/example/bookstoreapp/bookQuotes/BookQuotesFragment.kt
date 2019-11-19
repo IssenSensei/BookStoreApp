@@ -39,7 +39,7 @@ class BookQuotesFragment: Fragment() {
     private fun setUpRecycler() {
         book_quote_item_list.layoutManager = LinearLayoutManager(context)
         book_quote_item_list.addItemDecoration(LineItemDecoration(this.context, LinearLayout.VERTICAL))
-        book_quote_item_list.adapter = BookQuotesRecyclerViewAdapter(bookQuotesMap)
+        book_quote_item_list.adapter = BookQuotesRecyclerViewAdapter(bookQuotesMap, this.context!!)
     }
 
     private fun loadBooks() {
@@ -60,7 +60,9 @@ class BookQuotesFragment: Fragment() {
                                 objectQuote.getInt("id"),
                                 objectQuote.getString("bookTitle"),
                                 objectQuote.getString("content"),
-                                objectQuote.getString("userName")
+                                objectQuote.getString("userName"),
+                                objectQuote.getString("picture")
+
                             )
                             bookQuotesMap.add(bookQuote)
                         }

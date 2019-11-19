@@ -1,10 +1,12 @@
 package com.example.bookstoreapp.userQuotes
 
-import android.util.Log
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
@@ -12,8 +14,11 @@ import com.example.bookstoreapp.utils.ItemAnimation
 import com.example.bookstoreapp.utils.Tools
 import com.example.bookstoreapp.utils.ViewAnimation
 
-class UserQuotesRecyclerViewAdapter(private val userQuotesMap: MutableList<UserQuotesItem>)
-                                    : RecyclerView.Adapter<UserQuotesRecyclerViewAdapter.ViewHolder>() {
+class UserQuotesRecyclerViewAdapter(
+    private val userQuotesMap: MutableList<UserQuotesItem>,
+    private val context: Context
+)
+    : RecyclerView.Adapter<UserQuotesRecyclerViewAdapter.ViewHolder>() {
     private val animation_type = ItemAnimation.FADE_IN
 
     override fun getItemCount() = userQuotesMap.size
@@ -38,7 +43,19 @@ class UserQuotesRecyclerViewAdapter(private val userQuotesMap: MutableList<UserQ
         Tools.toggleArrow(second.expanded, holder.expand, false)
         setAnimation(holder.itemView, position)
 
+        holder.linearListener.setOnClickListener {
+            seeDetails(context, second)
+        }
 
+    }
+
+    private fun seeDetails(context: Context, data: UserQuotesItem){
+
+        val intent = Intent(context, UserQuoteDetailActivity::class.java)
+        intent.apply {
+            putExtra("data", data)
+        }
+        context.startActivity(intent)
     }
 
     private var lastPosition = -1
@@ -74,5 +91,8 @@ class UserQuotesRecyclerViewAdapter(private val userQuotesMap: MutableList<UserQ
 
         val bookTitle = mView.findViewById<TextView>(R.id.bookTitle)!!
         val content = mView.findViewById<TextView>(R.id.quoteContent)!!
+
+        val linearListener = mView.findViewById<LinearLayout>(R.id.linear_listener)
+
     }
 }

@@ -10,7 +10,7 @@ data class BooksItem (
     var file: String = "",
     var picture: String = "",
     var description: String = "",
-    var idAuthor: String = "",
+    var author: String = "",
 
     var expanded: Boolean = false
 
