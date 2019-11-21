@@ -19,12 +19,14 @@ class UserProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-        user = loadUserData()
+        loadUserData()
         val login = findViewById<EditText>(R.id.loginInput)!!
         val email = findViewById<EditText>(R.id.emailInput)!!
         val phone = findViewById<EditText>(R.id.phoneInput)!!
         val name = findViewById<EditText>(R.id.nameInput)!!
         val lastName = findViewById<EditText>(R.id.lastNameInput)!!
+
+        user = UserItem(0, "login","password","name","lastName","email","845798458")
 
         login.setText(user.login)
         email.setText(user.email)
@@ -43,7 +45,7 @@ class UserProfileActivity : AppCompatActivity() {
 
 
 
-    private fun loadUserData() : UserItem {
+    private fun loadUserData() {
         val stringRequest = StringRequest(Request.Method.GET,
             Api.URL_GET_USER,
             Response.Listener<String> { s ->
@@ -77,7 +79,6 @@ class UserProfileActivity : AppCompatActivity() {
 
         val requestQueue = Volley.newRequestQueue(applicationContext)
         requestQueue.add<String>(stringRequest)
-        return user
     }
 
     private fun updateUser(){

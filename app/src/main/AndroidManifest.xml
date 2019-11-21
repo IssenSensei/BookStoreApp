@@ -27,6 +27,7 @@
         <activity android:name=".news.NewsDetailActivity" />
         <activity android:name=".bookQuotes.BookQuoteDetailActivity" />
         <activity android:name=".user.UserProfileActivity" />
+        <activity android:name=".menu.AppSettingsActivity" />
     </application>
 
 </manifest>

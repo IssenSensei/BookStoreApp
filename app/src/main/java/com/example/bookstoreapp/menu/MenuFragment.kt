@@ -23,5 +23,15 @@ class MenuFragment: Fragment() {
             val intent = Intent(context, UserProfileActivity::class.java)
             context?.startActivity(intent)
         }
+
+        app_info_button.setOnClickListener{
+            val intent = Intent(context, AppInfoActivity::class.java)
+            context?.startActivity(intent)
+        }
+
+        app_settings_button.setOnClickListener{
+            val intent = Intent(context, AppSettingsActivity::class.java)
+            context?.startActivity(intent)
+        }
     }
 }
