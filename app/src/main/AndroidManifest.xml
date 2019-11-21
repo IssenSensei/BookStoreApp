@@ -3,6 +3,8 @@
     package="com.example.bookstoreapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".database.VolleySingleton"
@@ -28,6 +30,7 @@
         <activity android:name=".bookQuotes.BookQuoteDetailActivity" />
         <activity android:name=".user.UserProfileActivity" />
         <activity android:name=".menu.AppSettingsActivity" />
+        <activity android:name=".menu.AppInfoActivity" />
     </application>
 
 </manifest>
