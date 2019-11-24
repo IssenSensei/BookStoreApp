@@ -1,7 +1,9 @@
 package com.example.bookstoreapp.books
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,8 +35,9 @@ class BooksFragment: Fragment() {
 
         booksMap = mutableListOf()
         loadBooks()
-
         setUpRecycler()
+        if(booksMap.size == 0)
+            no_data_text_view.visibility = View.VISIBLE
     }
 
     private fun setUpRecycler() {
@@ -69,11 +72,13 @@ class BooksFragment: Fragment() {
                             )
                             booksMap.add(book)
                         }
+                        no_data_text_view.visibility = View.GONE
                         books_item_list.adapter?.notifyDataSetChanged()
                     } else {
                         Toast.makeText(this.context, obj.getString("message"), Toast.LENGTH_LONG).show()
                     }
                 } catch (e: JSONException) {
+                    Toast.makeText(this.context, "Problem z połączeniem", Toast.LENGTH_SHORT).show()
                     e.printStackTrace()
                 }
             }, Response.ErrorListener { volleyError -> Toast.makeText(this.context, volleyError.message, Toast.LENGTH_LONG).show() })

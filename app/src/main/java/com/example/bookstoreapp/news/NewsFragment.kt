@@ -33,6 +33,8 @@ class NewsFragment: Fragment() {
         newsMap = mutableListOf()
         loadNews()
         setUpRecycler()
+        if(newsMap.size == 0)
+            no_data_text_view.visibility = View.VISIBLE
     }
 
     private fun setUpRecycler() {
@@ -65,10 +67,13 @@ class NewsFragment: Fragment() {
                             newsMap.add(news)
                         }
                         news_item_list.adapter?.notifyDataSetChanged()
+                        no_data_text_view.visibility = View.GONE
+
                     } else {
                         Toast.makeText(this.context, obj.getString("message"), Toast.LENGTH_LONG).show()
                     }
                 } catch (e: JSONException) {
+                    Toast.makeText(this.context, "Problem z połączeniem", Toast.LENGTH_SHORT).show()
                     e.printStackTrace()
                 }
             }, Response.ErrorListener { volleyError -> Toast.makeText(this.context, volleyError.message, Toast.LENGTH_LONG).show() })

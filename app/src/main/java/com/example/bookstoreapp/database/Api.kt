@@ -2,7 +2,9 @@ package com.example.bookstoreapp.database
 
 object Api {
 
-    private val ROOT_URL = "http://192.168.88.38/BookstoreApi/api/Api.php?apicall="
+    var USER_ID : Int = -1
+
+    private val ROOT_URL = "http://192.168.1.19/BookstoreApi/api/Api.php?apicall="
 
     val URL_GET_USERS = ROOT_URL + "getUsers"
     val URL_GET_BOOKS = ROOT_URL + "getBooks"

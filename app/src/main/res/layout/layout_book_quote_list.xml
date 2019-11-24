@@ -7,6 +7,14 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp">
 
+    <TextView
+        android:id="@+id/no_data_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="@string/no_data_to_show"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/book_quote_item_list"
         android:name="com.example.bookstoreapp.bookQuotes.BookQuotesFragment"

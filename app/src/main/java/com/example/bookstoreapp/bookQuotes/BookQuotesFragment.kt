@@ -34,6 +34,8 @@ class BookQuotesFragment: Fragment() {
         bookQuotesMap = mutableListOf()
         loadBooks()
         setUpRecycler()
+        if(bookQuotesMap.size == 0)
+            no_data_text_view.visibility = View.VISIBLE
     }
 
     private fun setUpRecycler() {
@@ -67,10 +69,13 @@ class BookQuotesFragment: Fragment() {
                             bookQuotesMap.add(bookQuote)
                         }
                         book_quote_item_list.adapter?.notifyDataSetChanged()
+                        no_data_text_view.visibility = View.GONE
+
                     } else {
                         Toast.makeText(this.context, obj.getString("message"), Toast.LENGTH_LONG).show()
                     }
                 } catch (e: JSONException) {
+                    Toast.makeText(this.context, "Problem z połączeniem", Toast.LENGTH_SHORT).show()
                     e.printStackTrace()
                 }
             }, Response.ErrorListener { volleyError -> Toast.makeText(this.context, volleyError.message, Toast.LENGTH_LONG).show() })

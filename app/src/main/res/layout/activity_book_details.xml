@@ -146,4 +146,5 @@
         app:layout_anchor="@id/image"
         app:layout_anchorGravity="bottom|right|end"/>
 
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

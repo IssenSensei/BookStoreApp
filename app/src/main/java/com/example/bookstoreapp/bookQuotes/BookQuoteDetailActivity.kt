@@ -27,5 +27,7 @@ class BookQuoteDetailActivity : AppCompatActivity() {
         Glide.with(applicationContext)
             .load(data.picture)
             .into(image)
+
+
     }
 }

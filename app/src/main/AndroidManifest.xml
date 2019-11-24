@@ -19,7 +19,7 @@
 <!--        <activity android:name=".bookQuotes.bookQuoteDetailActivity"></activity>-->
 <!--        <activity android:name=".news./newsDetailActivity"></activity>-->
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +31,11 @@
         <activity android:name=".user.UserProfileActivity" />
         <activity android:name=".menu.AppSettingsActivity" />
         <activity android:name=".menu.AppInfoActivity" />
+        <activity android:name=".auth.LoginActivity" >
+
+        </activity>
+        <activity android:name=".auth.RegisterActivity" />
+        <activity android:name=".BookReaderActivity" />
     </application>
 
 </manifest>

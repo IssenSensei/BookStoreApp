@@ -35,6 +35,8 @@ class UserQuotesFragment: Fragment() {
         userQuotesMap = mutableListOf()
         loadQuotes()
         setUpRecycler()
+        if(userQuotesMap.size == 0)
+            no_data_text_view.visibility = View.VISIBLE
     }
 
     private fun setUpRecycler() {
@@ -66,10 +68,13 @@ class UserQuotesFragment: Fragment() {
                             userQuotesMap.add(userQuote)
                         }
                         user_quote_item_list.adapter?.notifyDataSetChanged()
+                        no_data_text_view.visibility = View.GONE
+
                     } else {
                         Toast.makeText(this.context, obj.getString("message"), Toast.LENGTH_LONG).show()
                     }
                 } catch (e: JSONException) {
+                    Toast.makeText(this.context, "Problem z połączeniem", Toast.LENGTH_SHORT).show()
                     e.printStackTrace()
                 }
             }, Response.ErrorListener { volleyError -> Toast.makeText(this.context, volleyError.message, Toast.LENGTH_LONG).show() })

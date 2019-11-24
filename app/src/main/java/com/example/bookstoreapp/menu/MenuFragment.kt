@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.bookstoreapp.R
+import com.example.bookstoreapp.auth.LoginActivity
+import com.example.bookstoreapp.database.Api
 import com.example.bookstoreapp.user.UserProfileActivity
 import kotlinx.android.synthetic.main.fragment_menu.*
 
@@ -31,6 +33,12 @@ class MenuFragment: Fragment() {
 
         app_settings_button.setOnClickListener{
             val intent = Intent(context, AppSettingsActivity::class.java)
+            context?.startActivity(intent)
+        }
+
+        logout_button.setOnClickListener{
+            Api.USER_ID = -1
+            val intent = Intent(context, LoginActivity::class.java)
             context?.startActivity(intent)
         }
     }

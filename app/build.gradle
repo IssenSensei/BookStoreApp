@@ -23,6 +23,10 @@ android {
     dataBinding {
         enabled = true
     }
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+    }
+
 }
 
 dependencies {
@@ -68,6 +72,10 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.0'
     implementation "com.folioreader:folioreader:0.5.4"
     implementation 'com.github.kk121:File-Loader:1.2'
+    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+
+    //ktor
+    implementation "io.ktor:ktor-client-android:1.2.5"
 
 
     //noinspection GradleCompatible
