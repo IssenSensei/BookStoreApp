@@ -4,15 +4,11 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.bookstoreapp.R
-import com.example.bookstoreapp.database.Api
+import com.example.bookstoreapp.database.ApiInterface
 import kotlinx.android.synthetic.main.activity_profile.*
-import org.json.JSONException
-import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
 
 class UserProfileActivity : AppCompatActivity() {
     private lateinit var user: UserItem
@@ -45,41 +41,66 @@ class UserProfileActivity : AppCompatActivity() {
 
 
 
-    private fun loadUserData() {
-        val stringRequest = StringRequest(Request.Method.GET,
-            Api.URL_GET_USER,
-            Response.Listener<String> { s ->
-                try {
+   private fun loadUserData() {
 
-                    val obj = JSONObject(s)
+       val apiInterface = ApiInterface.create().getUser("getUser", 3)
 
-                    if (!obj.getBoolean("error")) {
+       apiInterface.enqueue( object : Callback<List<UserItem>> {
 
-                        val array = obj.getJSONArray("users")
+           override fun onResponse(call: Call<List<UserItem>>, response: retrofit2.Response<List<UserItem>>?) {
+               if(response?.body() != null) {
+                   user = UserItem(
+                        response.body()!![0].id,
+                        response.body()!![0].login,
+                        response.body()!![0].password,
+                        response.body()!![0].name,
+                        response.body()!![0].lastName,
+                        response.body()!![0].email,
+                        response.body()!![0].phone
+                   )
+               }
+           }
 
-                        for (i in 0..array.length() - 1) {
-                            val objectUser = array.getJSONObject(i)
-                            user = UserItem(
-                                objectUser.getInt("id"),
-                                objectUser.getString("login"),
-                                objectUser.getString("password"),
-                                objectUser.getString("name"),
-                                objectUser.getString("lastName"),
-                                objectUser.getString("email"),
-                                objectUser.getString("phone")
-                            )
-                        }
-                    } else {
-                        Toast.makeText(applicationContext, obj.getString("message"), Toast.LENGTH_LONG).show()
-                    }
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-            }, Response.ErrorListener { volleyError -> Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_LONG).show() })
+           override fun onFailure(call: Call<List<UserItem>>?, t: Throwable?) {
+               Toast.makeText(baseContext, "Wystąpił problem przy pobieraniu danych", Toast.LENGTH_SHORT).show()
 
-        val requestQueue = Volley.newRequestQueue(applicationContext)
-        requestQueue.add<String>(stringRequest)
-    }
+           }
+       })
+   }
+//        val stringRequest = StringRequest(Request.Method.GET,
+//            Api.URL_GET_USER,
+//            Response.Listener<String> { s ->
+//                try {
+//
+//                    val obj = JSONObject(s)
+//
+//                    if (!obj.getBoolean("error")) {
+//
+//                        val array = obj.getJSONArray("users")
+//
+//                        for (i in 0..array.length() - 1) {
+//                            val objectUser = array.getJSONObject(i)
+//                            user = UserItem(
+//                                objectUser.getInt("id"),
+//                                objectUser.getString("login"),
+//                                objectUser.getString("password"),
+//                                objectUser.getString("name"),
+//                                objectUser.getString("lastName"),
+//                                objectUser.getString("email"),
+//                                objectUser.getString("phone")
+//                            )
+//                        }
+//                    } else {
+//                        Toast.makeText(applicationContext, obj.getString("message"), Toast.LENGTH_LONG).show()
+//                    }
+//                } catch (e: JSONException) {
+//                    e.printStackTrace()
+//                }
+//            }, Response.ErrorListener { volleyError -> Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_LONG).show() })
+//
+//        val requestQueue = Volley.newRequestQueue(applicationContext)
+//        requestQueue.add<String>(stringRequest)
+//    }
 
     private fun updateUser(){
         //todo user

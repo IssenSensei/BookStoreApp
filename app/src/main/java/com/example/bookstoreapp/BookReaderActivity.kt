@@ -6,6 +6,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.layout_book_reader.*
 import java.io.File
+import com.folioreader.FolioReader
+
+
 
 class BookReaderActivity : AppCompatActivity() {
 
@@ -13,10 +16,17 @@ class BookReaderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_book_reader)
 
-        val newfile = File(intent.getStringExtra("file"))
-        Log.d("ebookPath", newfile.toString())
+        val extension = intent.getStringExtra("extension")!!
 
-        pdfView.fromFile(newfile).nightMode(true).load()
+        when {
+            extension.equals("pdf") -> {
+                pdfView.fromFile(File(intent.getStringExtra("file")!!)).nightMode(true).load()
+            }
+            extension.equals("epub") -> {
+                val folioReader = FolioReader.get()
+                folioReader.openBook(intent.getStringExtra("file"))
+            }
+        }
 
     }
 

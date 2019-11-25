@@ -19,7 +19,6 @@ class UserQuotesRecyclerViewAdapter(
     private val context: Context
 )
     : RecyclerView.Adapter<UserQuotesRecyclerViewAdapter.ViewHolder>() {
-    private val animation_type = ItemAnimation.FADE_IN
 
     override fun getItemCount() = userQuotesMap.size
 
@@ -41,7 +40,6 @@ class UserQuotesRecyclerViewAdapter(
             holder.lytExpand.setVisibility(View.GONE)
         }
         Tools.toggleArrow(second.expanded, holder.expand, false)
-        setAnimation(holder.itemView, position)
 
         holder.linearListener.setOnClickListener {
             seeDetails(context, second)
@@ -58,15 +56,6 @@ class UserQuotesRecyclerViewAdapter(
         context.startActivity(intent)
     }
 
-    private var lastPosition = -1
-    private var on_attach = true
-
-    private fun setAnimation(view: View, position: Int) {
-        if (position > lastPosition) {
-            ItemAnimation.animate(view, if (on_attach) position else -1, animation_type)
-            lastPosition = position
-        }
-    }
     private fun toggleLayoutExpand(show: Boolean, view: View, lyt_expand: View): Boolean {
         Tools.toggleArrow(show, view)
         if (show) {

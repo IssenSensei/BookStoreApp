@@ -4,7 +4,7 @@ object Api {
 
     var USER_ID : Int = -1
 
-    private val ROOT_URL = "http://192.168.1.19/BookstoreApi/api/Api.php?apicall="
+    private val ROOT_URL = "http://192.168.43.84/BookstoreApi/api/Api.php?apicall="
 
     val URL_GET_USERS = ROOT_URL + "getUsers"
     val URL_GET_BOOKS = ROOT_URL + "getBooks"

@@ -51,6 +51,7 @@ class BookDetailActivity : AppCompatActivity() {
                     ebookDirectory.mkdirs()
 
                     val bookName = data.file.substring(data.file.lastIndexOf("/"))
+                    val extension = data.file.substring(data.file.lastIndexOf("."))
                     val newfile = File(ebookDirectory, bookName)
 
                     val ebookPath = ebookDirectory.toString() + bookName
@@ -59,6 +60,7 @@ class BookDetailActivity : AppCompatActivity() {
 
                     val intent = Intent(applicationContext, BookReaderActivity::class.java)
                     intent.putExtra("file", ebookPath)
+                    intent.putExtra("extension", extension)
                     startActivity(intent)
 
                 }
