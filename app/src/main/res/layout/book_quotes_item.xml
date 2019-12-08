@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linear_listener"
+        android:id="@+id/book_quotes_listener"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/nested_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    android:scrollingCache="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_large">
+
+                <EditText
+                    android:id="@+id/book_search_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tytuł"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColorHint="@color/grey_40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_large" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/book_search_publisher"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="Wydawnictwo"
+                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColorHint="@color/grey_40" />
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/book_search_spinner_publisher"-->
+<!--                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:spinnerMode="dialog"-->
+<!--                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+<!--                        android:textColor="@color/grey_80" />-->
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_large"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/book_search_author"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="Autor"
+                        android:minHeight="@dimen/spacing_xxlarge"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColorHint="@color/grey_40" />
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/book_search_spinner_author"-->
+<!--                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:spinnerMode="dialog"-->
+<!--                        android:text="5:30 PM"-->
+<!--                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+<!--                        android:textColor="@color/grey_80" />-->
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_large" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xsmall"
+                    android:text="Rok wydania"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/grey_60" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/book_search_spinner_year_min"
+                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                        android:layout_width="0dp"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_weight="2"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/grey_80" />
+
+                    <View
+                        android:layout_width="@dimen/spacing_large"
+                        android:layout_height="0dp" />
+
+                    <Spinner
+                        android:id="@+id/book_search_spinner_year_max"
+                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                        android:layout_width="0dp"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_weight="2"
+                        android:singleLine="true"
+                        android:spinnerMode="dialog"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/grey_80" />
+
+                </LinearLayout>
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView5"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="@dimen/spacing_xsmall"-->
+<!--                    android:text="Ocena"-->
+<!--                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"-->
+<!--                    android:textColor="@color/grey_60" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/book_search_spinner_rating_min"-->
+<!--                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="?attr/actionBarSize"-->
+<!--                        android:layout_weight="2"-->
+<!--                        android:text="Fry, May 12 2017"-->
+<!--                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+<!--                        android:textColor="@color/grey_80" />-->
+
+<!--                    <View-->
+<!--                        android:layout_width="@dimen/spacing_large"-->
+<!--                        android:layout_height="0dp" />-->
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/book_search_spinner_rating_max"-->
+<!--                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="?attr/actionBarSize"-->
+<!--                        android:layout_weight="2"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:spinnerMode="dialog"-->
+<!--                        android:text="5:30 PM"-->
+<!--                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+<!--                        android:textColor="@color/grey_80" />-->
+
+<!--                </LinearLayout>-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_large" />
+
+                <EditText
+                    android:id="@+id/book_search_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="Opis"
+                    android:minHeight="@dimen/spacing_xxlarge"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColorHint="@color/grey_40" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_10" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/book_search_button_cancel"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/spacing_xsmall"
+                    android:paddingRight="@dimen/spacing_xsmall"
+                    android:text="Anuluj"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/book_search_button_save"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/spacing_xsmall"
+                    android:paddingRight="@dimen/spacing_xsmall"
+                    android:text="Zapisz"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+    </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+

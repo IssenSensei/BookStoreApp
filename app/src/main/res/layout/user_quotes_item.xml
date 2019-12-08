@@ -20,37 +20,15 @@
             android:layout_width="@dimen/spacing_large"
             android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/imgvw"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@android:color/transparent" />
-
-        <View
-            android:layout_width="@dimen/spacing_large"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/quoteContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/newsTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:text="Item Title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/grey_80" />
-
-            <TextView
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="username" />
-        </LinearLayout>
+            android:ellipsize="end"
+            android:text="Item Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/grey_80" />
 
         <View
             android:layout_width="@dimen/spacing_large"
@@ -59,7 +37,7 @@
         <ImageButton
             android:id="@+id/bt_expand"
             android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tint="@color/grey_60"
             app:srcCompat="@drawable/ic_expand_arrow" />
@@ -71,14 +49,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey_3"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/newsContent"
-            android:layout_width="match_parent"
+            android:id="@+id/bookTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_large"/>
+            android:layout_weight="1"
+            android:layout_margin="@dimen/spacing_large" />
+
+        <ImageButton
+            android:id="@+id/user_quote_delete"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="@dimen/spacing_large"
+            app:srcCompat="@drawable/delete" />
 
     </LinearLayout>
 

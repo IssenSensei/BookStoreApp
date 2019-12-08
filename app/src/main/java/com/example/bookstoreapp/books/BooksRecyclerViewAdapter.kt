@@ -1,26 +1,31 @@
 package com.example.bookstoreapp.books
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bookstoreapp.R
+import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.utils.Tools
 import com.example.bookstoreapp.utils.ViewAnimation
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BooksRecyclerViewAdapter(
     private var booksMap: MutableList<BooksItem>,
     private val context: Context
 
 )
-    : RecyclerView.Adapter<BooksRecyclerViewAdapter.ViewHolder>() {
+    : RecyclerView.Adapter<BooksRecyclerViewAdapter.ViewHolder>(){
+
     override fun getItemCount() = booksMap.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -38,22 +43,57 @@ class BooksRecyclerViewAdapter(
         }
 
         if (second.expanded) {
-            holder.lytExpand.setVisibility(View.VISIBLE)
+            holder.lytExpand.visibility = View.VISIBLE
         } else {
-            holder.lytExpand.setVisibility(View.GONE)
+            holder.lytExpand.visibility = View.GONE
         }
         Tools.toggleArrow(second.expanded, holder.expand, false)
 
-        holder.linearListener.setOnClickListener { view ->
+        holder.linearListener.setOnClickListener {
             seeDetails(context, second)
         }
+
+        holder.delete.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage(R.string.delete_dialog_confirmation)
+            builder.setPositiveButton(R.string.Confirm){
+                    dialogInterface, i ->
+                delete(second.id)
+                booksMap.removeAt(position)
+                notifyItemRemoved(position)
+            }
+            builder.setNegativeButton(R.string.Dialog_cancel, null)
+                .setOnCancelListener{
+                    dialog ->  dialog.dismiss()
+                }
+            builder.show()
+        }
+
     }
+
+    private fun delete(bookId: Int) {
+        val apiInterface = ApiInterface.create().deleteBook("deleteBook", bookId, 1)
+
+        apiInterface.enqueue(object : Callback<Int> {
+
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if(response.isSuccessful) {
+                    Log.i("addresponse", "post submitted to API." + response.body().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<Int>, t: Throwable?) {
+                Log.d("qpablad", t.toString())
+
+            }
+        })    }
 
     private fun seeDetails(context: Context, data: BooksItem){
 
         val intent = Intent(context, BookDetailActivity::class.java)
         intent.apply {
             putExtra("data", data)
+            putExtra("id", data.id)
         }
         context.startActivity(intent)
     }
@@ -69,13 +109,12 @@ class BooksRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_books, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.book_list_item, parent, false)
         return ViewHolder(view)
     }
 
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        var mItem: BooksItem? = null
 
         val lytExpand = mView.findViewById(R.id.lyt_expand) as View
         val expand = mView.findViewById(R.id.bt_expand) as ImageButton
@@ -83,6 +122,7 @@ class BooksRecyclerViewAdapter(
         val bookDescription = mView.findViewById<TextView>(R.id.bookDescription)!!
         val image = mView.findViewById<ImageView>(R.id.imgvw)!!
 
+        val delete = mView.findViewById<ImageButton>(R.id.book_list_delete)
         val linearListener = mView.findViewById<LinearLayout>(R.id.linear_listener)
 
     }

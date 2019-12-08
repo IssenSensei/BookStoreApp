@@ -69,6 +69,8 @@
                 android:id="@+id/authorView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:textStyle="italic|bold"
                 android:layout_weight="3" />
         </LinearLayout>
 
@@ -98,17 +100,45 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_marginRight="@dimen/spacing_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_medium"
                 android:text="Wydawnictwo:" />
 
             <TextView
                 android:id="@+id/publisherView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="italic|bold"
+                android:textColor="@color/colorAccent"
                 android:layout_weight="3" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ocena użytkowników:" />
+
+            <TextView
+                android:id="@+id/ratingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/showComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Pokaż komentarze "/>
 
         <TextView
             android:layout_width="wrap_content"

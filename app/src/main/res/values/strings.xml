@@ -4,4 +4,11 @@
     <string name="logout">Wyloguj</string>
     <string name="menu_profile">Zobacz profil</string>
     <string name="no_data_to_show">Brak danych</string>
+    <string name="profile_edit_button">Edytuj profil</string>
+    <string name="profile_change_password">Zmień hasło</string>
+    <string name="profile_delete_account">Usuń konto</string>
+    <string name="Confirm">Tak</string>
+    <string name="delete_dialog_confirmation">Twoje dane zostaną utracone bezpowrotnie, czy jesteś pewien?</string>
+    <string name="Dialog_cancel">Anuluj</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

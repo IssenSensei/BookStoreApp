@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/book_swipe_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,30 +13,42 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/no_data_text_view"
+        android:id="@+id/no_book_data_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="@string/no_data_to_show"
         android:visibility="gone" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/book_fab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:clickable="true"
+        android:focusable="true"
+        android:foregroundGravity="bottom|right"
+        app:backgroundTint="#00FFC5C5"
+        app:srcCompat="@drawable/search" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/books_item_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:scrollingCache="true" />
+        android:scrollingCache="true" >
 
+    </androidx.recyclerview.widget.RecyclerView>
 
-
-
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ProgressBar
+        android:id="@+id/book_quote_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55000000"
         android:clickable="true"
-        android:foregroundGravity="bottom|right"
-        android:layout_gravity="bottom|right"
-        app:backgroundTint="#00FFC5C5"
-        app:srcCompat="@drawable/search" />
-</LinearLayout>
+        android:padding="100dp"
+        android:visibility="gone" />
+
+
+</FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -2,17 +2,22 @@ package com.example.bookstoreapp.userQuotes
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
-import com.example.bookstoreapp.utils.ItemAnimation
+import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.utils.Tools
 import com.example.bookstoreapp.utils.ViewAnimation
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UserQuotesRecyclerViewAdapter(
     private val userQuotesMap: MutableList<UserQuotesItem>,
@@ -45,6 +50,41 @@ class UserQuotesRecyclerViewAdapter(
             seeDetails(context, second)
         }
 
+        holder.delete.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage(R.string.delete_dialog_confirmation)
+            builder.setPositiveButton(R.string.Confirm){
+                    dialogInterface, i ->
+                delete(second.id)
+                userQuotesMap.removeAt(position)
+                notifyItemRemoved(position)
+            }
+            builder.setNegativeButton(R.string.Dialog_cancel, null)
+                .setOnCancelListener{
+                        dialog ->  dialog.dismiss()
+                }
+            builder.show()
+        }
+
+
+    }
+
+    private fun delete(quoteId: Int) {
+        val apiInterface = ApiInterface.create().deleteQuote("deleteQuote", quoteId.toString())
+
+        apiInterface.enqueue(object : Callback<Int> {
+
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                if(response.isSuccessful) {
+                    Log.i("addresponse", "post submitted to API." + response.body().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<Int>, t: Throwable?) {
+                Log.d("qpablad", t.toString())
+
+            }
+        })
     }
 
     private fun seeDetails(context: Context, data: UserQuotesItem){
@@ -67,7 +107,7 @@ class UserQuotesRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_user_quotes, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.user_quotes_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -80,6 +120,7 @@ class UserQuotesRecyclerViewAdapter(
 
         val bookTitle = mView.findViewById<TextView>(R.id.bookTitle)!!
         val content = mView.findViewById<TextView>(R.id.quoteContent)!!
+        val delete = mView.findViewById<ImageButton>(R.id.user_quote_delete)
 
         val linearListener = mView.findViewById<LinearLayout>(R.id.linear_listener)
 

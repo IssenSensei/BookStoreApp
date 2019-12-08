@@ -2,16 +2,19 @@ package com.example.bookstoreapp.database
 
 import com.example.bookstoreapp.bookQuotes.BookQuotesItem
 import com.example.bookstoreapp.books.BooksItem
+import com.example.bookstoreapp.comments.CommentItem
+import com.example.bookstoreapp.comments.NewCommentItem
 import com.example.bookstoreapp.news.NewsItem
 import com.example.bookstoreapp.user.UserItem
 import com.example.bookstoreapp.userQuotes.UserQuotesItem
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
+import com.google.gson.GsonBuilder
+import com.google.gson.Gson
+
+
 
 
 interface ApiInterface {
@@ -20,7 +23,12 @@ interface ApiInterface {
     fun getBooks(@Query("apicall") apicall : String) : Call<List<BooksItem>>
 
     @GET("Api.php")
-    fun getUsers(@Query("apicall") apicall : String) : Call<List<UserItem>>
+    fun getAuthorBooks(@Query("apicall") apicall : String,
+                       @Query("authorName") authorName: String) : Call<List<BooksItem>>
+
+    @GET("Api.php")
+    fun getPublisherBooks(@Query("apicall") apicall : String,
+                       @Query("publisherName") publisherName: String) : Call<List<BooksItem>>
 
     @GET("Api.php")
     fun getNews(@Query("apicall") apicall : String) : Call<List<NewsItem>>
@@ -34,34 +42,91 @@ interface ApiInterface {
                       @Query("id") id: Long) : Call<List<BookQuotesItem>>
 
     @GET("Api.php")
+    fun getBookComments(@Query("apicall") apicall : String,
+                      @Query("id") id: Long) : Call<List<CommentItem>>
+
+    @GET("Api.php")
     fun getUserId(@Query("apicall") apicall : String,
                   @Query("login") login: String,
                   @Query("password") password: String) : Call<List<UserItem>>
 
     @GET("Api.php")
     fun getUser(@Query("apicall") apicall : String,
-                @Query("id") id: Long) : Call<List<UserItem>>
+                @Query("id") id: Long) : Call<UserItem>
 
+    @FormUrlEncoded
+    @POST("Api.php")
+    fun addBookComment(@Query("apicall") apicall : String,
+                    @Field("content") content: String,
+                    @Field("rating") rating: Int,
+                    @Field("bookId") bookId: Int,
+                    @Field("userId") userId: Int)
+                        : Call<NewCommentItem>
+
+    @FormUrlEncoded
+    @POST("Api.php")
+    fun addBookQuote(@Query("apicall") apicall : String,
+                    @Field("content") content: String,
+                    @Field("bookId") bookId: Int,
+                    @Field("userId") userId: Int)
+                        : Call<Int>
+
+    @FormUrlEncoded
     @POST("Api.php")
     fun createUser(@Query("apicall") apicall : String,
-                @Field("id") id: Long) : Call<List<UserItem>>
+                   @Field("login") login: String,
+                   @Field("password") password: String,
+                   @Field("name") name: String,
+                   @Field("lastName") lastName: String,
+                   @Field("email") email: String,
+                   @Field("phone") phone: String,
+                   @Field("status") status: String)
+                    : Call<Int>
 
+    @FormUrlEncoded
+    @POST("Api.php")
+    fun updateUser(@Query("apicall") apicall : String,
+                   @Field("userId") userId: Int,
+                   @Field("login") login: String,
+                   @Field("name") name: String,
+                   @Field("lastName") lastName: String,
+                   @Field("email") email: String,
+                   @Field("phone") phone: String)
+                    : Call<Int>
 
+    @FormUrlEncoded
+    @POST("Api.php")
+    fun deleteBook(@Query("apicall") apicall : String,
+                   @Field("bookId") bookId: Int,
+                   @Field("userId") userId: Int)
+                    : Call<Int>
 
-//    val URL_CREATE_USER = ROOT_URL + "createUser"
-//    val URL_DELETE_USER = ROOT_URL + "deleteUser&id="
-//    val URL_UPDATE_USER = ROOT_URL + "updateUser"
-//    val URL_ADD_USER_QUOTE = ROOT_URL + "addUserQuote"
-//    val URL_CHANGE_PASSWORD = ROOT_URL + "changePassword"
+    @FormUrlEncoded
+    @POST("Api.php")
+    fun deleteQuote(@Query("apicall") apicall : String,
+                   @Field("quoteId") quoteId: String)
+                    : Call<Int>
+
+    @FormUrlEncoded
+    @POST("Api.php")
+    fun changePassword(@Query("apicall") apicall : String,
+                       @Field("password") password: String,
+                       @Field("newPassword") newPassword: String,
+                        @Field("userId") userId: Int)
+                        : Call<Int>
 
     companion object {
-
-        var BASE_URL = "http://192.168.43.84/BookstoreApi/api/"
+        var USER_ID : Int = -1
+        var BASE_URL = "http://192.168.0.164/BookstoreApi/api/"
 
         fun create() : ApiInterface {
 
+            val gson = GsonBuilder()
+                .setLenient()
+                .create()
+
             val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(BASE_URL)
                 .build()
 

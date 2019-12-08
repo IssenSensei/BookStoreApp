@@ -20,14 +20,11 @@ class BookQuoteDetailActivity : AppCompatActivity() {
         val userName = findViewById<TextView>(R.id.userName)!!
         val image = findViewById<ImageView>(R.id.image)!!
 
-
         bookTitle.text = data.bookTitle
         content.text = data.content
         userName.text = data.userName
         Glide.with(applicationContext)
             .load(data.picture)
             .into(image)
-
-
     }
 }

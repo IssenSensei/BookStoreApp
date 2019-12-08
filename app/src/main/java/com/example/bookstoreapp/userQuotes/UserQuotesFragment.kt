@@ -1,9 +1,10 @@
 package com.example.bookstoreapp.userQuotes
 
+import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -34,8 +35,27 @@ class UserQuotesFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         recyclerView = view!!.findViewById(R.id.user_quote_item_list)
-
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.addItemDecoration(
+            LineItemDecoration(
+                this.context,
+                LinearLayout.VERTICAL
+            )
+        )
         userQuotesMap = mutableListOf()
+        getData()
+
+        user_quote_fab.setOnClickListener {
+            showCustomDialog()
+        }
+
+        user_quote_swipe_layout.setOnRefreshListener {
+            getData()
+            user_quote_swipe_layout.isRefreshing = false
+        }
+    }
+
+    private fun getData() {
         val apiInterface = ApiInterface.create().getUserQuotes("getUserQuotes", 3)
 
         apiInterface.enqueue(object : Callback<List<UserQuotesItem>> {
@@ -52,7 +72,7 @@ class UserQuotesFragment: Fragment() {
             override fun onFailure(call: Call<List<UserQuotesItem>>?, t: Throwable?) {
                 Toast.makeText(
                     context,
-                    "Wystąpił problem przy pobieraniu danych",
+                    "Wystąpił problem przy pobieraniu danych uk",
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -62,19 +82,51 @@ class UserQuotesFragment: Fragment() {
 
     fun setBookListItems(userQuoteList: MutableList<UserQuotesItem>) {
 
-        this.userQuotesMap = userQuoteList
+        userQuotesMap = userQuoteList
         if (userQuotesMap.size == 0)
-            no_data_text_view.visibility = View.VISIBLE
+            no_user_quote_data_text_view.visibility = View.VISIBLE
         else {
-            no_data_text_view.visibility = View.GONE
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.addItemDecoration(
-                LineItemDecoration(
-                    this.context,
-                    LinearLayout.VERTICAL
-                )
-            )
+            no_user_quote_data_text_view.visibility = View.GONE
             recyclerView.adapter = UserQuotesRecyclerViewAdapter(userQuotesMap, this.context!!)
         }
+    }
+
+    private fun showCustomDialog() {
+
+        val dialog = Dialog(this.context!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // before
+        dialog.setContentView(R.layout.dialog_user_quote_search)
+        dialog.setCancelable(true)
+
+        val lp = WindowManager.LayoutParams()
+        lp.copyFrom(dialog.window!!.attributes)
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+
+        (dialog.findViewById(R.id.user_quote_search_button_cancel) as Button).setOnClickListener { dialog.dismiss() }
+        (dialog.findViewById(R.id.user_quote_search_button_save) as Button).setOnClickListener {
+            val title = dialog.findViewById<EditText>(R.id.user_quote_search_title)
+            val description = dialog.findViewById<EditText>(R.id.user_quote_search_content)
+            var list = mutableListOf<UserQuotesItem>()
+            list.addAll(userQuotesMap)
+            userQuotesMap.clear()
+            if (!title.text.toString().equals("")) {
+                list = list.filter {
+                    it.bookTitle.toLowerCase().contains(title.text.toString().toLowerCase())
+                } as MutableList<UserQuotesItem>
+            }
+            if (!description.text.toString().equals("")) {
+                list = list.filter {
+                    it.content.toLowerCase().contains(description.text.toString().toLowerCase())
+                } as MutableList<UserQuotesItem>
+            }
+            userQuotesMap.addAll(list)
+            recyclerView.adapter!!.notifyDataSetChanged()
+            dialog.dismiss()
+        }
+
+
+        dialog.show()
+        dialog.window!!.attributes = lp
     }
 }

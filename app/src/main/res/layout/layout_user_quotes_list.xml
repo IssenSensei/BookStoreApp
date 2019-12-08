@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/user_quote_swipe_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,12 +13,23 @@
     android:layout_marginRight="16dp">
 
     <TextView
-        android:id="@+id/no_data_text_view"
+        android:id="@+id/no_user_quote_data_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="@string/no_data_to_show"
         android:visibility="gone" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/user_quote_fab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:clickable="true"
+        android:focusable="true"
+        android:foregroundGravity="bottom|right"
+        app:backgroundTint="#00FFC5C5"
+        app:srcCompat="@drawable/search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_quote_item_list"
@@ -22,10 +38,10 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context="com.example.bookstoreapp.userQuotes.UserQuotesFragment"
-        tools:listitem="@layout/fragment_user_quotes" />
+        tools:listitem="@layout/user_quotes_item" />
 
     <ProgressBar
-        android:id="@+id/loader_news"
+        android:id="@+id/user_quote_loader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#55000000"
@@ -33,3 +49,4 @@
         android:padding="100dp"
         android:visibility="gone" />
 </FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

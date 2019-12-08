@@ -9,7 +9,8 @@ data class UserItem (
     var name: String = "",
     var lastName: String = "",
     var email: String = "",
-    var phone: String = ""
+    var phone: String = "",
+    var status: String = ""
 
 ): Serializable
 

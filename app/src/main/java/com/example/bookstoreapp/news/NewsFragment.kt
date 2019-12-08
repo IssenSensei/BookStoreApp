@@ -1,21 +1,19 @@
 package com.example.bookstoreapp.news
 
+import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
-import com.example.bookstoreapp.database.Api
 import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.utils.LineItemDecoration
 import kotlinx.android.synthetic.main.layout_news_list.*
-import org.json.JSONException
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,8 +31,28 @@ class NewsFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         recyclerView = view!!.findViewById(R.id.news_item_list)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.addItemDecoration(
+            LineItemDecoration(
+                this.context,
+                LinearLayout.VERTICAL
+            )
+        )
 
         newsMap = mutableListOf()
+        getData()
+
+        news_fab.setOnClickListener {
+            showCustomDialog()
+        }
+
+        news_swipe_layout.setOnRefreshListener {
+            getData()
+            news_swipe_layout.isRefreshing = false
+        }
+    }
+
+    private fun getData() {
         val apiInterface = ApiInterface.create().getNews("getNews")
 
         apiInterface.enqueue( object : Callback<List<NewsItem>> {
@@ -46,7 +64,7 @@ class NewsFragment: Fragment() {
             }
 
             override fun onFailure(call: Call<List<NewsItem>>?, t: Throwable?) {
-                Toast.makeText(context, "Wystąpił problem przy pobieraniu danych", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Wystąpił problem przy pobieraniu danych nw", Toast.LENGTH_SHORT).show()
 
             }
         })
@@ -54,58 +72,58 @@ class NewsFragment: Fragment() {
 
     fun setNewsListItems(newsList: MutableList<NewsItem>) {
 
-        this.newsMap = newsList
+        newsMap = newsList
         if (newsMap.size == 0)
-            no_data_text_view.visibility = View.VISIBLE
+            no_news_data_text_view.visibility = View.VISIBLE
         else {
-            no_data_text_view.visibility = View.GONE
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.addItemDecoration(
-                LineItemDecoration(
-                    this.context,
-                    LinearLayout.VERTICAL
-                )
-            )
+            no_news_data_text_view.visibility = View.GONE
             recyclerView.adapter = NewsRecyclerViewAdapter(newsMap, this.context!!)
         }
     }
+    private fun showCustomDialog() {
 
-//    private fun loadNews() {
-//        val stringRequest = StringRequest(Request.Method.GET,
-//            Api.URL_GET_NEWS,
-//            Response.Listener<String> { s ->
-//                try {
-//
-//                    val obj = JSONObject(s)
-//
-//                    if (!obj.getBoolean("error")) {
-//
-//                        val array = obj.getJSONArray("news")
-//
-//                        for (i in 0..array.length() - 1) {
-//                            val objectNews = array.getJSONObject(i)
-//                            val news = NewsItem(
-//                                objectNews.getInt("id"),
-//                                objectNews.getString("content"),
-//                                objectNews.getString("title"),
-//                                objectNews.getString("login"),
-//                                objectNews.getString("picture")
-//                            )
-//                            newsMap.add(news)
-//                        }
-//                        news_item_list.adapter?.notifyDataSetChanged()
-//                        no_data_text_view.visibility = View.GONE
-//
-//                    } else {
-//                        Toast.makeText(this.context, obj.getString("message"), Toast.LENGTH_LONG).show()
-//                    }
-//                } catch (e: JSONException) {
-//                    Toast.makeText(this.context, "Problem z połączeniem", Toast.LENGTH_SHORT).show()
-//                    e.printStackTrace()
-//                }
-//            }, Response.ErrorListener { volleyError -> Toast.makeText(this.context, volleyError.message, Toast.LENGTH_LONG).show() })
-//
-//        val requestQueue = Volley.newRequestQueue(this.context)
-//        requestQueue.add<String>(stringRequest)
-//    }
+        val dialog = Dialog(this.context!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // before
+        dialog.setContentView(R.layout.dialog_news_search)
+        dialog.setCancelable(true)
+
+        val lp = WindowManager.LayoutParams()
+        lp.copyFrom(dialog.window!!.attributes)
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+
+        (dialog.findViewById(R.id.news_search_button_cancel) as Button).setOnClickListener { dialog.dismiss() }
+        (dialog.findViewById(R.id.news_search_button_save) as Button).setOnClickListener {
+            val title = dialog.findViewById<EditText>(R.id.news_search_title)
+            val description = dialog.findViewById<EditText>(R.id.news_search_content)
+            val author = dialog.findViewById<EditText>(R.id.news_search_author)
+            var list = mutableListOf<NewsItem>()
+            list.addAll(newsMap)
+            newsMap.clear()
+            if (!title.text.toString().equals("")) {
+                list = list.filter {
+                    it.title.toLowerCase().contains(title.text.toString().toLowerCase())
+                } as MutableList<NewsItem>
+            }
+            if (!description.text.toString().equals("")) {
+                list = list.filter {
+                    it.content.toLowerCase().contains(description.text.toString().toLowerCase())
+                } as MutableList<NewsItem>
+            }
+            if (!author.text.toString().equals("")) {
+                list = list.filter {
+                    it.login.toLowerCase().contains(author.text.toString().toLowerCase())
+                } as MutableList<NewsItem>
+            }
+
+            newsMap.addAll(list)
+
+            recyclerView.adapter!!.notifyDataSetChanged()
+            dialog.dismiss()
+        }
+
+
+        dialog.show()
+        dialog.window!!.attributes = lp
+    }
 }

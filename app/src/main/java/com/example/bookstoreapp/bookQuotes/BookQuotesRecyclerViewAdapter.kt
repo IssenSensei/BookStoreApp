@@ -10,13 +10,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
-import com.example.bookstoreapp.utils.ItemAnimation
 import com.example.bookstoreapp.utils.Tools
 import com.example.bookstoreapp.utils.ViewAnimation
 
-class BookQuotesRecyclerViewAdapter(private val bookQuotesMap: MutableList<BookQuotesItem>,
-                                    private val context: Context)
-                                    : RecyclerView.Adapter<BookQuotesRecyclerViewAdapter.ViewHolder>() {
+class BookQuotesRecyclerViewAdapter(
+    private val bookQuotesMap: MutableList<BookQuotesItem>,
+    private val context: Context
+) : RecyclerView.Adapter<BookQuotesRecyclerViewAdapter.ViewHolder>() {
 
     override fun getItemCount() = bookQuotesMap.size
 
@@ -33,19 +33,19 @@ class BookQuotesRecyclerViewAdapter(private val bookQuotesMap: MutableList<BookQ
         }
 
         if (second.expanded) {
-            holder.lytExpand.setVisibility(View.VISIBLE)
+            holder.lytExpand.visibility = View.VISIBLE
         } else {
-            holder.lytExpand.setVisibility(View.GONE)
+            holder.lytExpand.visibility = View.GONE
         }
         Tools.toggleArrow(second.expanded, holder.expand, false)
 
-        holder.linearListener.setOnClickListener {
+        holder.listener.setOnClickListener {
             seeDetails(context, second)
         }
-
     }
 
-    private fun seeDetails(context: Context, data: BookQuotesItem){
+
+    private fun seeDetails(context: Context, data: BookQuotesItem) {
 
         val intent = Intent(context, BookQuoteDetailActivity::class.java)
         intent.apply {
@@ -65,21 +65,20 @@ class BookQuotesRecyclerViewAdapter(private val bookQuotesMap: MutableList<BookQ
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_book_quotes, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.book_quotes_item, parent, false)
         return ViewHolder(view)
     }
 
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        var mItem: BookQuotesItem? = null
+    inner class ViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
 
         val lytExpand = mView.findViewById(R.id.lyt_expand) as View
         val expand = mView.findViewById(R.id.bt_expand) as ImageButton
 
         val bookTitle = mView.findViewById<TextView>(R.id.bookTitle)!!
         val quoteContent = mView.findViewById<TextView>(R.id.quoteContent)!!
-
-        val linearListener = mView.findViewById<LinearLayout>(R.id.linear_listener)
+        val listener: LinearLayout = mView.findViewById(R.id.book_quotes_listener)
 
     }
 }

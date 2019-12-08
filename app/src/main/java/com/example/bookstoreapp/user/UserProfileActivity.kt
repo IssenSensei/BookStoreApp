@@ -1,112 +1,110 @@
 package com.example.bookstoreapp.user
 
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
 import kotlinx.android.synthetic.main.activity_profile.*
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Response
 
 class UserProfileActivity : AppCompatActivity() {
-    private lateinit var user: UserItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
         loadUserData()
-        val login = findViewById<EditText>(R.id.loginInput)!!
-        val email = findViewById<EditText>(R.id.emailInput)!!
-        val phone = findViewById<EditText>(R.id.phoneInput)!!
-        val name = findViewById<EditText>(R.id.nameInput)!!
-        val lastName = findViewById<EditText>(R.id.lastNameInput)!!
-
-        user = UserItem(0, "login","password","name","lastName","email","845798458")
-
-        login.setText(user.login)
-        email.setText(user.email)
-        phone.setText(user.phone)
-        name.setText(user.name)
-        lastName.setText(user.lastName)
-
-        edit_profile_button.setOnClickListener{
-            updateUser()
+        profile_edit_button.setOnClickListener {
+            updateUser(
+                profile_login.text.toString(),
+                profile_name.text.toString(),
+                profile_lastName.text.toString(),
+                profile_email.text.toString(),
+                profile_phone.text.toString()
+            )
         }
 
-        change_password_button.setOnClickListener{
-            updatePassword()
+
+        profile_password_change_button.setOnClickListener {
+            updatePassword(
+                profile_password.text.toString(),
+                profile_new_password.text.toString()
+            )
         }
     }
 
 
+    private fun loadUserData() {
+        val apiInterface = ApiInterface.create().getUser("getUser", 3)
 
-   private fun loadUserData() {
+        apiInterface.enqueue(object : Callback<UserItem> {
 
-       val apiInterface = ApiInterface.create().getUser("getUser", 3)
+            override fun onResponse(
+                call: Call<UserItem>,
+                response: Response<UserItem>?
+            ) {
+                if (response?.body() != null) {
+                    Log.d("profile", response.body().toString())
+                    profile_login.setText(response.body()!!.login)
+                    profile_email.setText(response.body()!!.email)
+                    profile_phone.setText(response.body()!!.phone)
+                    profile_name.setText(response.body()!!.name)
+                    profile_lastName.setText(response.body()!!.lastName)
+                }
+            }
 
-       apiInterface.enqueue( object : Callback<List<UserItem>> {
-
-           override fun onResponse(call: Call<List<UserItem>>, response: retrofit2.Response<List<UserItem>>?) {
-               if(response?.body() != null) {
-                   user = UserItem(
-                        response.body()!![0].id,
-                        response.body()!![0].login,
-                        response.body()!![0].password,
-                        response.body()!![0].name,
-                        response.body()!![0].lastName,
-                        response.body()!![0].email,
-                        response.body()!![0].phone
-                   )
-               }
-           }
-
-           override fun onFailure(call: Call<List<UserItem>>?, t: Throwable?) {
-               Toast.makeText(baseContext, "Wystąpił problem przy pobieraniu danych", Toast.LENGTH_SHORT).show()
-
-           }
-       })
-   }
-//        val stringRequest = StringRequest(Request.Method.GET,
-//            Api.URL_GET_USER,
-//            Response.Listener<String> { s ->
-//                try {
-//
-//                    val obj = JSONObject(s)
-//
-//                    if (!obj.getBoolean("error")) {
-//
-//                        val array = obj.getJSONArray("users")
-//
-//                        for (i in 0..array.length() - 1) {
-//                            val objectUser = array.getJSONObject(i)
-//                            user = UserItem(
-//                                objectUser.getInt("id"),
-//                                objectUser.getString("login"),
-//                                objectUser.getString("password"),
-//                                objectUser.getString("name"),
-//                                objectUser.getString("lastName"),
-//                                objectUser.getString("email"),
-//                                objectUser.getString("phone")
-//                            )
-//                        }
-//                    } else {
-//                        Toast.makeText(applicationContext, obj.getString("message"), Toast.LENGTH_LONG).show()
-//                    }
-//                } catch (e: JSONException) {
-//                    e.printStackTrace()
-//                }
-//            }, Response.ErrorListener { volleyError -> Toast.makeText(applicationContext, volleyError.message, Toast.LENGTH_LONG).show() })
-//
-//        val requestQueue = Volley.newRequestQueue(applicationContext)
-//        requestQueue.add<String>(stringRequest)
-//    }
-
-    private fun updateUser(){
-        //todo user
+            override fun onFailure(call: Call<UserItem>?, t: Throwable?) {
+            }
+        })
     }
 
-    private fun updatePassword(){
-        //todo password
+    private fun updateUser(
+        login: String,
+        name: String,
+        lastName: String,
+        email: String,
+        phone: String
+    ) {
+        val apiInterface =
+            ApiInterface.create().updateUser("updateUser", 3, login, name, lastName, email, phone)
+
+        apiInterface.enqueue(object : Callback<Int> {
+
+            override fun onResponse(
+                call: Call<Int>,
+                response: Response<Int>?
+            ) {
+                if (response?.body() != null) {
+                    Log.d("profilerrrr", response.body().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<Int>?, t: Throwable?) {
+            }
+        })
+    }
+
+    private fun updatePassword(password: String, newPassword: String) {
+        val apiInterface =
+            ApiInterface.create().changePassword("changePassword", password, newPassword, 2)
+
+        apiInterface.enqueue(object : Callback<Int> {
+
+            override fun onResponse(
+                call: Call<Int>,
+                response: Response<Int>?
+            ) {
+                if (response?.body() != null) {
+                    Log.d("profilerrrrpppp", response.body().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<Int>?, t: Throwable?) {
+
+            }
+        })
     }
 }
+
