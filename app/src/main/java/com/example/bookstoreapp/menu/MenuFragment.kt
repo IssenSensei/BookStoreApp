@@ -41,9 +41,5 @@ class MenuFragment: Fragment() {
             val intent = Intent(context, LoginActivity::class.java)
             context?.startActivity(intent)
         }
-
-        maps_button.setOnClickListener {
-
-        }
     }
 }

@@ -86,45 +86,6 @@ public class ViewAnimation {
         v.startAnimation(a);
     }
 
-    public static void flyInDown(final View v, final AnimListener animListener) {
-        v.setVisibility(View.VISIBLE);
-        v.setAlpha(0.0f);
-        v.setTranslationY(0);
-        v.setTranslationY(-v.getHeight());
-        // Prepare the View for the animation
-        v.animate()
-                .setDuration(200)
-                .translationY(0)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (animListener != null) animListener.onFinish();
-                        super.onAnimationEnd(animation);
-                    }
-                })
-                .alpha(1.0f)
-                .start();
-    }
-
-    public static void flyOutDown(final View v, final AnimListener animListener) {
-        v.setVisibility(View.VISIBLE);
-        v.setAlpha(1.0f);
-        v.setTranslationY(0);
-        // Prepare the View for the animation
-        v.animate()
-                .setDuration(200)
-                .translationY(v.getHeight())
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (animListener != null) animListener.onFinish();
-                        super.onAnimationEnd(animation);
-                    }
-                })
-                .alpha(0.0f)
-                .start();
-    }
-
     public static void fadeIn(final View v) {
         ViewAnimation.fadeIn(v, null);
     }
@@ -146,10 +107,6 @@ public class ViewAnimation {
                 .alpha(1.0f);
     }
 
-    public static void fadeOut(final View v) {
-        ViewAnimation.fadeOut(v, null);
-    }
-
     public static void fadeOut(final View v, final AnimListener animListener) {
         v.setAlpha(1.0f);
         // Prepare the View for the animation
@@ -165,71 +122,9 @@ public class ViewAnimation {
                 .alpha(0.0f);
     }
 
-    public static void showIn(final View v) {
-        v.setVisibility(View.VISIBLE);
-        v.setAlpha(0f);
-        v.setTranslationY(v.getHeight());
-        v.animate()
-                .setDuration(200)
-                .translationY(0)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                    }
-                })
-                .alpha(1f)
-                .start();
-    }
-
-    public static void initShowOut(final View v) {
-        v.setVisibility(View.GONE);
-        v.setTranslationY(v.getHeight());
-        v.setAlpha(0f);
-    }
-
-    public static void showOut(final View v) {
-        v.setVisibility(View.VISIBLE);
-        v.setAlpha(1f);
-        v.setTranslationY(0);
-        v.animate()
-                .setDuration(200)
-                .translationY(v.getHeight())
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        v.setVisibility(View.GONE);
-                        super.onAnimationEnd(animation);
-                    }
-                }).alpha(0f)
-                .start();
-    }
-
-    public static boolean rotateFab(final View v, boolean rotate) {
-        v.animate().setDuration(200)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                    }
-                })
-                .rotation(rotate ? 135f : 0f);
-        return rotate;
-    }
-
 
     public interface AnimListener {
         void onFinish();
-    }
-
-    public static void fadeOutIn(View view) {
-        view.setAlpha(0.f);
-        AnimatorSet animatorSet = new AnimatorSet();
-        ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(view, "alpha", 0.f, 0.5f, 1.f);
-        ObjectAnimator.ofFloat(view, "alpha", 0.f).start();
-        animatorAlpha.setDuration(500);
-        animatorSet.play(animatorAlpha);
-        animatorSet.start();
     }
 
 
@@ -256,33 +151,4 @@ public class ViewAnimation {
         ViewAnimation.fadeOut(v, null);
     }
 
-    public static void hideScale(final View v, final AnimListener animListener) {
-        v.animate()
-                .scaleY(0)
-                .scaleX(0)
-                .setDuration(200)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (animListener != null) animListener.onFinish();
-                        super.onAnimationEnd(animation);
-                    }
-                })
-                .start();
-    }
-
-    public static void hideFab(View fab) {
-        int moveY = 2 * fab.getHeight();
-        fab.animate()
-                .translationY(moveY)
-                .setDuration(300)
-                .start();
-    }
-
-    public static void showFab(View fab) {
-        fab.animate()
-                .translationY(0)
-                .setDuration(300)
-                .start();
-    }
 }

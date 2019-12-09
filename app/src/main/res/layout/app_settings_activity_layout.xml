@@ -24,7 +24,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:popupTheme="@style/LightAppTheme"
                 app:title="Evans Collins" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

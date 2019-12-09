@@ -1,14 +1,26 @@
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="LightAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryLightTheme</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryLightThemeDark</item>
+        <item name="colorAccent">@color/colorPrimaryLightThemeAccent</item>
         <item name="android:windowFullscreen">true</item>
 
         <item name="android:windowContentTransitions">true</item>
 
-        <!-- specify shared element transitions -->
+        <item name="android:windowExitTransition">@null</item>
+        <item name="android:windowSharedElementExitTransition">@null</item>
+        <item name="android:windowSharedElementReenterTransition">@null</item>
+        <item name="android:windowReenterTransition">@null</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+    </style>
+    <style name="DarkAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkThemeDark</item>
+        <item name="colorAccent">@color/colorPrimaryDarkThemeAccent</item>
+        <item name="android:windowFullscreen">true</item>
+
+        <item name="android:windowContentTransitions">true</item>
+
         <item name="android:windowExitTransition">@null</item>
         <item name="android:windowSharedElementExitTransition">@null</item>
         <item name="android:windowSharedElementReenterTransition">@null</item>
