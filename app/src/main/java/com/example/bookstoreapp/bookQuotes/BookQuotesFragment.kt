@@ -2,9 +2,11 @@ package com.example.bookstoreapp.bookQuotes
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +35,7 @@ class BookQuotesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         recyclerView = view!!.findViewById(R.id.book_quote_item_list)
+
         recyclerView.addItemDecoration(
             LineItemDecoration(
                 this.context,

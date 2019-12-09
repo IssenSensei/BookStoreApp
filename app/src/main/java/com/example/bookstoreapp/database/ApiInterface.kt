@@ -54,6 +54,11 @@ interface ApiInterface {
     fun getUser(@Query("apicall") apicall : String,
                 @Query("id") id: Long) : Call<UserItem>
 
+    @GET("Api.php")
+    fun getEmail(@Query("apicall") apicall : String,
+                @Query("login") login: String)
+                : Call<String>
+
     @FormUrlEncoded
     @POST("Api.php")
     fun addBookComment(@Query("apicall") apicall : String,

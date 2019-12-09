@@ -36,13 +36,14 @@ class BooksFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         recyclerView = view!!.findViewById(R.id.books_item_list)
-        recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.addItemDecoration(
             LineItemDecoration(
                 this.context,
                 LinearLayout.VERTICAL
             )
         )
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
         booksMap = mutableListOf()
 
         getData()
@@ -68,7 +69,7 @@ class BooksFragment: Fragment() {
         }
     }
 
-    fun getData() {
+    private fun getData() {
         val apiInterface = ApiInterface.create().getBooks("getBooks")
         apiInterface.enqueue(object : Callback<List<BooksItem>> {
 
@@ -126,22 +127,22 @@ class BooksFragment: Fragment() {
             var list = mutableListOf<BooksItem>()
             list.addAll(booksMap)
             booksMap.clear()
-            if (!title.text.toString().equals("")) {
+            if (title.text.toString() != "") {
                 list = list.filter {
                     it.title.toLowerCase().contains(title.text.toString().toLowerCase())
                 } as MutableList<BooksItem>
             }
-            if (!publisher.text.toString().equals("")) {
+            if (publisher.text.toString() != "") {
                 list = list.filter {
                     it.publisher.toLowerCase().contains(publisher.text.toString().toLowerCase())
                 } as MutableList<BooksItem>
             }
-            if (!author.text.toString().equals("")) {
+            if (author.text.toString() != "") {
                 list = list.filter {
                     it.author.toLowerCase().contains(author.text.toString().toLowerCase())
                 } as MutableList<BooksItem>
             }
-            if (!description.text.toString().equals("")) {
+            if (description.text.toString() != "") {
                 list = list.filter {
                     it.description.toLowerCase().contains(description.text.toString().toLowerCase())
                 } as MutableList<BooksItem>
