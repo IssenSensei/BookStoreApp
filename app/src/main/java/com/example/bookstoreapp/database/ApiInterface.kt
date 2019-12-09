@@ -114,6 +114,12 @@ interface ApiInterface {
 
     @FormUrlEncoded
     @POST("Api.php")
+    fun deleteUser(@Query("apicall") apicall : String,
+                   @Field("userId") userId: String)
+                    : Call<Int>
+
+    @FormUrlEncoded
+    @POST("Api.php")
     fun changePassword(@Query("apicall") apicall : String,
                        @Field("password") password: String,
                        @Field("newPassword") newPassword: String,
@@ -122,7 +128,7 @@ interface ApiInterface {
 
     companion object {
         var USER_ID : Int = -1
-        var BASE_URL = "http://192.168.0.164/BookstoreApi/api/"
+        var BASE_URL = "http://192.168.43.84/BookstoreApi/api/"
 
         fun create() : ApiInterface {
 
@@ -134,6 +140,7 @@ interface ApiInterface {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(BASE_URL)
                 .build()
+
 
             return retrofit.create(ApiInterface::class.java)
 

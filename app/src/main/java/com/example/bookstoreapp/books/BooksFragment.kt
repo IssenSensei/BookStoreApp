@@ -36,13 +36,14 @@ class BooksFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         recyclerView = view!!.findViewById(R.id.books_item_list)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
         recyclerView.addItemDecoration(
             LineItemDecoration(
                 this.context,
                 LinearLayout.VERTICAL
             )
         )
-        recyclerView.layoutManager = LinearLayoutManager(context)
 
         booksMap = mutableListOf()
 
