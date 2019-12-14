@@ -12,13 +12,15 @@ import com.example.bookstoreapp.menu.MenuFragment
 import com.example.bookstoreapp.news.NewsFragment
 import com.example.bookstoreapp.userQuotes.UserQuotesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import io.multimoon.colorful.CActivity
+import io.multimoon.colorful.CAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity() {
+class MainActivity : CAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.LightAppTheme)
+        //setTheme(R.style.LightAppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setViewPager()
@@ -26,7 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setViewPager(){
         viewpager.adapter = getFragmentPagerAdapter()
-        navigation.setOnNavigationItemSelectedListener(getBottomNavigationItemSelectedListener())
+        navigation.setOnNavigationItemSelectedListener(
+            getBottomNavigationItemSelectedListener())
         viewpager.addOnPageChangeListener(getOnPageChangeListener())
         viewpager.offscreenPageLimit = 5
     }
@@ -43,11 +46,11 @@ class MainActivity : AppCompatActivity() {
                 MENU -> MenuFragment()
 
                 else -> {
-                    Log.wtf("coś nie pykło", "i to srogo")
                     Fragment()
                 }
             }
         }
+
     private fun getBottomNavigationItemSelectedListener() =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -79,7 +82,9 @@ class MainActivity : AppCompatActivity() {
     private fun getOnPageChangeListener() =
         object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageScrolled(position: Int,
+                                        positionOffset: Float,
+                                        positionOffsetPixels: Int) {}
             override fun onPageSelected(position: Int) {
                 navigation.menu.getItem(position).isChecked = true
             }

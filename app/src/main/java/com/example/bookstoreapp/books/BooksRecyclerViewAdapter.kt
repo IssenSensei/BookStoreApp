@@ -43,18 +43,16 @@ class BooksRecyclerViewAdapter(
             val show = toggleLayoutExpand(!second.expanded, v, holder.lytExpand)
             second.expanded = show
         }
-
         if (second.expanded) {
             holder.lytExpand.visibility = View.VISIBLE
         } else {
             holder.lytExpand.visibility = View.GONE
         }
-        Tools.toggleArrow(second.expanded, holder.expand, false)
 
+        Tools.toggleArrow(second.expanded, holder.expand, false)
         holder.linearListener.setOnClickListener {
             seeDetails(context, second)
         }
-
         holder.delete.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setMessage(R.string.delete_dialog_confirmation)
@@ -70,7 +68,6 @@ class BooksRecyclerViewAdapter(
                 }
             builder.show()
         }
-
     }
 
     private fun delete(bookId: Int) {

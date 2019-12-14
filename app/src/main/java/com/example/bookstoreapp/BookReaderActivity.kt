@@ -9,6 +9,7 @@ import com.folioreader.Constants
 import com.folioreader.FolioReader
 import com.folioreader.model.HighLight
 import com.folioreader.model.locators.ReadLocator.Companion.LOG_TAG
+import com.github.barteksc.pdfviewer.listener.OnLongPressListener
 import com.github.barteksc.pdfviewer.util.FitPolicy
 import kotlinx.android.synthetic.main.activity_book_reader.*
 import retrofit2.Call
@@ -26,34 +27,29 @@ class BookReaderActivity : AppCompatActivity() {
         when (intent.getStringExtra("extension")!!) {
             ".pdf" -> {
                 pdfView.fromFile(File(intent.getStringExtra("file")!!))
-                    .pages(0, 2, 1, 3, 3, 3) // all pages are displayed by default
-                    .enableSwipe(true) // allows to block changing pages using swipe
+                    .pages(0, 2, 1, 3, 3, 3)
+                    .enableSwipe(true)
                     .swipeHorizontal(false)
                     .enableDoubletap(true)
                     .defaultPage(0)
-                    // allows to draw something on the current page, usually visible in the middle of the screen
-//                    .onDraw(onDrawListener)
-//                    // allows to draw something on all pages, separately for every page. Called only for visible pages
-//                    .onLoad(onLoadCompleteListener) // called after document is loaded and starts to be rendered
+//                    .onLoad(onLoadCompleteListener)
 //                    .onPageChange(onPageChangeListener)
 //                    .onPageScroll(onPageScrollListener)
 //                    .onError(onErrorListener)
 //                    .onPageError(onPageErrorListener)
-//                    .onRender(onRenderListener) // called after document is rendered for the first time
-//                    // called on single tap, return true if handled, false to toggle scroll handle visibility
+//                    .onRender(onRenderListener)
 //                    .onTap(onTapListener)
 //                    .onLongPress(onLongPressListener)
-                    .enableAnnotationRendering(true) // render annotations (such as comments, colors or forms)
+                    .enableAnnotationRendering(true)
                     .scrollHandle(null)
-                    .enableAntialiasing(true) // improve rendering a little bit on low-res screens
-                    // spacing between pages in dp. To define spacing color, set view background
+                    .enableAntialiasing(true)
                     .spacing(0)
-                    .autoSpacing(false) // add dynamic spacing to fit each page on its own on the screen
-                    .pageFitPolicy(FitPolicy.WIDTH) // mode to fit pages in the view
-                    .fitEachPage(false) // fit each page to the view, else smaller pages are scaled relative to largest page.
-                    .pageSnap(false) // snap pages to screen boundaries
-                    .pageFling(false) // make a fling change only a single page like ViewPager
-                    .nightMode(false) // toggle night mode
+                    .autoSpacing(false)
+                    .pageFitPolicy(FitPolicy.WIDTH)
+                    .fitEachPage(false)
+                    .pageSnap(false)
+                    .pageFling(false)
+                    .nightMode(false)
                     .load()
             }
             ".epub" -> {
@@ -70,27 +66,27 @@ class BookReaderActivity : AppCompatActivity() {
                     .setConfig(config, false)
                 folioReader.openBook(intent.getStringExtra("file"))
 
-                folioReader.setOnHighlightListener { highLight: HighLight, highLightAction: HighLight.HighLightAction ->
+                folioReader.setOnHighlightListener {
+                        highLight: HighLight,
+                        highLightAction: HighLight.HighLightAction ->
                     if(highLightAction == HighLight.HighLightAction.NEW){
-                            val apiInterface = ApiInterface.create().addBookQuote("addBookQuote", highLight.content, bookId, 1)
+                            val apiInterface = ApiInterface.create()
+                                .addBookQuote("addBookQuote", highLight.content,
+                                    bookId, ApiInterface.USER_ID)
 
                             apiInterface.enqueue(object : Callback<Int> {
-
                                 override fun onResponse(call: Call<Int>, response: Response<Int>) {
                                     if(response.isSuccessful) {
-                                        Log.i("addresponse", "post submitted to API." + response.body().toString())
+                                        Log.i("addresponse",
+                                            "post submitted to API." + response.body().toString())
                                     }
                                 }
-
                                 override fun onFailure(call: Call<Int>, t: Throwable?) {
                                     Log.d("qpablad", t.toString())
-
                                 }
                             })
-
                     }
                 }
-
                 folioReader.setReadLocatorListener { readLocator ->
                     Log.i(LOG_TAG, "-> saveReadLocator -> " + readLocator.toJson()!!)
                 }

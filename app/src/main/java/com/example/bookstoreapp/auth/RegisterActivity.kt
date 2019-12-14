@@ -18,11 +18,9 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
         register_save_button.setOnClickListener {
             register()
         }
-
         register_login_link.setOnClickListener {
             val login = Intent(applicationContext, LoginActivity::class.java)
             startActivity(login)
@@ -36,7 +34,6 @@ class RegisterActivity : AppCompatActivity() {
         val lastName = findViewById<TextView>(R.id.register_lastName).text.toString()
         val phone = findViewById<TextView>(R.id.register_phone).text.toString()
         val email = findViewById<TextView>(R.id.register_email).text.toString()
-
         val apiInterface = ApiInterface.create().createUser(
             "createUser",
             login,
@@ -47,18 +44,15 @@ class RegisterActivity : AppCompatActivity() {
             phone,
             status = "user"
         )
-
         apiInterface.enqueue(object : Callback<Int> {
 
             override fun onResponse(call: Call<Int>, response: Response<Int>) {
                 if (response.isSuccessful) {
-                    Log.i("addresponse", "post submitted to API. " + response.body().toString())
                     ApiInterface.USER_ID = response.body().toString().toInt()
                     val intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                 }
             }
-
             override fun onFailure(call: Call<Int>, t: Throwable?) {
                 Log.d("qpablad", t.toString())
 

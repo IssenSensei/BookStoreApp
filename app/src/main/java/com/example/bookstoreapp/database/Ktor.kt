@@ -13,9 +13,11 @@ import java.io.File
 import java.net.URL
 
 
-data class HttpClientException(val response: HttpResponse) : IOException("HTTP Error ${response.status}")
+data class HttpClientException(val response: HttpResponse) :
+    IOException("HTTP Error ${response.status}")
 
-suspend fun HttpClient.getAsTempFile(url: String, callback: suspend (file: File) -> Unit) {
+suspend fun HttpClient.getAsTempFile(url: String,
+                                     callback: suspend (file: File) -> Unit) {
     val file = getAsTempFile(url)
     try {
         callback(file)
@@ -36,3 +38,8 @@ suspend fun HttpClient.getAsTempFile(url: String): File {
     call.response.content.copyAndClose(file.writeChannel())
     return file
 }
+
+
+
+
+

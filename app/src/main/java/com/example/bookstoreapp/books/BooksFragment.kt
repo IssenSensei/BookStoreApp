@@ -18,18 +18,18 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class BooksFragment: Fragment() {
+class BooksFragment : Fragment() {
 
     private lateinit var booksMap: MutableList<BooksItem>
     private lateinit var recyclerView: RecyclerView
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.layout_book_list, container, false)
+        return inflater.inflate(R.layout.layout_book_list,
+            container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -57,7 +57,6 @@ class BooksFragment: Fragment() {
             getData()
             book_swipe_layout.isRefreshing = false
         }
-
     }
 
     fun setBookListItems(bookList: MutableList<BooksItem>) {
@@ -71,9 +70,9 @@ class BooksFragment: Fragment() {
     }
 
     private fun getData() {
-        val apiInterface = ApiInterface.create().getBooks("getBooks")
+        val apiInterface = ApiInterface
+            .create().getBooks("getBooks")
         apiInterface.enqueue(object : Callback<List<BooksItem>> {
-
             override fun onResponse(
                 call: Call<List<BooksItem>>?,
                 response: Response<List<BooksItem>>?
@@ -82,14 +81,12 @@ class BooksFragment: Fragment() {
                     setBookListItems(response.body()!! as MutableList)
                 }
             }
-
             override fun onFailure(call: Call<List<BooksItem>>?, t: Throwable?) {
                 Toast.makeText(
                     context,
                     "Wystąpił problem przy pobieraniu danych",
                     Toast.LENGTH_SHORT
                 ).show()
-
             }
         })
     }
@@ -149,10 +146,10 @@ class BooksFragment: Fragment() {
                 } as MutableList<BooksItem>
             }
             list = list.filter {
-                it.year >  spinYearMin.selectedItem.toString()
+                it.year > spinYearMin.selectedItem.toString()
             } as MutableList<BooksItem>
             list = list.filter {
-                it.year <  spinYearMax.selectedItem.toString()
+                it.year < spinYearMax.selectedItem.toString()
             } as MutableList<BooksItem>
 
             booksMap.addAll(list)
@@ -162,7 +159,7 @@ class BooksFragment: Fragment() {
         }
 
 
-            dialog.show()
-            dialog.window!!.attributes = lp
+        dialog.show()
+        dialog.window!!.attributes = lp
     }
 }

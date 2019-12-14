@@ -11,3 +11,6 @@ data class UserQuotesItem (
     var expanded: Boolean = false
 
 ): Serializable
+
+
+

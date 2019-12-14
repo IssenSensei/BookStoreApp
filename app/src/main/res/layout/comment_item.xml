@@ -19,21 +19,37 @@
             android:gravity="center_vertical"
             android:text="Susan Lee"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold"
             app:fontFamily="serif" />
 
-        <TextView
-            android:id="@+id/comment_rating"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="Susan Lee"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            app:fontFamily="serif" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:text="Ocena: "
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:fontFamily="serif" />
+            <TextView
+                android:id="@+id/comment_rating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Susan Lee"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:fontFamily="serif" />
+        </LinearLayout>
 
     </LinearLayout>
 

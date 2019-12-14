@@ -31,13 +31,40 @@ class LoginActivity : AppCompatActivity() {
             val register = Intent(applicationContext, RegisterActivity::class.java)
             startActivity(register)
         }
+    }
+
+    private fun login(login: String, password: String) {
+        val apiInterface = ApiInterface.create()
+            .getUserId("getUserId", login, password)
+
+        apiInterface.enqueue(object : Callback<List<UserItem>> {
+
+            override fun onResponse(
+                call: Call<List<UserItem>>,
+                response: Response<List<UserItem>>?
+            ) {
+                if (response?.body() != null) {
+                    ApiInterface.USER_ID = response.body()!![0].id
+                    val intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+
+            override fun onFailure(call: Call<List<UserItem>>?, t: Throwable?) {
+                Toast.makeText(baseContext, "Błąd przy logowaniu", Toast.LENGTH_SHORT)
+                    .show()
+
+            }
+        })
+    }
+
 
 //        login_recover_password.setOnClickListener {
 //            Log.d("email", "qqqqqqqq")
 //
 //            getEmail(login.text.toString())
 //        }
-        //   }
+    //   }
 
 //    private fun sendEmail(email: String) {
 //        BackgroundMail.newBuilder(this)
@@ -76,31 +103,5 @@ class LoginActivity : AppCompatActivity() {
 //            }
 //        })
 //    }
-    }
-
-    private fun login(login: String, password: String) {
-        val apiInterface = ApiInterface.create().getUserId("getUserId", login, password)
-
-        apiInterface.enqueue(object : Callback<List<UserItem>> {
-
-            override fun onResponse(
-                call: Call<List<UserItem>>,
-                response: Response<List<UserItem>>?
-            ) {
-                if (response?.body() != null) {
-                    ApiInterface.USER_ID = response.body()!![0].id
-                    val intent = Intent(applicationContext, MainActivity::class.java)
-                    startActivity(intent)
-                }
-            }
-
-            override fun onFailure(call: Call<List<UserItem>>?, t: Throwable?) {
-                Toast.makeText(baseContext, "Błąd przy logowaniu", Toast.LENGTH_SHORT)
-                    .show()
-
-            }
-        })
-
-    }
 }
 
