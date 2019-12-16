@@ -78,13 +78,13 @@ dependencies {
 
     //ktor
     implementation "io.ktor:ktor-client-android:1.2.5"
-    
-    implementation 'com.github.garretyoder:Colorful:2.3.4'
-
 
     //noinspection GradleCompatible
     implementation 'com.google.android.material:material:1.0.0'
 
+    //mail
+    implementation 'com.sun.mail:android-mail:1.6.0'
+    implementation 'com.sun.mail:android-activation:1.6.0'
     // Testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

@@ -2,7 +2,6 @@ package com.example.bookstoreapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -12,15 +11,12 @@ import com.example.bookstoreapp.menu.MenuFragment
 import com.example.bookstoreapp.news.NewsFragment
 import com.example.bookstoreapp.userQuotes.UserQuotesFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import io.multimoon.colorful.CActivity
-import io.multimoon.colorful.CAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Suppress("DEPRECATION")
-class MainActivity : CAppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //setTheme(R.style.LightAppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setViewPager()
@@ -37,7 +33,6 @@ class MainActivity : CAppCompatActivity() {
     private fun getFragmentPagerAdapter() =
         object: FragmentPagerAdapter(supportFragmentManager){
             override fun getCount() = 5
-
             override fun getItem(position: Int) = when(position) {
                 USER_QUOTES -> UserQuotesFragment()
                 USER_BOOKS -> BooksFragment()

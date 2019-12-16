@@ -9,15 +9,23 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.bookstoreapp.MainActivity
 import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.user.UserItem
+import com.example.bookstoreapp.utils.AppExecutors
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.mail.*
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeMessage
 
 
 class LoginActivity : AppCompatActivity() {
+    lateinit var appExecutors: AppExecutors
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appExecutors = AppExecutors()
+
         setContentView(com.example.bookstoreapp.R.layout.activity_login)
 
         val login = findViewById<EditText>(com.example.bookstoreapp.R.id.login_login)
@@ -30,6 +38,10 @@ class LoginActivity : AppCompatActivity() {
         login_register_link.setOnClickListener {
             val register = Intent(applicationContext, RegisterActivity::class.java)
             startActivity(register)
+        }
+
+        login_recover_password.setOnClickListener {
+            getEmail(login.text.toString())
         }
     }
 
@@ -56,52 +68,61 @@ class LoginActivity : AppCompatActivity() {
 
             }
         })
+
+
     }
 
+    private fun getEmail(login: String) {
 
-//        login_recover_password.setOnClickListener {
-//            Log.d("email", "qqqqqqqq")
-//
-//            getEmail(login.text.toString())
-//        }
-    //   }
+        val apiInterface = ApiInterface.create().getEmail("getEmail",login )
 
-//    private fun sendEmail(email: String) {
-//        BackgroundMail.newBuilder(this)
-//            .withUsername("username@gmail.com")
-//            .withPassword("password12345")
-//            .withMailto("toemail@gmail.com")
-//            .withType(BackgroundMail.TYPE_PLAIN)
-//            .withSubject("this is the subject")
-//            .withBody("this is the body")
-//            .withOnSuccessCallback {
-//                //do some magic
-//            }
-//            .withOnFailCallback {
-//                //do some magic
-//            }
-//            .send()
-//
-//    }
+        apiInterface.enqueue(object : Callback<String> {
 
-//    private fun getEmail(login: String) {
-//
-//        val apiInterface = ApiInterface.create().getEmail("getEmail",login )
-//
-//        apiInterface.enqueue(object : Callback<String> {
-//
-//            override fun onResponse(
-//                call: Call<String>,
-//                response: Response<String>?
-//            ) {
-//                if (response?.body() != null) {
-//                    sendEmail(response.body().toString())
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<String>?, t: Throwable?) {
-//            }
-//        })
-//    }
+            override fun onResponse(
+                call: Call<String>,
+                response: Response<String>?
+            ) {
+                if (response?.body() != null) {
+                    sendEmail(response.body().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<String>?, t: Throwable?) {
+            }
+        })
+    }
+
+    private fun sendEmail(email: String){
+        appExecutors.diskIO().execute {
+            val props = System.getProperties()
+            props.put("mail.smtp.host", "smtp.gmail.com")
+            props.put("mail.smtp.socketFactory.port", "465")
+            props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
+            props.put("mail.smtp.auth", "true")
+            props.put("mail.smtp.port", "465")
+
+            val session =  Session.getInstance(props,
+                object : javax.mail.Authenticator() {
+                    override fun getPasswordAuthentication(): PasswordAuthentication {
+                        return PasswordAuthentication(AppExecutors.EMAIL, AppExecutors.PASSWORD)
+                    }
+                })
+
+            try {
+                val mm = MimeMessage(session)
+                mm.setFrom(InternetAddress(AppExecutors.EMAIL))
+                mm.addRecipient(
+                    Message.RecipientType.TO,
+                    InternetAddress(email))
+                mm.subject = "Pomoc z odzyskiwaniem hasła"
+                mm.setText("Your mail body.")
+                Transport.send(mm)
+                appExecutors.mainThread().execute {}
+
+            } catch (e: MessagingException) {
+                e.printStackTrace()
+            }
+        }
+    }
 }
 

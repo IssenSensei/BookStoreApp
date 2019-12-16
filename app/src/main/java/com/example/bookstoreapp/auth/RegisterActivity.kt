@@ -28,20 +28,14 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register() {
-        val login = findViewById<TextView>(R.id.register_login).text.toString()
-        val password = findViewById<TextView>(R.id.register_password).text.toString()
-        val name = findViewById<TextView>(R.id.register_name).text.toString()
-        val lastName = findViewById<TextView>(R.id.register_lastName).text.toString()
-        val phone = findViewById<TextView>(R.id.register_phone).text.toString()
-        val email = findViewById<TextView>(R.id.register_email).text.toString()
         val apiInterface = ApiInterface.create().createUser(
             "createUser",
-            login,
-            password,
-            name,
-            lastName,
-            email,
-            phone,
+            register_login.text.toString(),
+            register_password.text.toString(),
+            register_name.text.toString(),
+            register_lastName.text.toString(),
+            register_email.text.toString(),
+            register_phone.text.toString(),
             status = "user"
         )
         apiInterface.enqueue(object : Callback<Int> {
