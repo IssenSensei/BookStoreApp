@@ -27,7 +27,10 @@
         android:clickable="true"
         android:focusable="true"
         android:foregroundGravity="bottom|right"
-        app:backgroundTint="#00FFC5C5"
+        app:backgroundTint="?attr/colorAccentBookStore"
+        app:itemBackground="?attr/colorAccentBookStore"
+        app:itemIconTint="?attr/primaryTextColor"
+        app:itemTextColor="?attr/primaryTextColor"
         app:srcCompat="@drawable/search" />
 
     <androidx.recyclerview.widget.RecyclerView

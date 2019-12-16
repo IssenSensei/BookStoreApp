@@ -32,4 +32,6 @@ class SharedPreference(val context: Context) {
         editor.remove(KEY_NAME)
         editor.apply()
     }
+
+
 }

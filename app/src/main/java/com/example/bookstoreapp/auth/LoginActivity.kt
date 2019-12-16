@@ -7,9 +7,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookstoreapp.MainActivity
+import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.user.UserItem
 import com.example.bookstoreapp.utils.AppExecutors
+import com.example.bookstoreapp.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,14 +24,20 @@ import javax.mail.internet.MimeMessage
 class LoginActivity : AppCompatActivity() {
     lateinit var appExecutors: AppExecutors
 
+    private lateinit var currentTheme: String
+    private lateinit var sharedPreference: SharedPreference
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedPreference = SharedPreference(this)
+        currentTheme = sharedPreference.getValueString("current_theme").toString()
+        setAppTheme(currentTheme)
         super.onCreate(savedInstanceState)
         appExecutors = AppExecutors()
 
-        setContentView(com.example.bookstoreapp.R.layout.activity_login)
+        setContentView(R.layout.activity_login)
 
-        val login = findViewById<EditText>(com.example.bookstoreapp.R.id.login_login)
-        val password = findViewById<EditText>(com.example.bookstoreapp.R.id.login_password)
+        val login = findViewById<EditText>(R.id.login_login)
+        val password = findViewById<EditText>(R.id.login_password)
 
         login_login_button.setOnClickListener {
             login(login.text.toString(), password.text.toString())
@@ -122,6 +130,22 @@ class LoginActivity : AppCompatActivity() {
             } catch (e: MessagingException) {
                 e.printStackTrace()
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val theme = sharedPreference.getValueString("current_theme")
+        if(currentTheme != theme)
+            recreate()
+    }
+
+    private fun setAppTheme(currentTheme: String) {
+        when (currentTheme) {
+            "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
+            "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
+            "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            else -> setTheme(R.style.Theme_App_Whitish)
         }
     }
 }

@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/shape"
+    android:layout_marginBottom="2dp">
 
     <LinearLayout
         android:id="@+id/linear_listener"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/white"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
         android:orientation="horizontal">
@@ -59,12 +60,13 @@
         android:id="@+id/lyt_expand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryBookStore"
+        android:background="@drawable/inner_shape"
         android:orientation="horizontal"
         android:visibility="gone">
 
         <TextView
             android:id="@+id/bookDescription"
+            android:textColor="?attr/primaryTextColor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

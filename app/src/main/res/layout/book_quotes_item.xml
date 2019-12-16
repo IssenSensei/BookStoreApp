@@ -5,20 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
+    android:padding="5dp"
+    android:background="@drawable/shape"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/book_quotes_listener"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
         android:orientation="horizontal">
-
-        <View
-            android:layout_width="@dimen/spacing_large"
-            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,10 +34,6 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="@dimen/spacing_large"
-            android:layout_height="wrap_content" />
-
         <ImageButton
             android:id="@+id/bt_expand"
             android:layout_width="?attr/actionBarSize"
@@ -55,12 +48,13 @@
         android:id="@+id/lyt_expand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryBookStore"
+        android:background="@drawable/inner_shape"
         android:orientation="vertical"
         android:visibility="gone">
 
         <TextView
             android:id="@+id/bookTitle"
+            android:textColor="?attr/primaryTextColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_large"/>

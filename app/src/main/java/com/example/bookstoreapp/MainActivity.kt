@@ -30,10 +30,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setViewPager()
-
-
-        Log.d("colors", currentTheme)
-
     }
 
     override fun onResume() {
@@ -45,8 +41,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setAppTheme(currentTheme: String) {
         when (currentTheme) {
+            "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
+            "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
-            else -> setTheme(R.style.Theme_App_Purplish)
+            else -> setTheme(R.style.Theme_App_Whitish)
         }
     }
 

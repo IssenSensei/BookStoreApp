@@ -44,27 +44,29 @@ class AppSettingsActivity: AppCompatActivity(){
         }
 
         first_theme_button.setOnClickListener {
-            sharedPreference.save("current_theme", "THEME_GREENISH")
-            Log.d("colors", "first_theme_click")
+            sharedPreference.save("current_theme", "THEME_WHITISH")
             recreate()
         }
         second_theme_button.setOnClickListener {
-            sharedPreference.save("current_theme", "THEME_PURPLISH")
-            Log.d("colors", "second_theme_click")
+            sharedPreference.save("current_theme", "THEME_DARKISH")
             recreate()
         }
         third_theme_button.setOnClickListener {
-            //todo
+            sharedPreference.save("current_theme", "THEME_PURPLISH")
+            recreate()
         }
         fourth_theme_button.setOnClickListener {
-            //todo
+            sharedPreference.save("current_theme", "THEME_GREENISH")
+            recreate()
         }
     }
 
     private fun setAppTheme(currentTheme: String) {
         when (currentTheme) {
+            "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
+            "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
-            else -> setTheme(R.style.Theme_App_Purplish)
+            else -> setTheme(R.style.Theme_App_Whitish)
         }
     }
 
