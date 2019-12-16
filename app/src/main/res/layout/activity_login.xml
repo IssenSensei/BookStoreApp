@@ -104,7 +104,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
         android:textStyle="italic|bold"
-        android:textColor="@color/colorAccent"
+        android:textColor="?attr/primaryTextColor"
         android:text="@string/create_account_link"
         android:onClick="toRegister"
         app:layout_constraintStart_toEndOf="@+id/login_no_account"

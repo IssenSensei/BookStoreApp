@@ -14,7 +14,7 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="?attr/colorPrimaryBookStore"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -35,7 +35,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_10"
+        android:background="?attr/colorPrimaryBookStore"
         android:clipToPadding="false"
         android:scrollbars="none"
         android:scrollingCache="true"
@@ -68,7 +68,7 @@
                         android:layout_marginBottom="@dimen/spacing_middle"
                         android:text="Styl"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="?attr/colorPrimaryDarkBookStore"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -91,7 +91,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -106,7 +106,7 @@
 
                         <Button
                             android:id="@+id/second_theme_button"
-                            android:foreground="@color/colorPrimaryDarkTheme"
+                            android:foreground="?attr/colorPrimaryDarkBookStore"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -115,7 +115,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -132,14 +132,14 @@
                             android:id="@+id/third_theme_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:foreground="@color/amber_50" />
+                            android:foreground="?attr/colorPrimaryDarkBookStore" />
                     </LinearLayout>
 
                     <View
                         android:id="@+id/view6"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                             android:id="@+id/fourth_theme_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:foreground="@color/brown_900" />
+                            android:foreground="?attr/colorPrimaryDarkBookStore" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -189,7 +189,7 @@
                         android:layout_marginTop="@dimen/spacing_large"
                         android:text="Settings"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="?attr/colorPrimaryDarkBookStore"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -208,14 +208,14 @@
                             android:layout_height="wrap_content"
                             android:text="Notification and Sound"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/grey_80" />
+                            android:textColor="?attr/primaryTextColor" />
 
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -233,14 +233,14 @@
                             android:layout_height="wrap_content"
                             android:text="Privacy and Security"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/grey_80" />
+                            android:textColor="?attr/primaryTextColor" />
 
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -258,14 +258,14 @@
                             android:layout_height="wrap_content"
                             android:text="Data and Storage"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/grey_80" />
+                            android:textColor="?attr/primaryTextColor" />
 
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -285,7 +285,7 @@
                             android:layout_weight="1"
                             android:text="Enable Animation"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/grey_90" />
+                            android:textColor="?attr/primaryTextColor" />
 
                         <View
                             android:layout_width="@dimen/spacing_middle"
@@ -306,7 +306,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -326,7 +326,7 @@
                             android:layout_weight="1"
                             android:text="Theme"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/grey_90" />
+                            android:textColor="?attr/primaryTextColor" />
 
                         <View
                             android:layout_width="@dimen/spacing_middle"
@@ -337,7 +337,7 @@
                             android:layout_height="wrap_content"
                             android:text="Default"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="?attr/colorPrimaryBookStore" />
 
                         <View
                             android:layout_width="@dimen/spacing_middle"
@@ -348,7 +348,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -368,7 +368,7 @@
                             android:layout_weight="1"
                             android:text="Language"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/grey_90" />
+                            android:textColor="?attr/primaryTextColor" />
 
                         <View
                             android:layout_width="@dimen/spacing_middle"
@@ -379,7 +379,7 @@
                             android:layout_height="wrap_content"
                             android:text="English"
                             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="?attr/colorPrimaryBookStore" />
 
                         <View
                             android:layout_width="@dimen/spacing_middle"
@@ -418,13 +418,13 @@
                         android:layout_marginTop="@dimen/spacing_large"
                         android:text="Support"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="?attr/colorPrimaryDarkBookStore"
                         android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -449,7 +449,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grey_10" />
+                        android:background="?attr/colorPrimaryBookStore" />
 
                 </LinearLayout>
 
@@ -471,7 +471,7 @@
                     android:layout_height="wrap_content"
                     android:text="Build Version 2.0.5"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:textColor="@color/grey_40" />
+                    android:textColor="?attr/primaryTextColor" />
 
             </LinearLayout>
 

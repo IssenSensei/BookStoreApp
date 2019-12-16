@@ -25,7 +25,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Tytuł"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColorHint="@color/grey_40" />
+                    android:textColorHint="?attr/primaryTextColor" />
 
                 <View
                     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                         android:hint="Wydawnictwo"
                         android:minHeight="@dimen/spacing_xxlarge"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColorHint="@color/grey_40" />
+                        android:textColorHint="?attr/primaryTextColor" />
 
                     <Spinner
                         android:id="@+id/book_search_spinner_publisher"
@@ -55,7 +55,7 @@
                         android:singleLine="true"
                         android:spinnerMode="dialog"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/grey_80" />
+                        android:textColor="?attr/primaryTextColor" />
                 </LinearLayout>
 
                 <View
@@ -77,7 +77,7 @@
                         android:hint="Autor"
                         android:minHeight="@dimen/spacing_xxlarge"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColorHint="@color/grey_40" />
+                        android:textColorHint="?attr/primaryTextColor" />
 
                     <Spinner
                         android:id="@+id/book_search_spinner_author"
@@ -89,7 +89,7 @@
                         android:spinnerMode="dialog"
                         android:text="5:30 PM"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/grey_80" />
+                        android:textColor="?attr/primaryTextColor" />
                 </LinearLayout>
 
                 <View
@@ -102,7 +102,7 @@
                     android:layout_marginLeft="@dimen/spacing_xsmall"
                     android:text="Rok wydania"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/grey_60" />
+                    android:textColor="?attr/primaryTextColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                         android:layout_height="?attr/actionBarSize"
                         android:layout_weight="2"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="@color/grey_80" />
+                        android:textColor="?attr/primaryTextColor" />
 
                     <View
                         android:layout_width="@dimen/spacing_large"
@@ -131,7 +131,7 @@
                         android:singleLine="true"
                         android:spinnerMode="dialog"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textColor="@color/grey_80" />
+                        android:textColor="?attr/primaryTextColor" />
 
                 </LinearLayout>
 
@@ -142,7 +142,7 @@
                     android:layout_marginLeft="@dimen/spacing_xsmall"
                     android:text="Ocena"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/grey_60" />
+                    android:textColor="?attr/primaryTextColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -157,7 +157,7 @@
                         android:layout_weight="2"
                         android:text="Fry, May 12 2017"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/grey_80" />
+                        android:textColor="?attr/primaryTextColor" />
 
                     <View
                         android:layout_width="@dimen/spacing_large"
@@ -173,7 +173,7 @@
                         android:spinnerMode="dialog"
                         android:text="5:30 PM"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/grey_80" />
+                        android:textColor="?attr/primaryTextColor" />
 
                 </LinearLayout>
 
@@ -189,14 +189,14 @@
                     android:hint="Opis"
                     android:minHeight="@dimen/spacing_xxlarge"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColorHint="@color/grey_40" />
+                    android:textColorHint="?attr/primaryTextColor" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/grey_10" />
+                android:background="?attr/colorPrimaryBookStore" />
 
             <LinearLayout
                 android:layout_width="match_parent"

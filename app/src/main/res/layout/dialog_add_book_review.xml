@@ -35,7 +35,7 @@
             android:id="@+id/rating_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey_3"
+            android:background="?attr/colorPrimaryBookStore"
             android:gravity="top"
             android:hint="Write review ..."
             android:lines="4"

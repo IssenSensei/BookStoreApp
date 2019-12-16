@@ -1,53 +1,30 @@
 <resources>
-
-    <style name="LightAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryLightTheme</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryLightThemeDark</item>
-        <item name="colorAccent">@color/colorPrimaryLightThemeAccent</item>
-        <item name="android:windowFullscreen">true</item>
-
-        <item name="android:windowContentTransitions">true</item>
-
-        <item name="android:windowExitTransition">@null</item>
-        <item name="android:windowSharedElementExitTransition">@null</item>
-        <item name="android:windowSharedElementReenterTransition">@null</item>
-        <item name="android:windowReenterTransition">@null</item>
-        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+    <style name="Theme.App.Purplish"
+        parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="primaryButtonTheme">
+            @style/Widget.AppCompat.Button.Colored
+        </item>
+        <item name="colorPrimaryBookStore">@color/colorPrimaryPurplish</item>
+        <item name="colorPrimaryDarkBookStore">@color/colorPrimaryDarkPurplish</item>
+        <item name="colorAccentBookStore">@color/colorAccentPurplish</item>
+        <item name="primaryTextColor">@color/primaryTextPurplish</item>
+        <item name="buttonNormalColor">@color/buttonNormalPurplish</item>
+        <item name="buttonHighlightColor">@color/buttonHighlightPurplish</item>
+        <item name="buttonTextColor">@color/buttonTextPurplish</item>
     </style>
 
-    <style name="DarkAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkThemeDark</item>
-        <item name="colorAccent">@color/colorPrimaryDarkThemeAccent</item>
-        <item name="android:windowFullscreen">true</item>
-
-        <item name="android:windowContentTransitions">true</item>
-
-        <item name="android:windowExitTransition">@null</item>
-        <item name="android:windowSharedElementExitTransition">@null</item>
-        <item name="android:windowSharedElementReenterTransition">@null</item>
-        <item name="android:windowReenterTransition">@null</item>
-        <item name="android:windowAllowReturnTransitionOverlap">false</item>
-    </style>
-
-    <style name="customDialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowMinWidthMajor">99%</item>
-        <item name="android:windowMinWidthMinor">99%</item>
-    </style>
-
-    <style name="WhiteText" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">22dp</item>
-    </style>
-
-    <style name="Yellow.AppCompatRatingBar" parent="Base.Widget.AppCompat.RatingBar.Indicator">
-        <item name="colorControlNormal">@color/grey_60</item>
-        <item name="colorControlActivated">@color/yellow_600</item>
-    </style>
-
-    <style name="GreyText" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#dddddd</item>
+    <style name="Theme.App.Greenish"
+        parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="primaryButtonTheme">
+            @style/Widget.AppCompat.Button.Colored
+        </item>
+        <item name="colorPrimaryBookStore">@color/colorPrimaryGreenish</item>
+        <item name="colorPrimaryDarkBookStore">@color/colorPrimaryDarkGreenish</item>
+        <item name="colorAccentBookStore">@color/colorAccentGreenish</item>
+        <item name="primaryTextColor">@color/primaryTextGreenish</item>
+        <item name="buttonNormalColor">@color/buttonNormalGreenish</item>
+        <item name="buttonHighlightColor">@color/buttonHighlightGreenish</item>
+        <item name="buttonTextColor">@color/buttonTextGreenish</item>
     </style>
 
 
@@ -67,5 +44,59 @@
         <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
         -->
     </style>
+
+
+    <style name="customDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">99%</item>
+        <item name="android:windowMinWidthMinor">99%</item>
+    </style>
+
+    <style name="Yellow.AppCompatRatingBar" parent="Base.Widget.AppCompat.RatingBar.Indicator">
+        <item name="colorControlNormal">?attr/primaryTextColor</item>
+        <item name="colorControlActivated">?attr/buttonTextColor</item>
+    </style>
 </resources>
+<!--    <style name="LightAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">-->
+<!--        <item name="colorPrimary">@color/colorPrimaryLightTheme</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryLightThemeDark</item>-->
+<!--        <item name="colorAccent">@color/colorPrimaryLightThemeAccent</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+
+<!--        <item name="android:windowContentTransitions">true</item>-->
+
+<!--        <item name="android:windowExitTransition">@null</item>-->
+<!--        <item name="android:windowSharedElementExitTransition">@null</item>-->
+<!--        <item name="android:windowSharedElementReenterTransition">@null</item>-->
+<!--        <item name="android:windowReenterTransition">@null</item>-->
+<!--        <item name="android:windowAllowReturnTransitionOverlap">false</item>-->
+<!--    </style>-->
+
+<!--    <style name="DarkAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">-->
+<!--        <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDarkThemeDark</item>-->
+<!--        <item name="colorAccent">@color/colorPrimaryDarkThemeAccent</item>-->
+<!--        <item name="android:windowFullscreen">true</item>-->
+
+<!--        <item name="android:windowContentTransitions">true</item>-->
+
+<!--        <item name="android:windowExitTransition">@null</item>-->
+<!--        <item name="android:windowSharedElementExitTransition">@null</item>-->
+<!--        <item name="android:windowSharedElementReenterTransition">@null</item>-->
+<!--        <item name="android:windowReenterTransition">@null</item>-->
+<!--        <item name="android:windowAllowReturnTransitionOverlap">false</item>-->
+<!--    </style>-->
+
+<!--    <style name="WhiteText" parent="@android:style/TextAppearance">-->
+<!--        <item name="android:textColor">#ffffff</item>-->
+<!--        <item name="android:textSize">22dp</item>-->
+<!--    </style>-->
+
+
+
+<!--    <style name="GreyText" parent="@android:style/TextAppearance">-->
+<!--        <item name="android:textColor">#dddddd</item>-->
+<!--    </style>-->
+
+
 

@@ -39,7 +39,7 @@
             android:singleLine="true"
             android:text="Item Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/grey_80" />
+            android:textColor="?attr/primaryTextColor" />
 
         <View
             android:layout_width="@dimen/spacing_large"
@@ -50,7 +50,7 @@
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="@color/grey_60"
+            android:tint="?attr/primaryTextColor"
             app:srcCompat="@drawable/ic_expand_arrow" />
 
     </LinearLayout>
@@ -59,7 +59,7 @@
         android:id="@+id/lyt_expand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_3"
+        android:background="?attr/colorPrimaryBookStore"
         android:orientation="horizontal"
         android:visibility="gone">
 

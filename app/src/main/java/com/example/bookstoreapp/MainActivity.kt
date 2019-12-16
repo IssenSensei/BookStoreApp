@@ -1,7 +1,10 @@
 package com.example.bookstoreapp
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -10,16 +13,41 @@ import com.example.bookstoreapp.books.BooksFragment
 import com.example.bookstoreapp.menu.MenuFragment
 import com.example.bookstoreapp.news.NewsFragment
 import com.example.bookstoreapp.userQuotes.UserQuotesFragment
+import com.example.bookstoreapp.utils.SharedPreference
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var currentTheme: String
+    private lateinit var sharedPreference: SharedPreference
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedPreference = SharedPreference(this)
+        currentTheme = sharedPreference.getValueString("current_theme").toString()
+        setAppTheme(currentTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setViewPager()
+
+
+        Log.d("colors", currentTheme)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val theme = sharedPreference.getValueString("current_theme")
+        if(currentTheme != theme)
+            recreate()
+    }
+
+    private fun setAppTheme(currentTheme: String) {
+        when (currentTheme) {
+            "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            else -> setTheme(R.style.Theme_App_Purplish)
+        }
     }
 
     private fun setViewPager(){

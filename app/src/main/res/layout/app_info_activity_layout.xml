@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="BookStoreApp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/grey_90"
+                android:textColor="?attr/primaryTextColor"
                 app:fontFamily="sans-serif-light" />
 
             <View
@@ -49,7 +49,7 @@
                 android:layout_height="3dp"
                 android:layout_marginBottom="@dimen/spacing_medium"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:background="@color/colorPrimary" />
+                android:background="?attr/colorPrimaryBookStore" />
 
             <View
                 android:layout_width="0dp"
@@ -65,14 +65,14 @@
                     android:layout_height="wrap_content"
                     android:text="Version"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/grey_40" />
+                    android:textColor="?attr/primaryTextColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3.24.0.11.1.12.53.75.2.4.12.1.2.65.3.90"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/grey_90" />
+                    android:textColor="?attr/primaryTextColor" />
 
             </LinearLayout>
 
@@ -90,14 +90,14 @@
                     android:layout_height="wrap_content"
                     android:text="Last Update"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/grey_40" />
+                    android:textColor="?attr/primaryTextColor" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="February 2018"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/grey_90" />
+                    android:textColor="?attr/primaryTextColor" />
 
             </LinearLayout>
 
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:text="wstępnie to ja tu dam znać że mam w drużynie rudego i proszę mi dać inżyniera bo mam ciężko w życiu"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/grey_90" />
+                android:textColor="?attr/primaryTextColor" />
 
             <View
                 android:layout_width="0dp"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:text="Term of services"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/grey_90" />
+                android:textColor="?attr/primaryTextColor" />
 
         </LinearLayout>
 
