@@ -30,6 +30,7 @@ class AppInfoActivity : AppCompatActivity(){
             "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
             "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
             else -> setTheme(R.style.Theme_App_Whitish)
         }
     }

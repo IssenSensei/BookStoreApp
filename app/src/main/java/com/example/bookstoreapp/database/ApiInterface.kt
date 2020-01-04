@@ -42,26 +42,26 @@ interface ApiInterface {
     @GET("Api.php")
     fun getUserQuotes(
         @Query("apicall") apicall: String,
-        @Query("id") id: Long
+        @Query("id") id: Int
     )
             : Call<List<UserQuotesItem>>
 
     @GET("Api.php")
     fun getBookQuotes(
         @Query("apicall") apicall: String,
-        @Query("id") id: Long
+        @Query("id") id: Int
     ): Call<List<BookQuotesItem>>
 
     @GET("Api.php")
     fun getBookComments(
         @Query("apicall") apicall: String,
-        @Query("id") id: Long
+        @Query("id") id: Int
     ): Call<List<CommentItem>>
 
     @GET("Api.php")
     fun getUser(
         @Query("apicall") apicall: String,
-        @Query("id") id: Long
+        @Query("id") id: Int
     ): Call<UserItem>
 
     @GET("Api.php")
@@ -117,7 +117,7 @@ interface ApiInterface {
     @POST("Api.php")
     fun deleteUser(
         @Query("apicall") apicall: String,
-        @Field("userId") userId: String
+        @Field("userId") userId: Int
     )
             : Call<Int>
 
@@ -151,8 +151,6 @@ interface ApiInterface {
     )
             : Call<Int>
 
-
-
     @FormUrlEncoded
     @POST("Api.php")
     fun changePassword(
@@ -163,9 +161,24 @@ interface ApiInterface {
     )
             : Call<Int>
 
+    @FormUrlEncoded
+    @POST("Api.php")
+    fun recoverPassword(
+        @Query("apicall") apicall: String,
+        @Field("password") password: String,
+        @Field("email") email: String
+    )
+            : Call<Int>
+
     companion object {
         var USER_ID: Int = -1
         var BASE_URL = "http://192.168.0.164/BookstoreApi/api/"
+
+        var REGISTER_CODE = 1
+        var RECOVERY_CODE = 2
+        var AUTHOR_CODE = 3
+        var PUBLISHER_CODE = 4
+        var BOOK_READER_CODE = 5
 
         fun create(): ApiInterface {
 

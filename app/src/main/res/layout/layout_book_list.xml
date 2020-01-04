@@ -34,7 +34,7 @@
         app:srcCompat="@drawable/search" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/books_item_list"
+        android:id="@+id/books_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"

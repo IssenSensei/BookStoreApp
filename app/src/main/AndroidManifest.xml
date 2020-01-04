@@ -37,6 +37,7 @@
         <activity android:name=".BookReaderActivity" />
         <activity android:name=".publisher.PublisherBooksActivity" />
         <activity android:name=".books.BookDetailActivity" />
+        <activity android:name=".auth.EmailRecoveryActivity" />
     </application>
 
 </manifest>

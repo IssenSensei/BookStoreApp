@@ -1,5 +1,6 @@
 package com.example.bookstoreapp.auth
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -29,8 +30,8 @@ class RegisterActivity : AppCompatActivity() {
             register()
         }
         register_login_link.setOnClickListener {
-            val login = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(login)
+            setResult(Activity.RESULT_CANCELED)
+            finish()
         }
     }
 
@@ -73,6 +74,7 @@ class RegisterActivity : AppCompatActivity() {
             "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
             "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
             else -> setTheme(R.style.Theme_App_Whitish)
         }
     }

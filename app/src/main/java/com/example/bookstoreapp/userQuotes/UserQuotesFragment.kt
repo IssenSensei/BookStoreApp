@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.utils.LineItemDecoration
+import com.example.bookstoreapp.utils.getUserQuotesAdapter
 import kotlinx.android.synthetic.main.layout_user_quotes_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +22,7 @@ import retrofit2.Response
 class UserQuotesFragment: Fragment() {
 
     private lateinit var userQuotesMap: MutableList<UserQuotesItem>
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var userQuotesRecycler: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,18 +34,9 @@ class UserQuotesFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        recyclerView = view!!.findViewById(R.id.user_quote_item_list)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.addItemDecoration(
-            LineItemDecoration(
-                this.context,
-                LinearLayout.VERTICAL
-            )
-        )
-        userQuotesMap = mutableListOf()
+        userQuotesRecycler = view!!.findViewById(R.id.user_quote_recycler_view)
+        setUpRecycler()
         getData()
-
         user_quote_fab.setOnClickListener {
             showCustomDialog()
         }
@@ -55,9 +47,19 @@ class UserQuotesFragment: Fragment() {
         }
     }
 
+    private fun setUpRecycler() {
+        userQuotesRecycler.layoutManager = LinearLayoutManager(context)
+        userQuotesRecycler.addItemDecoration(
+            LineItemDecoration(
+                this.context,
+                LinearLayout.VERTICAL
+            )
+        )
+        userQuotesRecycler.adapter = UserQuotesRecyclerViewAdapter(mutableListOf(), this.context!!)
+    }
+
     private fun getData() {
         val apiInterface = ApiInterface.create().getUserQuotes("getUserQuotes", 3)
-
         apiInterface.enqueue(object : Callback<List<UserQuotesItem>> {
 
             override fun onResponse(
@@ -65,7 +67,13 @@ class UserQuotesFragment: Fragment() {
                 response: Response<List<UserQuotesItem>>?
             ) {
                 if (response?.body() != null) {
-                    setBookListItems(response.body()!! as MutableList)
+                    userQuotesMap = response.body() as MutableList<UserQuotesItem>
+                    if (userQuotesMap.size == 0) {
+                        no_user_quote_data_text_view.visibility = View.VISIBLE
+                    }
+                    else {
+                        userQuotesRecycler.getUserQuotesAdapter().updateList(userQuotesMap)
+                    }
                 }
             }
 
@@ -78,17 +86,6 @@ class UserQuotesFragment: Fragment() {
 
             }
         })
-    }
-
-    fun setBookListItems(userQuoteList: MutableList<UserQuotesItem>) {
-
-        userQuotesMap = userQuoteList
-        if (userQuotesMap.size == 0)
-            no_user_quote_data_text_view.visibility = View.VISIBLE
-        else {
-            no_user_quote_data_text_view.visibility = View.GONE
-            recyclerView.adapter = UserQuotesRecyclerViewAdapter(userQuotesMap, this.context!!)
-        }
     }
 
     private fun showCustomDialog() {
@@ -121,7 +118,7 @@ class UserQuotesFragment: Fragment() {
                 } as MutableList<UserQuotesItem>
             }
             userQuotesMap.addAll(list)
-            recyclerView.adapter!!.notifyDataSetChanged()
+            userQuotesRecycler.getUserQuotesAdapter().notifyDataSetChanged()
             dialog.dismiss()
         }
 

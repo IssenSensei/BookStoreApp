@@ -112,6 +112,11 @@ class BooksRecyclerViewAdapter(
         return ViewHolder(view)
     }
 
+    fun updateList(newBooksMap: MutableList<BooksItem>) {
+        booksMap = newBooksMap
+        notifyDataSetChanged()
+    }
+
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
 

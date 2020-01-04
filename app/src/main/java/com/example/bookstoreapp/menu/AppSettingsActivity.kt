@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.preference.PreferenceManager
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
@@ -26,19 +27,21 @@ class AppSettingsActivity: AppCompatActivity(){
 
 
         delete_account_button.setOnClickListener {
-            val apiInterface = ApiInterface.create().deleteUser("deleteUser", 4.toString())
+            val apiInterface = ApiInterface.create().deleteUser("deleteUser", ApiInterface.USER_ID)
 
             apiInterface.enqueue(object : Callback<Int> {
 
                 override fun onResponse(call: Call<Int>, response: Response<Int>) {
                     if(response.isSuccessful) {
-                        Log.i("addresponse", "post submitted to API." + response.body().toString())
+                        Toast.makeText(baseContext, "Konto zostało usunięte", Toast.LENGTH_LONG)
+                            .show()
+                        ApiInterface.USER_ID = -1
                     }
                 }
 
                 override fun onFailure(call: Call<Int>, t: Throwable?) {
-                    Log.d("qpablad", t.toString())
-
+                    Toast.makeText(baseContext, "Błąd podczas usuwania konta, spróbuj ponownie później", Toast.LENGTH_LONG)
+                        .show()
                 }
             })
         }
@@ -59,6 +62,10 @@ class AppSettingsActivity: AppCompatActivity(){
             sharedPreference.save("current_theme", "THEME_GREENISH")
             recreate()
         }
+        fifth_theme_button.setOnClickListener {
+            sharedPreference.save("current_theme", "THEME_FULLWHITE")
+            recreate()
+        }
     }
 
     private fun setAppTheme(currentTheme: String) {
@@ -66,6 +73,7 @@ class AppSettingsActivity: AppCompatActivity(){
             "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
             "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
             else -> setTheme(R.style.Theme_App_Whitish)
         }
     }

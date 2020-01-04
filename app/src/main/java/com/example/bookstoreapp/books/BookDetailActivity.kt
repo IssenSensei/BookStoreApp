@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.*
@@ -22,6 +21,9 @@ import com.example.bookstoreapp.comments.CommentItem
 import com.example.bookstoreapp.comments.CommentsRecyclerViewAdapter
 import com.example.bookstoreapp.comments.NewCommentItem
 import com.example.bookstoreapp.database.ApiInterface
+import com.example.bookstoreapp.database.ApiInterface.Companion.AUTHOR_CODE
+import com.example.bookstoreapp.database.ApiInterface.Companion.BOOK_READER_CODE
+import com.example.bookstoreapp.database.ApiInterface.Companion.PUBLISHER_CODE
 import com.example.bookstoreapp.database.getAsTempFile
 import com.example.bookstoreapp.utils.LineItemDecoration
 import com.example.bookstoreapp.utils.SharedPreference
@@ -52,16 +54,9 @@ class BookDetailActivity : AppCompatActivity() {
         val data: BooksItem = intent.getSerializableExtra("data") as BooksItem
         id = intent.getSerializableExtra("id") as Int
 
-        val bookTitle = findViewById<TextView>(R.id.bookTitle)!!
-        val bookDescription = findViewById<TextView>(R.id.bookDescription)!!
-        val year = findViewById<TextView>(R.id.yearView)!!
-        val publisher = findViewById<TextView>(R.id.publisherView)!!
-        val image = findViewById<ImageView>(R.id.image)!!
-        val author = findViewById<TextView>(R.id.authorView)!!
-
-        author.text = data.author
-        publisher.text = data.publisher
-        year.text = data.year
+        authorView.text = data.author
+        publisherView.text = data.publisher
+        yearView.text = data.year
         bookDescription.text = data.description
         bookTitle.text = data.title
         Glide.with(applicationContext)
@@ -75,13 +70,13 @@ class BookDetailActivity : AppCompatActivity() {
         authorView.setOnClickListener {
             val intent = Intent(this, AuthorBooksActivity::class.java)
             intent.putExtra("authorId", data.author)
-            startActivity(intent)
+            startActivityForResult(intent, AUTHOR_CODE)
         }
 
         publisherView.setOnClickListener {
             val intent = Intent(this, PublisherBooksActivity::class.java)
             intent.putExtra("publisherId", data.publisher)
-            startActivity(intent)
+            startActivityForResult(intent, PUBLISHER_CODE)
         }
 
         fab.setOnClickListener {
@@ -108,7 +103,7 @@ class BookDetailActivity : AppCompatActivity() {
                     intent.putExtra("extension", extension)
                     intent.putExtra("bookId", id)
 
-                    startActivity(intent)
+                    startActivityForResult(intent, BOOK_READER_CODE)
                 }
             }
 
@@ -127,6 +122,7 @@ class BookDetailActivity : AppCompatActivity() {
             "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
             "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
             else -> setTheme(R.style.Theme_App_Whitish)
         }
     }
@@ -150,24 +146,23 @@ class BookDetailActivity : AppCompatActivity() {
 
         val content = dialog.findViewById(R.id.rating_content) as EditText
         val rating = dialog.findViewById(R.id.rating_bar) as AppCompatRatingBar
-        (dialog.findViewById(R.id.bt_cancel) as AppCompatButton).setOnClickListener(View.OnClickListener { dialog.dismiss() })
+        (dialog.findViewById(R.id.bt_cancel) as AppCompatButton).setOnClickListener { dialog.dismiss() }
 
-        (dialog.findViewById(R.id.bt_submit) as AppCompatButton).setOnClickListener(View.OnClickListener {
+        (dialog.findViewById(R.id.bt_submit) as AppCompatButton).setOnClickListener {
             addRating(
                 content.text.toString().trim(),
                 rating.rating.toInt(),
-                id,
-                userId = ApiInterface.USER_ID
+                id
             )
             dialog.dismiss()
-        })
+        }
 
         dialog.show()
         dialog.window!!.attributes = lp
     }
 
-    fun getData() {
-        val apiInterface = ApiInterface.create().getBookComments("getBookComments", id.toLong())
+    private fun getData() {
+        val apiInterface = ApiInterface.create().getBookComments("getBookComments", id)
         apiInterface.enqueue(object : Callback<List<CommentItem>> {
 
             override fun onResponse(
@@ -207,9 +202,9 @@ class BookDetailActivity : AppCompatActivity() {
         recyclerView.adapter!!.notifyDataSetChanged()
     }
 
-    fun addRating(content: String, rating: Int, bookId: Int, userId: Int) {
+    private fun addRating(content: String, rating: Int, bookId: Int) {
         val apiInterface =
-            ApiInterface.create().addBookComment("addBookComment", content, rating, bookId, 1)
+            ApiInterface.create().addBookComment("addBookComment", content, rating, bookId, ApiInterface.USER_ID)
 
         apiInterface.enqueue(object : Callback<NewCommentItem> {
 

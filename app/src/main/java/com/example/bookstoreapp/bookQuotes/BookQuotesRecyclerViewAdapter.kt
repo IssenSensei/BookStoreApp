@@ -14,7 +14,7 @@ import com.example.bookstoreapp.utils.Tools
 import com.example.bookstoreapp.utils.ViewAnimation
 
 class BookQuotesRecyclerViewAdapter(
-    private val bookQuotesMap: MutableList<BookQuotesItem>,
+    private var bookQuotesMap: MutableList<BookQuotesItem>,
     private val context: Context
 ) : RecyclerView.Adapter<BookQuotesRecyclerViewAdapter.ViewHolder>() {
 
@@ -68,6 +68,11 @@ class BookQuotesRecyclerViewAdapter(
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.book_quotes_item, parent, false)
         return ViewHolder(view)
+    }
+
+    fun updateList(newBookQuotesMap: MutableList<BookQuotesItem>) {
+        bookQuotesMap = newBookQuotesMap
+        notifyDataSetChanged()
     }
 
 

@@ -35,7 +35,7 @@
         app:srcCompat="@drawable/search" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/news_item_list"
+        android:id="@+id/news_recycler_view"
         android:name="com.example.bookstoreapp.news.NewsFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

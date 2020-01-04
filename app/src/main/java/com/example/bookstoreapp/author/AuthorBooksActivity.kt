@@ -33,7 +33,7 @@ class AuthorBooksActivity : AppCompatActivity() {
         setContentView(R.layout.layout_book_list)
 
         authorId = intent.getSerializableExtra("authorId") as String
-        recyclerView = findViewById(R.id.books_item_list)
+        recyclerView = findViewById(R.id.books_recycler_view)
         booksMap = mutableListOf()
         recyclerView.adapter = BooksRecyclerViewAdapter(booksMap, applicationContext)
         getData()
@@ -51,6 +51,7 @@ class AuthorBooksActivity : AppCompatActivity() {
             "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
             "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
             else -> setTheme(R.style.Theme_App_Whitish)
         }
     }

@@ -1,14 +1,11 @@
 package com.example.bookstoreapp.publisher
 
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.books.BooksItem
 import com.example.bookstoreapp.books.BooksRecyclerViewAdapter
@@ -36,7 +33,7 @@ class PublisherBooksActivity : AppCompatActivity() {
         setContentView(R.layout.layout_book_list)
 
         publisherId = intent.getSerializableExtra("publisherId") as String
-        recyclerView = findViewById(R.id.books_item_list)
+        recyclerView = findViewById(R.id.books_recycler_view)
         booksMap = mutableListOf()
         recyclerView.adapter = BooksRecyclerViewAdapter(booksMap, applicationContext)
         getData()
@@ -89,6 +86,7 @@ class PublisherBooksActivity : AppCompatActivity() {
             "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
             "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
             else -> setTheme(R.style.Theme_App_Whitish)
         }
     }

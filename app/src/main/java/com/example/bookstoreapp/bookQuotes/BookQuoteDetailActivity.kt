@@ -1,12 +1,11 @@
 package com.example.bookstoreapp.bookQuotes
 
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.utils.SharedPreference
+import kotlinx.android.synthetic.main.activity_book_quote_details.*
 
 class BookQuoteDetailActivity : AppCompatActivity() {
 
@@ -22,10 +21,6 @@ class BookQuoteDetailActivity : AppCompatActivity() {
 
         val data: BookQuotesItem = intent.getSerializableExtra("data") as BookQuotesItem
 
-        val bookTitle = findViewById<TextView>(R.id.bookTitle)!!
-        val content = findViewById<TextView>(R.id.content)!!
-        val userName = findViewById<TextView>(R.id.userName)!!
-        val image = findViewById<ImageView>(R.id.image)!!
 
         bookTitle.text = data.bookTitle
         content.text = data.content
@@ -47,6 +42,7 @@ class BookQuoteDetailActivity : AppCompatActivity() {
             "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
             "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
             "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
+            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
             else -> setTheme(R.style.Theme_App_Whitish)
         }
     }

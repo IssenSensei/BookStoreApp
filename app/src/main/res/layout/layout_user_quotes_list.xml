@@ -35,12 +35,9 @@
         app:srcCompat="@drawable/search" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/user_quote_item_list"
-        android:name="com.example.bookstoreapp.userQuotes.UserQuotesFragment"
+        android:id="@+id/user_quote_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:context="com.example.bookstoreapp.userQuotes.UserQuotesFragment"
         tools:listitem="@layout/user_quotes_item" />
 
     <ProgressBar
