@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.utils.SharedPreference
 
-class NewsDetailActivity : AppCompatActivity() {
+class NewsDetailActivity : BaseActivity() {
 
     private lateinit var currentTheme: String
     private lateinit var sharedPreference: SharedPreference

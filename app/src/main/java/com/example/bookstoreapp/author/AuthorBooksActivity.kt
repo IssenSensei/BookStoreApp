@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.books.BooksItem
 import com.example.bookstoreapp.books.BooksRecyclerViewAdapter
@@ -17,7 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class AuthorBooksActivity : AppCompatActivity() {
+class AuthorBooksActivity : BaseActivity() {
 
     private lateinit var booksMap: MutableList<BooksItem>
     private lateinit var recyclerView: RecyclerView

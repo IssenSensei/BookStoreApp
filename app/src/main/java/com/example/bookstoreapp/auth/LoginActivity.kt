@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.MainActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
@@ -12,23 +13,16 @@ import com.example.bookstoreapp.database.ApiInterface.Companion.RECOVERY_CODE
 import com.example.bookstoreapp.database.ApiInterface.Companion.REGISTER_CODE
 import com.example.bookstoreapp.user.UserItem
 import com.example.bookstoreapp.utils.AppExecutors
-import com.example.bookstoreapp.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
     lateinit var appExecutors: AppExecutors
 
-    private lateinit var currentTheme: String
-    private lateinit var sharedPreference: SharedPreference
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        sharedPreference = SharedPreference(this)
-        currentTheme = sharedPreference.getValueString("current_theme").toString()
-        setAppTheme(currentTheme)
         super.onCreate(savedInstanceState)
         appExecutors = AppExecutors()
 
@@ -83,21 +77,5 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        val theme = sharedPreference.getValueString("current_theme")
-        if(currentTheme != theme)
-            recreate()
-    }
-
-    private fun setAppTheme(currentTheme: String) {
-        when (currentTheme) {
-            "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
-            "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
-            "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
-            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
-            else -> setTheme(R.style.Theme_App_Whitish)
-        }
-    }
 }
 

@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var currentTheme: String
     private lateinit var sharedPreference: SharedPreference

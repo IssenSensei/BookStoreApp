@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.utils.AppExecutors
@@ -18,7 +19,7 @@ import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
 
-class EmailRecoveryActivity : AppCompatActivity() {
+class EmailRecoveryActivity : BaseActivity() {
     lateinit var appExecutors: AppExecutors
 
     private lateinit var currentTheme: String

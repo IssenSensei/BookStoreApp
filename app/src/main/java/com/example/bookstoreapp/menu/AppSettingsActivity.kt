@@ -27,7 +27,7 @@ class AppSettingsActivity: AppCompatActivity(){
 
 
         delete_account_button.setOnClickListener {
-            val apiInterface = ApiInterface.create().deleteUser("deleteUser", ApiInterface.USER_ID)
+            val apiInterface = ApiInterface.create().deleteUser("deleteUser", ApiInterface.USER_ID.toString())
 
             apiInterface.enqueue(object : Callback<Int> {
 
