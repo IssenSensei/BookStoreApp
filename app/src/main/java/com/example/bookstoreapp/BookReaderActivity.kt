@@ -18,7 +18,7 @@ import retrofit2.Response
 import java.io.File
 
 
-class BookReaderActivity : AppCompatActivity() {
+class BookReaderActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

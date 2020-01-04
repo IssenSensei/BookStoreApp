@@ -1,5 +1,6 @@
 package com.example.bookstoreapp.auth
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,8 +24,8 @@ class RegisterActivity : BaseActivity() {
             register()
         }
         register_login_link.setOnClickListener {
-            val login = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(login)
+            setResult(Activity.RESULT_CANCELED)
+            finish()
         }
     }
 

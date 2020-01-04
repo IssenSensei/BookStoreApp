@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bookstoreapp.R
 
-class NewsRecyclerViewAdapter(private val newsMap: MutableList<NewsItem>,
+class NewsRecyclerViewAdapter(private var newsMap: MutableList<NewsItem>,
                               private val context: Context)
                                     : RecyclerView.Adapter<NewsRecyclerViewAdapter.ViewHolder>() {
 
@@ -48,6 +48,11 @@ class NewsRecyclerViewAdapter(private val newsMap: MutableList<NewsItem>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.news_item, parent, false)
         return ViewHolder(view)
+    }
+
+    fun updateList(newNewsMap: MutableList<NewsItem>) {
+        newsMap = newNewsMap
+        notifyDataSetChanged()
     }
 
 

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
-import com.example.bookstoreapp.utils.LineItemDecoration
+import com.example.bookstoreapp.utils.getNewsAdapter
 import kotlinx.android.synthetic.main.layout_news_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +21,7 @@ import retrofit2.Response
 class NewsFragment: Fragment() {
 
     private lateinit var newsMap: MutableList<NewsItem>
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var newsRecycler: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         return inflater.inflate(R.layout.layout_news_list, container, false)
@@ -29,17 +29,8 @@ class NewsFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        recyclerView = view!!.findViewById(R.id.news_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.addItemDecoration(
-            LineItemDecoration(
-                this.context,
-                LinearLayout.VERTICAL
-            )
-        )
-
-        newsMap = mutableListOf()
+        newsRecycler = view!!.findViewById(R.id.news_recycler_view)
+        setUpRecycler()
         getData()
 
         news_fab.setOnClickListener {
@@ -52,6 +43,18 @@ class NewsFragment: Fragment() {
         }
     }
 
+
+    private fun setUpRecycler() {
+        newsRecycler.layoutManager = LinearLayoutManager(context)
+//        user_quote_recycler_view.addItemDecoration(
+//            LineItemDecoration(
+//                this.context,
+//                LinearLayout.VERTICAL
+//            )
+//        )
+        newsRecycler.adapter = NewsRecyclerViewAdapter(mutableListOf(), this.context!!)
+    }
+
     private fun getData() {
         val apiInterface = ApiInterface.create().getNews("getNews")
 
@@ -59,7 +62,13 @@ class NewsFragment: Fragment() {
 
             override fun onResponse(call: Call<List<NewsItem>>, response: Response<List<NewsItem>>?) {
                 if(response?.body() != null) {
-                    setNewsListItems(response.body()!! as MutableList)
+                    newsMap = response.body() as MutableList<NewsItem>
+                    if (newsMap.size == 0) {
+                        no_news_data_text_view.visibility = View.VISIBLE
+                    }
+                    else {
+                        newsRecycler.getNewsAdapter().updateList(newsMap)
+                    }
                 }
             }
 
@@ -70,16 +79,6 @@ class NewsFragment: Fragment() {
         })
     }
 
-    fun setNewsListItems(newsList: MutableList<NewsItem>) {
-
-        newsMap = newsList
-        if (newsMap.size == 0)
-            no_news_data_text_view.visibility = View.VISIBLE
-        else {
-            no_news_data_text_view.visibility = View.GONE
-            recyclerView.adapter = NewsRecyclerViewAdapter(newsMap, this.context!!)
-        }
-    }
     private fun showCustomDialog() {
 
         val dialog = Dialog(this.context!!)
@@ -118,7 +117,7 @@ class NewsFragment: Fragment() {
 
             newsMap.addAll(list)
 
-            recyclerView.adapter!!.notifyDataSetChanged()
+            newsRecycler.getNewsAdapter().notifyDataSetChanged()
             dialog.dismiss()
         }
 

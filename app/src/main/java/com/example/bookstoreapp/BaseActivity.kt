@@ -5,21 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.bookstoreapp.utils.SharedPreference
 
 abstract class BaseActivity : AppCompatActivity() {
-    private lateinit var currentTheme: String
     private lateinit var sharedPreference: SharedPreference
+    private lateinit var currentTheme: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPreference = SharedPreference(this)
         currentTheme = sharedPreference.getValueString("current_theme").toString()
         setAppTheme(currentTheme)
         super.onCreate(savedInstanceState)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val theme = sharedPreference.getValueString("current_theme")
-        if(currentTheme != theme)
-            recreate()
     }
 
     private fun setAppTheme(currentTheme: String) {
@@ -30,5 +23,12 @@ abstract class BaseActivity : AppCompatActivity() {
             "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
             else -> setTheme(R.style.Theme_App_Whitish)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val theme = sharedPreference.getValueString("current_theme")
+        if(currentTheme != theme)
+            recreate()
     }
 }

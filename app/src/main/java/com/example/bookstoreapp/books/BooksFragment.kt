@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
-import com.example.bookstoreapp.utils.LineItemDecoration
+import com.example.bookstoreapp.utils.getBooksAdapter
 import kotlinx.android.synthetic.main.layout_book_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +21,7 @@ import kotlin.collections.ArrayList
 class BooksFragment : Fragment() {
 
     private lateinit var booksMap: MutableList<BooksItem>
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var booksRecycler: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,19 +34,8 @@ class BooksFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        recyclerView = view!!.findViewById(R.id.books_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-
-        recyclerView.addItemDecoration(
-            LineItemDecoration(
-                this.context,
-                LinearLayout.VERTICAL
-            )
-        )
-
-        booksMap = mutableListOf()
-
+        booksRecycler = view!!.findViewById(R.id.books_recycler_view)
+        setUpRecycler()
         getData()
 
         book_fab.setOnClickListener {
@@ -59,15 +48,17 @@ class BooksFragment : Fragment() {
         }
     }
 
-    fun setBookListItems(bookList: MutableList<BooksItem>) {
-        booksMap = bookList
-        if (booksMap.size == 0)
-            no_book_data_text_view.visibility = View.VISIBLE
-        else {
-            no_book_data_text_view.visibility = View.GONE
-            recyclerView.adapter = BooksRecyclerViewAdapter(booksMap, this.context!!)
-        }
+    private fun setUpRecycler() {
+        booksRecycler.layoutManager = LinearLayoutManager(context)
+//        user_quote_recycler_view.addItemDecoration(
+//            LineItemDecoration(
+//                this.context,
+//                LinearLayout.VERTICAL
+//            )
+//        )
+        booksRecycler.adapter = BooksRecyclerViewAdapter(mutableListOf(), this.context!!)
     }
+
 
     private fun getData() {
         val apiInterface = ApiInterface
@@ -78,7 +69,13 @@ class BooksFragment : Fragment() {
                 response: Response<List<BooksItem>>?
             ) {
                 if (response?.body() != null) {
-                    setBookListItems(response.body()!! as MutableList)
+                    booksMap = response.body() as MutableList<BooksItem>
+                    if (booksMap.size == 0) {
+                        no_book_data_text_view.visibility = View.VISIBLE
+                    }
+                    else {
+                        booksRecycler.getBooksAdapter().updateList(booksMap)
+                    }
                 }
             }
             override fun onFailure(call: Call<List<BooksItem>>?, t: Throwable?) {
@@ -154,7 +151,7 @@ class BooksFragment : Fragment() {
 
             booksMap.addAll(list)
 
-            recyclerView.adapter!!.notifyDataSetChanged()
+            booksRecycler.getBooksAdapter().notifyDataSetChanged()
             dialog.dismiss()
         }
 

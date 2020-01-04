@@ -20,7 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserQuotesRecyclerViewAdapter(
-    private val userQuotesMap: MutableList<UserQuotesItem>,
+    private var userQuotesMap: MutableList<UserQuotesItem>,
     private val context: Context
 )
     : RecyclerView.Adapter<UserQuotesRecyclerViewAdapter.ViewHolder>() {
@@ -109,6 +109,11 @@ class UserQuotesRecyclerViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.user_quotes_item, parent, false)
         return ViewHolder(view)
+    }
+
+    fun updateList(newUserQuotesMap: MutableList<UserQuotesItem>) {
+            userQuotesMap = newUserQuotesMap
+            notifyDataSetChanged()
     }
 
 
