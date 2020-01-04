@@ -34,7 +34,7 @@ class UserQuotesFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recyclerView = view!!.findViewById(R.id.user_quote_item_list)
+        recyclerView = view!!.findViewById(R.id.user_quote_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.addItemDecoration(
             LineItemDecoration(

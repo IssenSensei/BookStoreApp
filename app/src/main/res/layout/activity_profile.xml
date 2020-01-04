@@ -13,7 +13,7 @@
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="41dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,26 +117,32 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/profile_edit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="235dp"
+        android:padding="@dimen/spacing_medium"
+        android:background="?attr/colorAccentBookStore"
         android:text="@string/profile_edit_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="@+id/profile_email_input"
+        app:layout_constraintStart_toStartOf="@+id/profile_email_input"
         app:layout_constraintTop_toBottomOf="@+id/profile_email_input" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/profile_password_change_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="@dimen/spacing_medium"
+        android:background="?attr/colorAccentBookStore"
         android:text="@string/profile_change_password"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="?attr/primaryTextColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/profile_new_password_input"
+        app:layout_constraintStart_toStartOf="@+id/profile_new_password_input"
         app:layout_constraintTop_toBottomOf="@+id/profile_new_password_input" />
 
     <com.google.android.material.textfield.TextInputLayout

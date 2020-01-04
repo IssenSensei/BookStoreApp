@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:ellipsize="marquee"
+    android:textColor="?attr/primaryTextColor"
     android:gravity="center_vertical"
     android:singleLine="true"
     android:textAlignment="inherit"

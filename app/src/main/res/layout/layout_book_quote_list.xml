@@ -30,11 +30,14 @@
         android:clickable="true"
         android:focusable="true"
         android:foregroundGravity="bottom|right"
-        app:backgroundTint="#00FFC5C5"
+        app:backgroundTint="?attr/colorAccentBookStore"
+        app:itemBackground="?attr/colorAccentBookStore"
+        app:itemIconTint="?attr/primaryTextColor"
+        app:itemTextColor="?attr/primaryTextColor"
         app:srcCompat="@drawable/search" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/book_quote_item_list"
+        android:id="@+id/book_quote_recycler_view"
         android:name="com.example.bookstoreapp.bookQuotes.BookQuotesFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

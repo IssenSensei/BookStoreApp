@@ -3,6 +3,7 @@ package com.example.bookstoreapp.user
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -10,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserProfileActivity : AppCompatActivity() {
+class UserProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)

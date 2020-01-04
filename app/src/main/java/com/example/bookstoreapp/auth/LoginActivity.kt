@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.MainActivity
 import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.user.UserItem
@@ -19,7 +20,7 @@ import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
     lateinit var appExecutors: AppExecutors
 
     override fun onCreate(savedInstanceState: Bundle?) {

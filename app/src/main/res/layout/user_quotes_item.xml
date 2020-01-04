@@ -5,20 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
+    android:padding="5dp"
+    android:background="@drawable/shape"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linear_listener"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:gravity="center_vertical"
         android:minHeight="?attr/actionBarSize"
         android:orientation="horizontal">
-
-        <View
-            android:layout_width="@dimen/spacing_large"
-            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/quoteContent"
@@ -28,18 +25,14 @@
             android:ellipsize="end"
             android:text="Item Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/grey_80" />
-
-        <View
-            android:layout_width="@dimen/spacing_large"
-            android:layout_height="wrap_content" />
+            android:textColor="?attr/primaryTextColor" />
 
         <ImageButton
             android:id="@+id/bt_expand"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:tint="@color/grey_60"
+            android:tint="?attr/primaryTextColor"
             app:srcCompat="@drawable/ic_expand_arrow" />
 
     </LinearLayout>
@@ -48,11 +41,12 @@
         android:id="@+id/lyt_expand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_3"
+        android:background="@drawable/inner_shape"
         android:orientation="horizontal"
         android:visibility="gone">
 
         <TextView
+            android:textColor="?attr/primaryTextColor"
             android:id="@+id/bookTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatRatingBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.BookReaderActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.author.AuthorBooksActivity
@@ -33,7 +34,7 @@ import retrofit2.Response
 import java.io.File
 
 
-class BookDetailActivity : AppCompatActivity() {
+class BookDetailActivity : BaseActivity() {
 
     private lateinit var commentsMap: MutableList<CommentItem>
     private lateinit var recyclerView: RecyclerView

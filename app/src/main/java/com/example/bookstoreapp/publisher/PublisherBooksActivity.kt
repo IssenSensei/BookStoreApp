@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.books.BooksItem
 import com.example.bookstoreapp.books.BooksRecyclerViewAdapter
@@ -19,7 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class PublisherBooksActivity : AppCompatActivity() {
+class PublisherBooksActivity : BaseActivity() {
 
     private lateinit var booksMap: MutableList<BooksItem>
     private lateinit var recyclerView: RecyclerView
@@ -29,7 +30,7 @@ class PublisherBooksActivity : AppCompatActivity() {
         setContentView(R.layout.layout_book_list)
 
         publisherId = intent.getSerializableExtra("publisherId") as String
-        recyclerView = findViewById(R.id.books_item_list)
+        recyclerView = findViewById(R.id.books_recycler_view)
         booksMap = mutableListOf()
         recyclerView.adapter = BooksRecyclerViewAdapter(booksMap, applicationContext)
         getData()

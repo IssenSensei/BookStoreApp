@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
 
-class NewsDetailActivity : AppCompatActivity() {
+class NewsDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

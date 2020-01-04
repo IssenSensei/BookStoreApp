@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.MainActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
@@ -14,7 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)

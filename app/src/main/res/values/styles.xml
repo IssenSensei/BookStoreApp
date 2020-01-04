@@ -1,34 +1,81 @@
 <resources>
-
-    <style name="LightAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryLightTheme</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryLightThemeDark</item>
-        <item name="colorAccent">@color/colorPrimaryLightThemeAccent</item>
-        <item name="android:windowFullscreen">true</item>
-
-        <item name="android:windowContentTransitions">true</item>
-
-        <item name="android:windowExitTransition">@null</item>
-        <item name="android:windowSharedElementExitTransition">@null</item>
-        <item name="android:windowSharedElementReenterTransition">@null</item>
-        <item name="android:windowReenterTransition">@null</item>
-        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+    <style name="Theme.App.Whitish"
+        parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="primaryButtonTheme">
+            @style/Widget.MaterialComponents.Button
+        </item>
+        <item name="colorPrimaryBookStore">@color/colorPrimaryWhitish</item>
+        <item name="colorPrimaryDarkBookStore">@color/colorPrimaryDarkWhitish</item>
+        <item name="colorAccentBookStore">@color/colorAccentWhitish</item>
+        <item name="primaryTextColor">@color/primaryTextWhitish</item>
+        <item name="buttonNormalColor">@color/buttonNormalWhitish</item>
+        <item name="buttonHighlightColor">@color/buttonHighlightWhitish</item>
+        <item name="buttonTextColor">@color/buttonTextWhitish</item>
     </style>
 
-    <style name="DarkAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryDarkTheme</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkThemeDark</item>
-        <item name="colorAccent">@color/colorPrimaryDarkThemeAccent</item>
-        <item name="android:windowFullscreen">true</item>
-
-        <item name="android:windowContentTransitions">true</item>
-
-        <item name="android:windowExitTransition">@null</item>
-        <item name="android:windowSharedElementExitTransition">@null</item>
-        <item name="android:windowSharedElementReenterTransition">@null</item>
-        <item name="android:windowReenterTransition">@null</item>
-        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+    <style name="Theme.App.FullWhite"
+        parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="primaryButtonTheme">
+            @style/Widget.MaterialComponents.Button
+        </item>
+        <item name="colorPrimaryBookStore">@color/colorPrimaryWhitish</item>
+        <item name="colorPrimaryDarkBookStore">@color/colorPrimaryWhitish</item>
+        <item name="colorAccentBookStore">@color/colorPrimaryWhitish</item>
+        <item name="primaryTextColor">@color/primaryTextWhitish</item>
+        <item name="buttonNormalColor">@color/buttonNormalWhitish</item>
+        <item name="buttonHighlightColor">@color/buttonHighlightWhitish</item>
+        <item name="buttonTextColor">@color/buttonTextWhitish</item>
     </style>
+
+    <style name="Theme.App.Darkish"
+        parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="primaryButtonTheme">
+            @style/Widget.MaterialComponents.Button
+        </item>
+        <item name="colorPrimaryBookStore">@color/colorPrimaryDarkish</item>
+        <item name="colorPrimaryDarkBookStore">@color/colorPrimaryDarkDarkish</item>
+        <item name="colorAccentBookStore">@color/colorAccentDarkish</item>
+        <item name="primaryTextColor">@color/primaryTextDarkish</item>
+        <item name="buttonNormalColor">@color/buttonNormalDarkish</item>
+        <item name="buttonHighlightColor">@color/buttonHighlightDarkish</item>
+        <item name="buttonTextColor">@color/buttonTextDarkish</item>
+    </style>
+
+    <style name="Theme.App.Purplish"
+        parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="primaryButtonTheme">
+            @style/Widget.MaterialComponents.Button
+        </item>
+        <item name="colorPrimaryBookStore">@color/colorPrimaryPurplish</item>
+        <item name="colorPrimaryDarkBookStore">@color/colorPrimaryDarkPurplish</item>
+        <item name="colorAccentBookStore">@color/colorAccentPurplish</item>
+        <item name="primaryTextColor">@color/primaryTextPurplish</item>
+        <item name="buttonNormalColor">@color/buttonNormalPurplish</item>
+        <item name="buttonHighlightColor">@color/buttonHighlightPurplish</item>
+        <item name="buttonTextColor">@color/buttonTextPurplish</item>
+    </style>
+
+    <style name="Theme.App.Greenish"
+        parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="primaryButtonTheme">
+            @style/Widget.MaterialComponents.Button
+        </item>
+        <item name="colorPrimaryBookStore">@color/colorPrimaryGreenish</item>
+        <item name="colorPrimaryDarkBookStore">@color/colorPrimaryDarkGreenish</item>
+        <item name="colorAccentBookStore">@color/colorAccentGreenish</item>
+        <item name="primaryTextColor">@color/primaryTextGreenish</item>
+        <item name="buttonNormalColor">@color/buttonNormalGreenish</item>
+        <item name="buttonHighlightColor">@color/buttonHighlightGreenish</item>
+        <item name="buttonTextColor">@color/buttonTextGreenish</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorAccent">#FFF</item>
+        <item name="colorControlNormal">#111</item>
+        <item name="colorControlActivated">#222</item>
+        <item name="colorControlHighlight">#f12</item>
+    </style>
+
 
     <style name="customDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="windowNoTitle">true</item>
@@ -36,36 +83,8 @@
         <item name="android:windowMinWidthMinor">99%</item>
     </style>
 
-    <style name="WhiteText" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">22dp</item>
-    </style>
-
     <style name="Yellow.AppCompatRatingBar" parent="Base.Widget.AppCompat.RatingBar.Indicator">
-        <item name="colorControlNormal">@color/grey_60</item>
-        <item name="colorControlActivated">@color/yellow_600</item>
-    </style>
-
-    <style name="GreyText" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#dddddd</item>
-    </style>
-
-
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <!-- Tints the input fields like checkboxes and text fields -->
-        <item name="colorAccent">#FFF</item>
-        <!-- Applies to views in their normal state. -->
-        <item name="colorControlNormal">#111</item>
-        <!-- Applies to views in their activated state (i.e checked or switches) -->
-        <item name="colorControlActivated">#222</item>
-        <!-- Applied to framework control highlights (i.e ripples or list selectors) -->
-        <item name="colorControlHighlight">#f12</item>
-
-        <!-- Enable these below if you want clicking icons to trigger a ripple effect -->
-        <!--
-        <item name="selectableItemBackground">?android:selectableItemBackground</item>
-        <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
-        -->
+        <item name="colorControlNormal">?attr/primaryTextColor</item>
+        <item name="colorControlActivated">@color/yellowStar</item>
     </style>
 </resources>
-

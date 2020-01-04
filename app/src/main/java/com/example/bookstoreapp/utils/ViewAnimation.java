@@ -1,35 +1,11 @@
 package com.example.bookstoreapp.utils;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 public class ViewAnimation {
-
-    public static void expand(final View v, final AnimListener animListener) {
-        Animation a = expandAction(v);
-        a.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                animListener.onFinish();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-        v.startAnimation(a);
-    }
 
     public static void expand(final View v) {
         Animation a = expandAction(v);
@@ -86,69 +62,9 @@ public class ViewAnimation {
         v.startAnimation(a);
     }
 
-    public static void fadeIn(final View v) {
-        ViewAnimation.fadeIn(v, null);
-    }
-
-    public static void fadeIn(final View v, final AnimListener animListener) {
-        v.setVisibility(View.GONE);
-        v.setAlpha(0.0f);
-        // Prepare the View for the animation
-        v.animate()
-                .setDuration(200)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        v.setVisibility(View.VISIBLE);
-                        if (animListener != null) animListener.onFinish();
-                        super.onAnimationEnd(animation);
-                    }
-                })
-                .alpha(1.0f);
-    }
-
-    public static void fadeOut(final View v, final AnimListener animListener) {
-        v.setAlpha(1.0f);
-        // Prepare the View for the animation
-        v.animate()
-                .setDuration(500)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (animListener != null) animListener.onFinish();
-                        super.onAnimationEnd(animation);
-                    }
-                })
-                .alpha(0.0f);
-    }
-
-
     public interface AnimListener {
         void onFinish();
     }
 
-
-    public static void showScale(final View v) {
-        ViewAnimation.showScale(v, null);
-    }
-
-    public static void showScale(final View v, final AnimListener animListener) {
-        v.animate()
-                .scaleY(1)
-                .scaleX(1)
-                .setDuration(200)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        if (animListener != null) animListener.onFinish();
-                        super.onAnimationEnd(animation);
-                    }
-                })
-                .start();
-    }
-
-    public static void hideScale(final View v) {
-        ViewAnimation.fadeOut(v, null);
-    }
 
 }

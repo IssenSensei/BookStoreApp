@@ -35,7 +35,7 @@ class BooksFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recyclerView = view!!.findViewById(R.id.books_item_list)
+        recyclerView = view!!.findViewById(R.id.books_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         recyclerView.addItemDecoration(
