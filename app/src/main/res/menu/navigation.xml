@@ -4,31 +4,31 @@
         android:id="@+id/navigation_books"
         app:showAsAction="always"
         android:icon="@drawable/books"
-        android:title="Ksiażki">
+        android:title="@string/navigation_books">
     </item>
     <item
         android:id="@+id/navigation_user_quotes"
         app:showAsAction="always"
         android:icon="@drawable/userquotes"
-        android:title="Moje">
+        android:title="@string/navigation_user_quotes">
     </item>
     <item
         android:id="@+id/navigation_books_quotes"
         app:showAsAction="always"
         android:icon="@drawable/bookquotes"
-        android:title="Innych">
+        android:title="@string/navigation_book_quotes">
     </item>
     <item
         android:id="@+id/navigation_news"
         app:showAsAction="always"
         android:icon="@drawable/news"
-        android:title="Aktualności">
+        android:title="@string/navigation_news">
     </item>
     <item
         android:id="@+id/navigation_menu"
         app:showAsAction="always"
         android:icon="@drawable/menu"
-        android:title="Menu">
+        android:title="@string/navigation_menu">
     </item>
 
 </menu>

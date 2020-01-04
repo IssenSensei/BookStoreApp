@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.*
@@ -29,7 +30,6 @@ import com.example.bookstoreapp.database.ApiInterface.Companion.BOOK_READER_CODE
 import com.example.bookstoreapp.database.ApiInterface.Companion.PUBLISHER_CODE
 import com.example.bookstoreapp.database.getAsTempFile
 import com.example.bookstoreapp.utils.LineItemDecoration
-import com.example.bookstoreapp.utils.SharedPreference
 import io.ktor.client.HttpClient
 import kotlinx.android.synthetic.main.activity_book_details.*
 import kotlinx.coroutines.runBlocking
@@ -44,13 +44,7 @@ class BookDetailActivity : BaseActivity() {
     private lateinit var commentsMap: MutableList<CommentItem>
     private lateinit var recyclerView: RecyclerView
     var id = 0
-    private lateinit var currentTheme: String
-    private lateinit var sharedPreference: SharedPreference
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        sharedPreference = SharedPreference(this)
-        currentTheme = sharedPreference.getValueString("current_theme").toString()
-        setAppTheme(currentTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
@@ -110,23 +104,6 @@ class BookDetailActivity : BaseActivity() {
                 }
             }
 
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val theme = sharedPreference.getValueString("current_theme")
-        if(currentTheme != theme)
-            recreate()
-    }
-
-    private fun setAppTheme(currentTheme: String) {
-        when (currentTheme) {
-            "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
-            "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
-            "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
-            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
-            else -> setTheme(R.style.Theme_App_Whitish)
         }
     }
 

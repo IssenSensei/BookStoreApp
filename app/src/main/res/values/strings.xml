@@ -11,4 +11,9 @@
     <string name="delete_dialog_confirmation">Twoje dane zostaną utracone bezpowrotnie, czy jesteś pewien?</string>
     <string name="Dialog_cancel">Anuluj</string>
     <string name="title_activity_maps">Map</string>
+    <string name="navigation_books">Ksiażki</string>
+    <string name="navigation_user_quotes">Moje</string>
+    <string name="navigation_book_quotes">Innych</string>
+    <string name="navigation_news">Aktualności</string>
+    <string name="navigation_menu">Menu</string>
 </resources>
