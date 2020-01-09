@@ -30,12 +30,14 @@
         <activity android:name=".news.NewsDetailActivity" />
         <activity android:name=".bookQuotes.BookQuoteDetailActivity" />
         <activity android:name=".user.UserProfileActivity" />
-        <activity android:name=".menu.AppSettingsActivity" />
+        <activity android:name=".menu.AppSettingsActivity"
+            android:noHistory="true"
+            />
         <activity android:name=".menu.AppInfoActivity" />
         <activity android:name=".auth.LoginActivity"></activity>
         <activity android:name=".auth.RegisterActivity" />
         <activity android:name=".BookReaderActivity" />
-        <activity android:name=".publisher.PublisherBooksActivity" />
+        <activity android:name=".print.PrintBooksActivity" />
         <activity android:name=".books.BookDetailActivity" />
         <activity android:name=".auth.EmailRecoveryActivity" />
     </application>

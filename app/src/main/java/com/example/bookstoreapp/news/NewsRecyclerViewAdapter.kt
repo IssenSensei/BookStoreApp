@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bookstoreapp.R
+import com.example.bookstoreapp.database.ApiInterface
 
 class NewsRecyclerViewAdapter(private var newsMap: MutableList<NewsItem>,
                               private val context: Context)
@@ -22,11 +23,11 @@ class NewsRecyclerViewAdapter(private var newsMap: MutableList<NewsItem>,
         val data = newsMap.toList()
         val second = data[position]
 
-        holder.login.text = second.login
+        holder.bookStore.text = second.bookStore
         holder.newsTitle.text = second.title
         holder.newsContent.text = second.content
         Glide.with(holder.mView.context)
-            .load(second.picture)
+            .load(ApiInterface.photoPath + second.photo)
             .into(holder.image)
 
         holder.listener.setOnClickListener {
@@ -58,7 +59,7 @@ class NewsRecyclerViewAdapter(private var newsMap: MutableList<NewsItem>,
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
 
-        val login = mView.findViewById<TextView>(R.id.login)!!
+        val bookStore = mView.findViewById<TextView>(R.id.bookStore)!!
         val newsTitle = mView.findViewById<TextView>(R.id.newsTitle)!!
         val newsContent = mView.findViewById<TextView>(R.id.newsContent)!!
         val image = mView.findViewById<ImageView>(R.id.imgvw)!!

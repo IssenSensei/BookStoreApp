@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.MainActivity
 import com.example.bookstoreapp.R
@@ -24,21 +22,18 @@ class RegisterActivity : BaseActivity() {
             register()
         }
         register_login_link.setOnClickListener {
-            setResult(Activity.RESULT_CANCELED)
-            finish()
+            val login = Intent(applicationContext, LoginActivity::class.java)
+            startActivity(login)
         }
     }
 
     private fun register() {
         val apiInterface = ApiInterface.create().createUser(
             "createUser",
-            register_login.text.toString(),
             register_password.text.toString(),
             register_name.text.toString(),
-            register_lastName.text.toString(),
-            register_email.text.toString(),
-            register_phone.text.toString(),
-            status = "user"
+            register_surname.text.toString(),
+            register_email.text.toString()
         )
         apiInterface.enqueue(object : Callback<Int> {
 
@@ -50,7 +45,7 @@ class RegisterActivity : BaseActivity() {
                 }
             }
             override fun onFailure(call: Call<Int>, t: Throwable?) {
-                Log.d("qpablad", t.toString())
+                Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
 
             }
         })

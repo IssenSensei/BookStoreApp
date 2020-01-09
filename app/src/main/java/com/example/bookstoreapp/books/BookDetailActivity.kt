@@ -1,18 +1,18 @@
 package com.example.bookstoreapp.books
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.view.MenuItem
 import android.view.Window
 import android.view.WindowManager
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatRatingBar
-import androidx.core.content.ContextCompat.startActivity
-import androidx.databinding.DataBindingUtil.setContentView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,14 +20,14 @@ import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.BookReaderActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.author.AuthorBooksActivity
-import com.example.bookstoreapp.publisher.PublisherBooksActivity
+import com.example.bookstoreapp.print.PrintBooksActivity
 import com.example.bookstoreapp.comments.CommentItem
 import com.example.bookstoreapp.comments.CommentsRecyclerViewAdapter
 import com.example.bookstoreapp.comments.NewCommentItem
 import com.example.bookstoreapp.database.ApiInterface
 import com.example.bookstoreapp.database.ApiInterface.Companion.AUTHOR_CODE
 import com.example.bookstoreapp.database.ApiInterface.Companion.BOOK_READER_CODE
-import com.example.bookstoreapp.database.ApiInterface.Companion.PUBLISHER_CODE
+import com.example.bookstoreapp.database.ApiInterface.Companion.PRINT_CODE
 import com.example.bookstoreapp.database.getAsTempFile
 import com.example.bookstoreapp.utils.LineItemDecoration
 import io.ktor.client.HttpClient
@@ -43,21 +43,23 @@ class BookDetailActivity : BaseActivity() {
 
     private lateinit var commentsMap: MutableList<CommentItem>
     private lateinit var recyclerView: RecyclerView
-    var id = 0
+    var bookId = 0
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
+        initToolbar()
 
         val data: BooksItem = intent.getSerializableExtra("data") as BooksItem
-        id = intent.getSerializableExtra("id") as Int
+        bookId = intent.getSerializableExtra("bookId") as Int
 
-        authorView.text = data.author
-        publisherView.text = data.publisher
+        authorView.text = "${data.authorName}${data.authorSurname}"
+        publisherView.text = data.print
         yearView.text = data.year
         bookDescription.text = data.description
         bookTitle.text = data.title
         Glide.with(applicationContext)
-            .load(data.picture)
+            .load(ApiInterface.photoPath + data.picture)
             .into(image)
 
         showComments.setOnClickListener {
@@ -66,14 +68,15 @@ class BookDetailActivity : BaseActivity() {
 
         authorView.setOnClickListener {
             val intent = Intent(this, AuthorBooksActivity::class.java)
-            intent.putExtra("authorId", data.author)
+            intent.putExtra("authorName", data.authorName)
+            intent.putExtra("authorSurname", data.authorSurname)
             startActivityForResult(intent, AUTHOR_CODE)
         }
 
         publisherView.setOnClickListener {
-            val intent = Intent(this, PublisherBooksActivity::class.java)
-            intent.putExtra("publisherId", data.publisher)
-            startActivityForResult(intent, PUBLISHER_CODE)
+            val intent = Intent(this, PrintBooksActivity::class.java)
+            intent.putExtra("print", data.print)
+            startActivityForResult(intent, PRINT_CODE)
         }
 
         fab.setOnClickListener {
@@ -98,7 +101,7 @@ class BookDetailActivity : BaseActivity() {
                     val intent = Intent(applicationContext, BookReaderActivity::class.java)
                     intent.putExtra("file", ebookPath)
                     intent.putExtra("extension", extension)
-                    intent.putExtra("bookId", id)
+                    intent.putExtra("bookId", bookId)
 
                     startActivityForResult(intent, BOOK_READER_CODE)
                 }
@@ -132,7 +135,7 @@ class BookDetailActivity : BaseActivity() {
             addRating(
                 content.text.toString().trim(),
                 rating.rating.toInt(),
-                id
+                bookId
             )
             dialog.dismiss()
         }
@@ -142,7 +145,7 @@ class BookDetailActivity : BaseActivity() {
     }
 
     private fun getData() {
-        val apiInterface = ApiInterface.create().getBookComments("getBookComments", id)
+        val apiInterface = ApiInterface.create().getBookComments("getBookComments", bookId)
         apiInterface.enqueue(object : Callback<List<CommentItem>> {
 
             override fun onResponse(
@@ -198,9 +201,27 @@ class BookDetailActivity : BaseActivity() {
             }
 
             override fun onFailure(call: Call<NewCommentItem>, t: Throwable?) {
-                Log.d("qpablad", t.toString())
+                Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
 
             }
         })
+    }
+
+    private fun initToolbar() {
+        val toolbar: Toolbar = findViewById(R.id.book_detail_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Powrót"
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            setResult(Activity.RESULT_CANCELED)
+            finish()
+        } else {
+            Toast.makeText(applicationContext, item.title, Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

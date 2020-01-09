@@ -82,7 +82,7 @@ class BookReaderActivity : BaseActivity() {
                                     }
                                 }
                                 override fun onFailure(call: Call<Int>, t: Throwable?) {
-                                    Log.d("qpablad", t.toString())
+                                    Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
                                 }
                             })
                     }

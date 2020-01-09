@@ -59,7 +59,7 @@ class UserQuotesFragment: Fragment() {
     }
 
     private fun getData() {
-        val apiInterface = ApiInterface.create().getUserQuotes("getUserQuotes", 3)
+        val apiInterface = ApiInterface.create().getUserQuotes("getUserQuotes", ApiInterface.USER_ID)
         apiInterface.enqueue(object : Callback<List<UserQuotesItem>> {
 
             override fun onResponse(

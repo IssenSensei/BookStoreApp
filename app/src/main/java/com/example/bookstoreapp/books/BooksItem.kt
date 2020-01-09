@@ -6,11 +6,14 @@ data class BooksItem (
     var id: Int = 0,
     var title: String = "",
     var year: String = "",
-    var publisher: String = "",
+    var print: String = "",
     var file: String = "",
     var picture: String = "",
     var description: String = "",
-    var author: String = "",
+    var authorName: String = "",
+    var authorSurname: String = "",
+    var isbn: String = "",
+    var categoryId: String = "",
 
     var expanded: Boolean = false
 

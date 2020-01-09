@@ -70,7 +70,7 @@ class UserQuotesRecyclerViewAdapter(
     }
 
     private fun delete(quoteId: Int) {
-        val apiInterface = ApiInterface.create().deleteQuote("deleteQuote", quoteId.toString())
+        val apiInterface = ApiInterface.create().deleteQuote("deleteQuote", quoteId)
 
         apiInterface.enqueue(object : Callback<Int> {
 
@@ -81,7 +81,7 @@ class UserQuotesRecyclerViewAdapter(
             }
 
             override fun onFailure(call: Call<Int>, t: Throwable?) {
-                Log.d("qpablad", t.toString())
+                Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
 
             }
         })

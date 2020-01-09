@@ -10,7 +10,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPreference = SharedPreference(this)
-        currentTheme = sharedPreference.getValueString("current_theme").toString()
+        currentTheme = sharedPreference.getValueString(
+            "current_theme").toString()
         setAppTheme(currentTheme)
         super.onCreate(savedInstanceState)
     }
@@ -27,8 +28,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val theme = sharedPreference.getValueString("current_theme")
-        if(currentTheme != theme)
+        val theme = sharedPreference.getValueString(
+            "current_theme")
+        if (currentTheme != theme)
             recreate()
     }
 }
+
+

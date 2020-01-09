@@ -2,8 +2,10 @@ package com.example.bookstoreapp.auth
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
@@ -22,17 +24,12 @@ import javax.mail.internet.MimeMessage
 class EmailRecoveryActivity : BaseActivity() {
     lateinit var appExecutors: AppExecutors
 
-    private lateinit var currentTheme: String
-    private lateinit var sharedPreference: SharedPreference
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        sharedPreference = SharedPreference(this)
-        currentTheme = sharedPreference.getValueString("current_theme").toString()
-        setAppTheme(currentTheme)
         super.onCreate(savedInstanceState)
         appExecutors = AppExecutors()
 
         setContentView(R.layout.activity_email_recovery)
+        initToolbar()
 
         recovery_send_button.setOnClickListener {
             sendRecoveryEmail(recovery_email_field.text.toString())
@@ -102,13 +99,19 @@ class EmailRecoveryActivity : BaseActivity() {
         })
     }
 
-    private fun setAppTheme(currentTheme: String) {
-        when (currentTheme) {
-            "THEME_DARKISH" -> setTheme(R.style.Theme_App_Darkish)
-            "THEME_PURPLISH" -> setTheme(R.style.Theme_App_Purplish)
-            "THEME_GREENISH" -> setTheme(R.style.Theme_App_Greenish)
-            "THEME_FULLWHITE" -> setTheme(R.style.Theme_App_FullWhite)
-            else -> setTheme(R.style.Theme_App_Whitish)
+    private fun initToolbar() {
+        val toolbar: Toolbar = findViewById(R.id.app_info_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            setResult(Activity.RESULT_CANCELED)
+            finish()
+        } else {
+            Toast.makeText(applicationContext, item.title, Toast.LENGTH_SHORT).show()
         }
+        return super.onOptionsItemSelected(item)
     }
 }

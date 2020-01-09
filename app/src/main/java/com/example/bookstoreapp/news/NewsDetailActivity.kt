@@ -1,31 +1,52 @@
 package com.example.bookstoreapp.news
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
+import com.example.bookstoreapp.database.ApiInterface
 
 class NewsDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_details)
+        initToolbar()
 
         val data: NewsItem = intent.getSerializableExtra("data") as NewsItem
 
         val content = findViewById<TextView>(R.id.content)!!
         val title = findViewById<TextView>(R.id.register_title)!!
-        val login = findViewById<TextView>(R.id.login)!!
-        val picture = findViewById<ImageView>(R.id.image)!!
+        val bookStore = findViewById<TextView>(R.id.bookStore)!!
+        val photo = findViewById<ImageView>(R.id.image)!!
 
         content.text = data.content
         title.text = data.title
-        login.text = data.login
+        bookStore.text = data.bookStore
         Glide.with(applicationContext)
-            .load(data.picture)
-            .into(picture)
+            .load(ApiInterface.photoPath + data.photo)
+            .into(photo)
+    }
+
+    private fun initToolbar() {
+        val toolbar: Toolbar = findViewById(R.id.news_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            setResult(Activity.RESULT_CANCELED)
+            finish()
+        } else {
+            Toast.makeText(applicationContext, item.title, Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

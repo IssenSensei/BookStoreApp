@@ -2,6 +2,7 @@ package com.example.bookstoreapp.news
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
@@ -12,8 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
+import com.example.bookstoreapp.utils.LineItemDecoration
 import com.example.bookstoreapp.utils.getNewsAdapter
 import kotlinx.android.synthetic.main.layout_news_list.*
+import kotlinx.android.synthetic.main.layout_user_quotes_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,12 +49,12 @@ class NewsFragment: Fragment() {
 
     private fun setUpRecycler() {
         newsRecycler.layoutManager = LinearLayoutManager(context)
-//        user_quote_recycler_view.addItemDecoration(
-//            LineItemDecoration(
-//                this.context,
-//                LinearLayout.VERTICAL
-//            )
-//        )
+        newsRecycler.addItemDecoration(
+            LineItemDecoration(
+                this.context,
+                LinearLayout.VERTICAL
+            )
+        )
         newsRecycler.adapter = NewsRecyclerViewAdapter(mutableListOf(), this.context!!)
     }
 
@@ -74,6 +77,7 @@ class NewsFragment: Fragment() {
 
             override fun onFailure(call: Call<List<NewsItem>>?, t: Throwable?) {
                 Toast.makeText(context, "Wystąpił problem przy pobieraniu danych nw", Toast.LENGTH_SHORT).show()
+                Log.d("qqqqqq", t.toString())
 
             }
         })
@@ -109,11 +113,11 @@ class NewsFragment: Fragment() {
                     it.content.toLowerCase().contains(description.text.toString().toLowerCase())
                 } as MutableList<NewsItem>
             }
-            if (!author.text.toString().equals("")) {
-                list = list.filter {
-                    it.login.toLowerCase().contains(author.text.toString().toLowerCase())
-                } as MutableList<NewsItem>
-            }
+//            if (!author.text.toString().equals("")) {
+//                list = list.filter {
+//                    it.login.toLowerCase().contains(author.text.toString().toLowerCase())
+//                } as MutableList<NewsItem>
+//            }
 
             newsMap.addAll(list)
 

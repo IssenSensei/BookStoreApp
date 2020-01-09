@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorAccentBookStore"
             android:gravity="top"
-            android:hint="Write review ..."
+            android:hint="Podziel się opinią z innymi!"
             android:textColor="?attr/primaryTextColor"
             android:lines="4"
             android:padding="@dimen/spacing_middle" />
@@ -65,7 +65,7 @@
             android:layout_marginEnd="@dimen/spacing_medium"
             android:background="?attr/colorAccentBookStore"
             android:textColor="?attr/primaryTextColor"
-            android:text="CANCEL" />
+            android:text="Anuluj" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_submit"
@@ -76,7 +76,7 @@
             android:layout_marginEnd="@dimen/spacing_medium"
             android:background="?attr/colorPrimaryBookStore"
             android:textColor="?attr/primaryTextColor"
-            android:text="SUBMIT" />
+            android:text="Dodaj" />
 
     </LinearLayout>
 

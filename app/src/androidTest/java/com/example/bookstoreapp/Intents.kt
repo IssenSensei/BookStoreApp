@@ -78,12 +78,14 @@ class ActivityStackTraceInstrumentedTest {
             .perform(click())
         Thread.sleep(3000L)
 
-        assertTrue(bottomNavigation!!.menu.findItem(R.id.navigation_books).isChecked)
+        assertTrue(
+            bottomNavigation!!.menu.findItem(R.id.navigation_books).isChecked)
 
         mainActivityRule.activity
 
         onView(withId(R.id.books_recycler_view)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<BooksRecyclerViewAdapter.ViewHolder>(
+            RecyclerViewActions
+                .actionOnItemAtPosition<BooksRecyclerViewAdapter.ViewHolder>(
                 0,
                 RecyclerViewWithIdAction.clickChildViewWithId(R.id.lyt_parent)
             )
@@ -97,3 +99,5 @@ class ActivityStackTraceInstrumentedTest {
         intended(hasComponent(BookDetailActivity::class.java.name))
     }
 }
+
+

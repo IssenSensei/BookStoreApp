@@ -6,7 +6,7 @@ data class NewsItem (
     var id: Int = -1,
     var content: String = "",
     var title: String = "",
-    var login: String = "",
-    var picture: String = ""
+    var bookStore: String = "",
+    var photo: String = ""
 ): Serializable
 

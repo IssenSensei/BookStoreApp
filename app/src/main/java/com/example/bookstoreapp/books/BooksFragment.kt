@@ -2,6 +2,7 @@ package com.example.bookstoreapp.books
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
+import com.example.bookstoreapp.utils.LineItemDecoration
 import com.example.bookstoreapp.utils.getBooksAdapter
 import kotlinx.android.synthetic.main.layout_book_list.*
 import retrofit2.Call
@@ -34,6 +36,7 @@ class BooksFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        appbarlayout.visibility = View.GONE
         booksRecycler = view!!.findViewById(R.id.books_recycler_view)
         setUpRecycler()
         getData()
@@ -50,24 +53,27 @@ class BooksFragment : Fragment() {
 
     private fun setUpRecycler() {
         booksRecycler.layoutManager = LinearLayoutManager(context)
-//        user_quote_recycler_view.addItemDecoration(
-//            LineItemDecoration(
-//                this.context,
-//                LinearLayout.VERTICAL
-//            )
-//        )
+        booksRecycler.addItemDecoration(
+            LineItemDecoration(
+                this.context,
+                LinearLayout.VERTICAL
+            )
+        )
         booksRecycler.adapter = BooksRecyclerViewAdapter(mutableListOf(), this.context!!)
     }
 
 
     private fun getData() {
         val apiInterface = ApiInterface
-            .create().getBooks("getBooks")
+            .create().getBooks("getBooks", 1)
+        Log.d("qqqq", apiInterface.request().toString())
         apiInterface.enqueue(object : Callback<List<BooksItem>> {
             override fun onResponse(
                 call: Call<List<BooksItem>>?,
                 response: Response<List<BooksItem>>?
             ) {
+                Log.d("qqqq", response?.body().toString())
+
                 if (response?.body() != null) {
                     booksMap = response.body() as MutableList<BooksItem>
                     if (booksMap.size == 0) {
@@ -129,12 +135,17 @@ class BooksFragment : Fragment() {
             }
             if (publisher.text.toString() != "") {
                 list = list.filter {
-                    it.publisher.toLowerCase().contains(publisher.text.toString().toLowerCase())
+                    it.print.toLowerCase().contains(publisher.text.toString().toLowerCase())
                 } as MutableList<BooksItem>
             }
             if (author.text.toString() != "") {
                 list = list.filter {
-                    it.author.toLowerCase().contains(author.text.toString().toLowerCase())
+                    it.authorName.toLowerCase().contains(author.text.toString().toLowerCase())
+                } as MutableList<BooksItem>
+            }
+            if (author.text.toString() != "") {
+                list = list.filter {
+                    it.authorSurname.toLowerCase().contains(author.text.toString().toLowerCase())
                 } as MutableList<BooksItem>
             }
             if (description.text.toString() != "") {

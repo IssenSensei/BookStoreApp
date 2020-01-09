@@ -58,15 +58,31 @@ class MainActivityMenuNavigationInstrumentedTest {
             .perform(click())
 
         // Verify the correct item is now selected.
-        assertChecksFromLeft(false, false, false, false, true)
+        assertChecksFromLeft(
+            false, false, false, false, true)
     }
 
-    private fun assertChecksFromLeft(books: Boolean, userQuotes: Boolean, bookQuotes: Boolean, news: Boolean, menu: Boolean) {
-        assertEquals(books, bottomNavigation!!.menu.findItem(R.id.navigation_books).isChecked)
-        assertEquals(userQuotes, bottomNavigation!!.menu.findItem(R.id.navigation_books_quotes).isChecked)
-        assertEquals(bookQuotes, bottomNavigation!!.menu.findItem(R.id.navigation_user_quotes).isChecked)
-        assertEquals(news, bottomNavigation!!.menu.findItem(R.id.navigation_news).isChecked)
-        assertEquals(menu, bottomNavigation!!.menu.findItem(R.id.navigation_menu).isChecked)
+    private fun assertChecksFromLeft(
+        books: Boolean,
+        userQuotes: Boolean,
+        bookQuotes: Boolean,
+        news: Boolean,
+        menu: Boolean
+    ) {
+        assertEquals(
+            books, bottomNavigation!!.menu.findItem(R.id.navigation_books).isChecked)
+        assertEquals(
+            userQuotes,
+            bottomNavigation!!.menu.findItem(R.id.navigation_books_quotes).isChecked
+        )
+        assertEquals(
+            bookQuotes,
+            bottomNavigation!!.menu.findItem(R.id.navigation_user_quotes).isChecked
+        )
+        assertEquals(
+            news, bottomNavigation!!.menu.findItem(R.id.navigation_news).isChecked)
+        assertEquals(
+            menu, bottomNavigation!!.menu.findItem(R.id.navigation_menu).isChecked)
     }
 
     @Test

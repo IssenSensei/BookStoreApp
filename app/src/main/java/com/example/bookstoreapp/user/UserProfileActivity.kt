@@ -1,8 +1,11 @@
 package com.example.bookstoreapp.user
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.example.bookstoreapp.BaseActivity
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.database.ApiInterface
@@ -15,15 +18,14 @@ class UserProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        initToolbar()
 
         loadUserData()
         profile_edit_button.setOnClickListener {
             updateUser(
-                profile_login.text.toString(),
-                profile_name.text.toString(),
-                profile_lastName.text.toString(),
                 profile_email.text.toString(),
-                profile_phone.text.toString()
+                profile_name.text.toString(),
+                profile_surname.text.toString()
             )
         }
 
@@ -38,7 +40,7 @@ class UserProfileActivity : BaseActivity() {
 
 
     private fun loadUserData() {
-        val apiInterface = ApiInterface.create().getUser("getUser", 3)
+        val apiInterface = ApiInterface.create().getUser("getUser", ApiInterface.USER_ID)
 
         apiInterface.enqueue(object : Callback<UserItem> {
 
@@ -48,11 +50,9 @@ class UserProfileActivity : BaseActivity() {
             ) {
                 if (response?.body() != null) {
                     Log.d("profile", response.body().toString())
-                    profile_login.setText(response.body()!!.login)
                     profile_email.setText(response.body()!!.email)
-                    profile_phone.setText(response.body()!!.phone)
                     profile_name.setText(response.body()!!.name)
-                    profile_lastName.setText(response.body()!!.lastName)
+                    profile_surname.setText(response.body()!!.surname)
                 }
             }
 
@@ -62,14 +62,12 @@ class UserProfileActivity : BaseActivity() {
     }
 
     private fun updateUser(
-        login: String,
         name: String,
-        lastName: String,
-        email: String,
-        phone: String
+        surname: String,
+        email: String
     ) {
         val apiInterface =
-            ApiInterface.create().updateUser("updateUser", 3, login, name, lastName, email, phone)
+            ApiInterface.create().updateUser("updateUser", ApiInterface.USER_ID, name, surname, email)
 
         apiInterface.enqueue(object : Callback<Int> {
 
@@ -89,7 +87,7 @@ class UserProfileActivity : BaseActivity() {
 
     private fun updatePassword(password: String, newPassword: String) {
         val apiInterface =
-            ApiInterface.create().changePassword("changePassword", password, newPassword, 2)
+            ApiInterface.create().changePassword("changePassword", password, newPassword, ApiInterface.USER_ID)
 
         apiInterface.enqueue(object : Callback<Int> {
 
@@ -106,6 +104,24 @@ class UserProfileActivity : BaseActivity() {
 
             }
         })
+    }
+
+    private fun initToolbar() {
+        val toolbar: Toolbar = findViewById(R.id.profile_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Powrót"
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            setResult(Activity.RESULT_CANCELED)
+            finish()
+        } else {
+            Toast.makeText(applicationContext, item.title, Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 

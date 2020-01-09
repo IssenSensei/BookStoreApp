@@ -36,7 +36,7 @@ class BooksRecyclerViewAdapter(
         holder.bookTitle.text = second.title
         holder.bookDescription.text = second.description
         Glide.with(holder.mView.context)
-            .load(second.picture)
+            .load(ApiInterface.photoPath + second.picture)
             .into(holder.image)
 
         holder.expand.setOnClickListener { v ->
@@ -71,7 +71,7 @@ class BooksRecyclerViewAdapter(
     }
 
     private fun delete(bookId: Int) {
-        val apiInterface = ApiInterface.create().deleteBook("deleteBook", bookId, 1)
+        val apiInterface = ApiInterface.create().deleteBook("deleteBook", bookId, ApiInterface.USER_ID)
 
         apiInterface.enqueue(object : Callback<Int> {
 
@@ -82,17 +82,18 @@ class BooksRecyclerViewAdapter(
             }
 
             override fun onFailure(call: Call<Int>, t: Throwable?) {
-                Log.d("qpablad", t.toString())
+                Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
 
             }
-        })    }
+        })
+    }
 
     private fun seeDetails(context: Context, data: BooksItem){
 
         val intent = Intent(context, BookDetailActivity::class.java)
         intent.apply {
             putExtra("data", data)
-            putExtra("id", data.id)
+            putExtra("bookId", data.id)
         }
         context.startActivity(intent)
     }

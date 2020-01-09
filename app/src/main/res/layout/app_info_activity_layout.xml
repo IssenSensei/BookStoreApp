@@ -7,6 +7,28 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/app_info_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/AppTheme">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -53,7 +75,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3.24.0.11.1.12.53.75.2.4.12.1.2.65.3.90"
+                    android:text="2.0.5"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="?attr/primaryTextColor" />
 
@@ -78,7 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="February 2018"
+                    android:text="January 2020"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="?attr/primaryTextColor" />
 
@@ -91,7 +113,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="wstępnie to ja tu dam znać że mam w drużynie rudego i proszę mi dać inżyniera bo mam ciężko w życiu"
+                android:text="Aplikacja powstała na potrzeby pracy inżynierskiej."
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="?attr/primaryTextColor" />
 
@@ -102,7 +124,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Term of services"
+                android:text="Dla zachowania jak najbardziej aktualnych informacji, zaleca się odświeżenie danych przed ich odczytem lub modyfikacją."
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="?attr/primaryTextColor" />
 

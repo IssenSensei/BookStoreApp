@@ -44,7 +44,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/register_lastName_input"
+        android:id="@+id/register_surname_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
@@ -56,54 +56,10 @@
         app:layout_constraintTop_toBottomOf="@+id/register_name_input">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_lastName"
+            android:id="@+id/register_surname"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/last_name_field_hint"
-            android:maxLength="15"
-            android:singleLine="true"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/register_phone_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="41dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_lastName_input">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_phone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/phone_field_hint"
-            android:maxLength="15"
-            android:singleLine="true"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/register_login_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="41dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_phone_input">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_login"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/login_field_hint"
             android:maxLength="15"
             android:singleLine="true"/>
 
@@ -119,7 +75,7 @@
         android:layout_marginEnd="41dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_login_input">
+        app:layout_constraintTop_toBottomOf="@+id/register_surname_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/register_email"

@@ -5,7 +5,8 @@ import android.content.SharedPreferences
 
 class SharedPreference(val context: Context) {
     private val PREFS_NAME = "BookStore"
-    private val sharedPref: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    private val sharedPref: SharedPreferences =
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     fun save(KEY_NAME: String, text: String) {
         val editor: SharedPreferences.Editor = sharedPref.edit()
@@ -16,6 +17,7 @@ class SharedPreference(val context: Context) {
     fun getValueString(KEY_NAME: String): String? {
         return sharedPref.getString(KEY_NAME, "THEME_FULLWHITE")
     }
-
-
 }
+
+
+

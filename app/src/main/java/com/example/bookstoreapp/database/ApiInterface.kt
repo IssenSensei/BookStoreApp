@@ -18,20 +18,26 @@ import com.google.gson.Gson
 interface ApiInterface {
 
     @GET("Api.php")
-    fun getBooks(@Query("apicall") apicall: String)
+    fun getBooks(@Query("apicall") apicall: String,
+                 @Query("userId") userId: Int
+    )
             : Call<List<BooksItem>>
 
     @GET("Api.php")
     fun getAuthorBooks(
         @Query("apicall") apicall: String,
-        @Query("authorName") authorName: String
+        @Query("authorName") authorName: String,
+        @Query("authorSurname") authorSurname: String,
+        @Query("id") id: Int
+
     )
             : Call<List<BooksItem>>
 
     @GET("Api.php")
-    fun getPublisherBooks(
+    fun getPrintBooks(
         @Query("apicall") apicall: String,
-        @Query("publisherName") publisherName: String
+        @Query("printName") printName: String,
+        @Query("id") id: Int
     )
             : Call<List<BooksItem>>
 
@@ -42,20 +48,20 @@ interface ApiInterface {
     @GET("Api.php")
     fun getUserQuotes(
         @Query("apicall") apicall: String,
-        @Query("id") id: Int
+        @Query("userId") userId: Int
     )
             : Call<List<UserQuotesItem>>
 
     @GET("Api.php")
     fun getBookQuotes(
         @Query("apicall") apicall: String,
-        @Query("id") id: Int
+        @Query("userId") userId: Int
     ): Call<List<BookQuotesItem>>
 
     @GET("Api.php")
     fun getBookComments(
         @Query("apicall") apicall: String,
-        @Query("id") id: Int
+        @Query("bookId") bookId: Int
     ): Call<List<CommentItem>>
 
     @GET("Api.php")
@@ -63,13 +69,6 @@ interface ApiInterface {
         @Query("apicall") apicall: String,
         @Query("id") id: Int
     ): Call<UserItem>
-
-    @GET("Api.php")
-    fun getEmail(
-        @Query("apicall") apicall: String,
-        @Query("login") login: String
-    )
-            : Call<String>
 
     @FormUrlEncoded
     @POST("Api.php")
@@ -95,21 +94,18 @@ interface ApiInterface {
     @GET("Api.php")
     fun getUserId(
         @Query("apicall") apicall: String,
-        @Query("login") login: String,
+        @Query("email") email: String,
         @Query("password") password: String
-    ): Call<List<UserItem>>
+    ): Call<Int>
 
     @FormUrlEncoded
     @POST("Api.php")
     fun createUser(
         @Query("apicall") apicall: String,
-        @Field("login") login: String,
         @Field("password") password: String,
         @Field("name") name: String,
-        @Field("lastName") lastName: String,
-        @Field("email") email: String,
-        @Field("phone") phone: String,
-        @Field("status") status: String
+        @Field("surname") lastName: String,
+        @Field("email") email: String
     )
             : Call<Int>
 
@@ -119,18 +115,16 @@ interface ApiInterface {
         @Query("apicall") apicall: String,
         @Field("userId") userId: Int
     )
-            : Call<Int>
+            : Call<Boolean>
 
     @FormUrlEncoded
     @POST("Api.php")
     fun updateUser(
         @Query("apicall") apicall: String,
         @Field("userId") userId: Int,
-        @Field("login") login: String,
         @Field("name") name: String,
-        @Field("lastName") lastName: String,
-        @Field("email") email: String,
-        @Field("phone") phone: String
+        @Field("surname") surname: String,
+        @Field("email") email: String
     )
             : Call<Int>
 
@@ -147,7 +141,7 @@ interface ApiInterface {
     @POST("Api.php")
     fun deleteQuote(
         @Query("apicall") apicall: String,
-        @Field("quoteId") quoteId: String
+        @Field("quoteId") quoteId: Int
     )
             : Call<Int>
 
@@ -172,13 +166,14 @@ interface ApiInterface {
 
     companion object {
         var USER_ID: Int = -1
-        var BASE_URL = "http://192.168.0.164/BookstoreApi/api/"
+        var BASE_URL = "http://165.22.90.206/BookstoreApi/api/"
 
-        var REGISTER_CODE = 1
-        var RECOVERY_CODE = 2
-        var AUTHOR_CODE = 3
-        var PUBLISHER_CODE = 4
-        var BOOK_READER_CODE = 5
+        const val REGISTER_CODE = 1
+        const val RECOVERY_CODE = 2
+        const val AUTHOR_CODE = 3
+        const val PRINT_CODE = 4
+        const val BOOK_READER_CODE = 5
+        const val photoPath = "http://165.22.90.206/storage/"
 
         fun create(): ApiInterface {
 

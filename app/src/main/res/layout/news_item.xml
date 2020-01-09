@@ -37,7 +37,7 @@
                 android:textColor="?attr/primaryTextColor" />
 
             <TextView
-                android:id="@+id/login"
+                android:id="@+id/bookStore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_large"
