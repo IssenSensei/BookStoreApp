@@ -11,9 +11,16 @@
     <string name="delete_dialog_confirmation">Twoje dane zostaną utracone bezpowrotnie, czy jesteś pewien?</string>
     <string name="Dialog_cancel">Anuluj</string>
     <string name="title_activity_maps">Map</string>
-    <string name="navigation_books">Ksiażki</string>
-    <string name="navigation_user_quotes">Moje</string>
-    <string name="navigation_book_quotes">Innych</string>
+    <string name="navigation_books_title">Ksiażki</string>
+    <string name="navigation_user_books">Moje książki</string>
+    <string name="navigation_book_search">Wyszukaj</string>
+    <string name="navigation_quotes_title">Cytaty</string>
+    <string name="navigation_user_quotes">Moje cytaty</string>
+    <string name="navigation_book_quotes">Inne</string>
+    <string name="navigation_others_title">Pozostałe</string>
     <string name="navigation_news">Aktualności</string>
+    <string name="navigation_profile">Profil</string>
+    <string name="navigation_settings">Ustawienia</string>
+    <string name="navigation_logout">Wyloguj</string>
     <string name="navigation_menu">Menu</string>
 </resources>

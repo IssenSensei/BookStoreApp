@@ -1,54 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph"
     app:startDestination="@id/nav_user_books">
 
     <fragment
         android:id="@+id/nav_user_books"
         android:name="com.example.bookstoreapp.books.BooksFragment"
-        android:label="BooksFragment" />
+        android:label="BooksFragment"
+        tools:layout="@layout/layout_book_list" >
+        <action
+            android:id="@+id/action_nav_user_books_to_nav_book_detail"
+            app:destination="@id/nav_book_detail" />
+    </fragment>
     <fragment
-        android:id="@+id/bookDetailFragment"
+        android:id="@+id/nav_book_detail"
         android:name="com.example.bookstoreapp.books.BookDetailFragment"
-        android:label="BookDetailFragment" />
+        android:label="BookDetailFragment"
+        tools:layout="@layout/activity_book_details">
+        <action
+            android:id="@+id/action_nav_book_detail_to_nav_books_quotes"
+            app:destination="@id/nav_books_quotes" />
+        <action
+            android:id="@+id/action_nav_book_detail_to_nav_author_books"
+            app:destination="@id/nav_author_books" />
+        <action
+            android:id="@+id/action_nav_book_detail_to_nav_print_books"
+            app:destination="@id/nav_print_books" />
+        <action
+            android:id="@+id/action_nav_book_detail_to_nav_user_quotes"
+            app:destination="@id/nav_user_quotes" />
+    </fragment>
     <fragment
         android:id="@+id/nav_books_quotes"
         android:name="com.example.bookstoreapp.bookQuotes.BookQuotesFragment"
-        android:label="BookQuotesFragment" />
+        android:label="BookQuotesFragment"
+        tools:layout="@layout/layout_book_quote_list">
+        <action
+            android:id="@+id/action_nav_books_quotes_to_nav_book_quote_detail"
+            app:destination="@id/nav_book_quote_detail" />
+    </fragment>
     <fragment
-        android:id="@+id/bookQuoteDetailFragment"
+        android:id="@+id/nav_book_quote_detail"
         android:name="com.example.bookstoreapp.bookQuotes.BookQuoteDetailFragment"
-        android:label="BookQuoteDetailFragment" />
+        android:label="BookQuoteDetailFragment"
+        tools:layout="@layout/activity_book_quote_details"/>
     <fragment
-        android:id="@+id/newsDetailFragment"
+        android:id="@+id/nav_news_detail"
         android:name="com.example.bookstoreapp.news.NewsDetailFragment"
-        android:label="NewsDetailFragment" />
+        android:label="NewsDetailFragment"
+        tools:layout="@layout/activity_news_details">
+        <action
+            android:id="@+id/action_nav_news_detail_to_nav_book_detail"
+            app:destination="@id/nav_book_detail" />
+    </fragment>
     <fragment
         android:id="@+id/nav_news"
         android:name="com.example.bookstoreapp.news.NewsFragment"
-        android:label="NewsFragment" />
+        android:label="NewsFragment"
+        tools:layout="@layout/layout_news_list">
+        <action
+            android:id="@+id/action_nav_news_to_nav_news_detail"
+            app:destination="@id/nav_news_detail" />
+    </fragment>
     <fragment
-        android:id="@+id/authorBooksFragment"
+        android:id="@+id/nav_author_books"
         android:name="com.example.bookstoreapp.author.AuthorBooksFragment"
-        android:label="AuthorBooksFragment" />
+        android:label="AuthorBooksFragment"
+        tools:layout="@layout/layout_book_list">
+        <action
+            android:id="@+id/action_nav_author_books_to_nav_book_detail"
+            app:destination="@id/nav_book_detail" />
+    </fragment>
     <fragment
-        android:id="@+id/printBooksFragment"
+        android:id="@+id/nav_print_books"
         android:name="com.example.bookstoreapp.print.PrintBooksFragment"
-        android:label="PrintBooksFragment" />
+        android:label="PrintBooksFragment"
+        tools:layout="@layout/layout_book_list">
+        <action
+            android:id="@+id/action_nav_print_books_to_nav_book_detail"
+            app:destination="@id/nav_book_detail" />
+    </fragment>
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.bookstoreapp.menu.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment"
+        tools:layout="@layout/app_settings_activity_layout"/>
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.example.bookstoreapp.user.UserProfileFragment"
-        android:label="UserProfileFragment" />
+        android:label="UserProfileFragment"
+        tools:layout="@layout/activity_profile"/>
     <fragment
         android:id="@+id/nav_user_quotes"
         android:name="com.example.bookstoreapp.userQuotes.UserQuotesFragment"
-        android:label="UserQuotesFragment" />
+        android:label="UserQuotesFragment"
+        tools:layout="@layout/layout_user_quotes_list">
+        <action
+            android:id="@+id/action_nav_user_quotes_to_nav_user_quote_detail"
+            app:destination="@id/nav_user_quote_detail" />
+    </fragment>
     <fragment
-        android:id="@+id/userQuoteDetailFragment"
+        android:id="@+id/nav_user_quote_detail"
         android:name="com.example.bookstoreapp.userQuotes.UserQuoteDetailFragment"
-        android:label="UserQuoteDetailFragment" />
+        android:label="UserQuoteDetailFragment"
+        tools:layout="@layout/activity_user_quote_details"/>
 </navigation>
