@@ -89,7 +89,7 @@ class UserQuotesRecyclerViewAdapter(
 
     private fun seeDetails(context: Context, data: UserQuotesItem){
 
-        val intent = Intent(context, UserQuoteDetailActivity::class.java)
+        val intent = Intent(context, UserQuoteDetailFragment::class.java)
         intent.apply {
             putExtra("data", data)
         }

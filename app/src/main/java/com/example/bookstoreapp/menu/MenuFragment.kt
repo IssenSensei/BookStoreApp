@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.bookstoreapp.R
 import com.example.bookstoreapp.auth.LoginActivity
 import com.example.bookstoreapp.database.ApiInterface
-import com.example.bookstoreapp.user.UserProfileActivity
+import com.example.bookstoreapp.user.UserProfileFragment
 import kotlinx.android.synthetic.main.fragment_menu.*
 
 class MenuFragment: Fragment() {
@@ -22,17 +22,17 @@ class MenuFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         profile_button.setOnClickListener {
-            val intent = Intent(context, UserProfileActivity::class.java)
+            val intent = Intent(context, UserProfileFragment::class.java)
             context?.startActivity(intent)
         }
 
         app_info_button.setOnClickListener{
-            val intent = Intent(context, AppInfoActivity::class.java)
+            val intent = Intent(context, AboutFragment::class.java)
             context?.startActivity(intent)
         }
 
         app_settings_button.setOnClickListener{
-            val intent = Intent(context, AppSettingsActivity::class.java)
+            val intent = Intent(context, SettingsFragment::class.java)
             context?.startActivity(intent)
         }
 

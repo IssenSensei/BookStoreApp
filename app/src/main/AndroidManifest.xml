@@ -18,8 +18,8 @@
         android:theme="@style/Theme.App.FullWhite"
         tools:replace="android:allowBackup">
 
-        <activity android:name=".author.AuthorBooksActivity" />
-        <activity android:name=".userQuotes.UserQuoteDetailActivity" />
+        <activity android:name=".author.AuthorBooksFragment" />
+        <activity android:name=".userQuotes.UserQuoteDetailFragment" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,18 +27,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".news.NewsDetailActivity" />
-        <activity android:name=".bookQuotes.BookQuoteDetailActivity" />
-        <activity android:name=".user.UserProfileActivity" />
-        <activity android:name=".menu.AppSettingsActivity"
+        <activity android:name=".news.NewsDetailFragment" />
+        <activity android:name=".bookQuotes.BookQuoteDetailFragment" />
+        <activity android:name=".user.UserProfileFragment" />
+        <activity android:name=".menu.SettingsFragment"
             android:noHistory="true"
             />
-        <activity android:name=".menu.AppInfoActivity" />
+        <activity android:name=".menu.AboutFragment" />
         <activity android:name=".auth.LoginActivity"></activity>
         <activity android:name=".auth.RegisterActivity" />
         <activity android:name=".BookReaderActivity" />
-        <activity android:name=".print.PrintBooksActivity" />
-        <activity android:name=".books.BookDetailActivity" />
+        <activity android:name=".print.PrintBooksFragment" />
+        <activity android:name=".books.BookDetailFragment" />
         <activity android:name=".auth.EmailRecoveryActivity" />
     </application>
 

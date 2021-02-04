@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph"
+    app:startDestination="@id/nav_user_books">
+
+    <fragment
+        android:id="@+id/nav_user_books"
+        android:name="com.example.bookstoreapp.books.BooksFragment"
+        android:label="BooksFragment" />
+    <fragment
+        android:id="@+id/bookDetailFragment"
+        android:name="com.example.bookstoreapp.books.BookDetailFragment"
+        android:label="BookDetailFragment" />
+    <fragment
+        android:id="@+id/nav_books_quotes"
+        android:name="com.example.bookstoreapp.bookQuotes.BookQuotesFragment"
+        android:label="BookQuotesFragment" />
+    <fragment
+        android:id="@+id/bookQuoteDetailFragment"
+        android:name="com.example.bookstoreapp.bookQuotes.BookQuoteDetailFragment"
+        android:label="BookQuoteDetailFragment" />
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.example.bookstoreapp.news.NewsDetailFragment"
+        android:label="NewsDetailFragment" />
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.example.bookstoreapp.news.NewsFragment"
+        android:label="NewsFragment" />
+    <fragment
+        android:id="@+id/authorBooksFragment"
+        android:name="com.example.bookstoreapp.author.AuthorBooksFragment"
+        android:label="AuthorBooksFragment" />
+    <fragment
+        android:id="@+id/printBooksFragment"
+        android:name="com.example.bookstoreapp.print.PrintBooksFragment"
+        android:label="PrintBooksFragment" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.bookstoreapp.menu.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.bookstoreapp.user.UserProfileFragment"
+        android:label="UserProfileFragment" />
+    <fragment
+        android:id="@+id/nav_user_quotes"
+        android:name="com.example.bookstoreapp.userQuotes.UserQuotesFragment"
+        android:label="UserQuotesFragment" />
+    <fragment
+        android:id="@+id/userQuoteDetailFragment"
+        android:name="com.example.bookstoreapp.userQuotes.UserQuoteDetailFragment"
+        android:label="UserQuoteDetailFragment" />
+</navigation>

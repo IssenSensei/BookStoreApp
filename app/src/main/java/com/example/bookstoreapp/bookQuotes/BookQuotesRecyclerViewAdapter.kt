@@ -47,11 +47,11 @@ class BookQuotesRecyclerViewAdapter(
 
     private fun seeDetails(context: Context, data: BookQuotesItem) {
 
-        val intent = Intent(context, BookQuoteDetailActivity::class.java)
-        intent.apply {
-            putExtra("data", data)
-        }
-        context.startActivity(intent)
+//        val intent = Intent(context, BookQuoteDetailFragment::class.java)
+//        intent.apply {
+//            putExtra("data", data)
+//        }
+//        context.startActivity(intent)
     }
 
     private fun toggleLayoutExpand(show: Boolean, view: View, lyt_expand: View): Boolean {

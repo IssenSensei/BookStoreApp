@@ -1,7 +1,6 @@
 package com.example.bookstoreapp
 
 import android.content.Intent
-import android.widget.CheckBox
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -10,7 +9,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.example.bookstoreapp.BuildConfig
 import kotlinx.android.synthetic.main.activity_main.*
 import org.hamcrest.core.AllOf.allOf
 import org.junit.*
@@ -35,7 +33,7 @@ class MainActivityMenuNavigationInstrumentedTest {
     @Before
     fun setUpBefore() {
         mRulePackActivityCard.launchActivity(Intent())
-        bottomNavigation = mRulePackActivityCard.activity.findViewById(R.id.navigation)
+        bottomNavigation = mRulePackActivityCard.activity.findViewById(R.id.navigation_graph)
     }
 
 
@@ -51,7 +49,7 @@ class MainActivityMenuNavigationInstrumentedTest {
         onView(
             allOf(
                 withText(mRulePackActivityCard.activity.resources.getString(R.string.navigation_menu)),
-                isDescendantOfA(withId(R.id.navigation)),
+                isDescendantOfA(withId(R.id.navigation_graph)),
                 isDisplayed()
             )
         )
@@ -92,7 +90,7 @@ class MainActivityMenuNavigationInstrumentedTest {
         onView(
             allOf(
                 withText(mRulePackActivityCard.activity.resources.getString(R.string.navigation_user_quotes)),
-                isDescendantOfA(withId(R.id.navigation)),
+                isDescendantOfA(withId(R.id.navigation_graph)),
                 isDisplayed()
             )
         )
@@ -109,7 +107,7 @@ class MainActivityMenuNavigationInstrumentedTest {
         onView(
             allOf(
                 withText(mRulePackActivityCard.activity.resources.getString(R.string.navigation_book_quotes)),
-                isDescendantOfA(withId(R.id.navigation)),
+                isDescendantOfA(withId(R.id.navigation_graph)),
                 isDisplayed()
             )
         )
@@ -126,7 +124,7 @@ class MainActivityMenuNavigationInstrumentedTest {
         onView(
             allOf(
                 withText(mRulePackActivityCard.activity.resources.getString(R.string.navigation_news)),
-                isDescendantOfA(withId(R.id.navigation)),
+                isDescendantOfA(withId(R.id.navigation_graph)),
                 isDisplayed()
             )
         )

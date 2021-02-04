@@ -38,7 +38,7 @@ class NewsRecyclerViewAdapter(private var newsMap: MutableList<NewsItem>,
 
     private fun seeDetails(context: Context, data: NewsItem){
 
-        val intent = Intent(context, NewsDetailActivity::class.java)
+        val intent = Intent(context, NewsDetailFragment::class.java)
         intent.apply {
             putExtra("data", data)
         }

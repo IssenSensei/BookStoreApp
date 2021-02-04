@@ -95,79 +95,79 @@ class BooksFragment : Fragment() {
     }
 
     private fun showCustomDialog() {
-
-        val dialog = Dialog(this.context!!)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // before
-        dialog.setContentView(R.layout.dialog_book_search)
-        dialog.setCancelable(true)
-
-        val lp = WindowManager.LayoutParams()
-        lp.copyFrom(dialog.window!!.attributes)
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
-
-        val years = ArrayList<String>()
-        val thisYear = Calendar.getInstance().get(Calendar.YEAR)
-        for (i in 1900..thisYear) {
-            years.add(i.toString())
-        }
-        val yearAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, years)
-        val spinYearMin = dialog.findViewById(R.id.book_search_spinner_year_min) as Spinner
-        val spinYearMax = dialog.findViewById(R.id.book_search_spinner_year_max) as Spinner
-        spinYearMin.adapter = yearAdapter
-        spinYearMax.adapter = yearAdapter
-        spinYearMax.setSelection(years.size - 1)
-
-        (dialog.findViewById(R.id.book_search_button_cancel) as Button).setOnClickListener { dialog.dismiss() }
-        (dialog.findViewById(R.id.book_search_button_save) as Button).setOnClickListener {
-            val title = dialog.findViewById<EditText>(R.id.book_search_name)
-            val publisher = dialog.findViewById<EditText>(R.id.book_search_publisher)
-            val author = dialog.findViewById<EditText>(R.id.book_search_author)
-            val description = dialog.findViewById<EditText>(R.id.book_search_content)
-            var list = mutableListOf<BooksItem>()
-            list.addAll(booksMap)
-            booksMap.clear()
-            if (title.text.toString() != "") {
-                list = list.filter {
-                    it.title.toLowerCase().contains(title.text.toString().toLowerCase())
-                } as MutableList<BooksItem>
-            }
-            if (publisher.text.toString() != "") {
-                list = list.filter {
-                    it.print.toLowerCase().contains(publisher.text.toString().toLowerCase())
-                } as MutableList<BooksItem>
-            }
-            if (author.text.toString() != "") {
-                list = list.filter {
-                    it.authorName.toLowerCase().contains(author.text.toString().toLowerCase())
-                } as MutableList<BooksItem>
-            }
-            if (author.text.toString() != "") {
-                list = list.filter {
-                    it.authorSurname.toLowerCase().contains(author.text.toString().toLowerCase())
-                } as MutableList<BooksItem>
-            }
-            if (description.text.toString() != "") {
-                list = list.filter {
-                    it.description.toLowerCase().contains(description.text.toString().toLowerCase())
-                } as MutableList<BooksItem>
-            }
-            list = list.filter {
-                it.year > spinYearMin.selectedItem.toString()
-            } as MutableList<BooksItem>
-            list = list.filter {
-                it.year < spinYearMax.selectedItem.toString()
-            } as MutableList<BooksItem>
-
-            booksMap.addAll(list)
-
-            booksRecycler.getBooksAdapter().notifyDataSetChanged()
-            dialog.dismiss()
-        }
-
-
-        dialog.show()
-        dialog.window!!.attributes = lp
+//
+//        val dialog = Dialog(this.context!!)
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // before
+//        dialog.setContentView(R.layout.dialog_book_search)
+//        dialog.setCancelable(true)
+//
+//        val lp = WindowManager.LayoutParams()
+//        lp.copyFrom(dialog.window!!.attributes)
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+//        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+//
+//        val years = ArrayList<String>()
+//        val thisYear = Calendar.getInstance().get(Calendar.YEAR)
+//        for (i in 1900..thisYear) {
+//            years.add(i.toString())
+//        }
+//        val yearAdapter =
+//            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, years)
+//        val spinYearMin = dialog.findViewById(R.id.book_search_spinner_year_min) as Spinner
+//        val spinYearMax = dialog.findViewById(R.id.book_search_spinner_year_max) as Spinner
+//        spinYearMin.adapter = yearAdapter
+//        spinYearMax.adapter = yearAdapter
+//        spinYearMax.setSelection(years.size - 1)
+//
+//        (dialog.findViewById(R.id.book_search_button_cancel) as Button).setOnClickListener { dialog.dismiss() }
+//        (dialog.findViewById(R.id.book_search_button_save) as Button).setOnClickListener {
+//            val title = dialog.findViewById<EditText>(R.id.book_search_name)
+//            val publisher = dialog.findViewById<EditText>(R.id.book_search_publisher)
+//            val author = dialog.findViewById<EditText>(R.id.book_search_author)
+//            val description = dialog.findViewById<EditText>(R.id.book_search_content)
+//            var list = mutableListOf<BooksItem>()
+//            list.addAll(booksMap)
+//            booksMap.clear()
+//            if (title.text.toString() != "") {
+//                list = list.filter {
+//                    it.title.toLowerCase().contains(title.text.toString().toLowerCase())
+//                } as MutableList<BooksItem>
+//            }
+//            if (publisher.text.toString() != "") {
+//                list = list.filter {
+//                    it.print.toLowerCase().contains(publisher.text.toString().toLowerCase())
+//                } as MutableList<BooksItem>
+//            }
+//            if (author.text.toString() != "") {
+//                list = list.filter {
+//                    it.authorName.toLowerCase().contains(author.text.toString().toLowerCase())
+//                } as MutableList<BooksItem>
+//            }
+//            if (author.text.toString() != "") {
+//                list = list.filter {
+//                    it.authorSurname.toLowerCase().contains(author.text.toString().toLowerCase())
+//                } as MutableList<BooksItem>
+//            }
+//            if (description.text.toString() != "") {
+//                list = list.filter {
+//                    it.description.toLowerCase().contains(description.text.toString().toLowerCase())
+//                } as MutableList<BooksItem>
+//            }
+//            list = list.filter {
+//                it.year > spinYearMin.selectedItem.toString()
+//            } as MutableList<BooksItem>
+//            list = list.filter {
+//                it.year < spinYearMax.selectedItem.toString()
+//            } as MutableList<BooksItem>
+//
+//            booksMap.addAll(list)
+//
+//            booksRecycler.getBooksAdapter().notifyDataSetChanged()
+//            dialog.dismiss()
+//        }
+//
+//
+//        dialog.show()
+//        dialog.window!!.attributes = lp
     }
 }

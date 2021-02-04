@@ -33,12 +33,12 @@ class NewsFeedInstrumentedTest {
     @Before
     fun setUpBefore() {
         mRulePackActivityCard.launchActivity(Intent())
-        bottomNavigation = mRulePackActivityCard.activity.findViewById(R.id.navigation)
+        bottomNavigation = mRulePackActivityCard.activity.findViewById(R.id.navigation_graph)
 
         onView(
             allOf(
                 withText(mRulePackActivityCard.activity.resources.getString(R.string.navigation_books)),
-                isDescendantOfA(withId(R.id.navigation)),
+                isDescendantOfA(withId(R.id.navigation_graph)),
                 isDisplayed()
             )
         )

@@ -90,12 +90,12 @@ class BooksRecyclerViewAdapter(
 
     private fun seeDetails(context: Context, data: BooksItem){
 
-        val intent = Intent(context, BookDetailActivity::class.java)
-        intent.apply {
-            putExtra("data", data)
-            putExtra("bookId", data.id)
-        }
-        context.startActivity(intent)
+//        val intent = Intent(context, BookDetailFragment::class.java)
+//        intent.apply {
+//            putExtra("data", data)
+//            putExtra("bookId", data.id)
+//        }
+//        context.startActivity(intent)
     }
 
     private fun toggleLayoutExpand(show: Boolean, view: View, lyt_expand: View): Boolean {

@@ -94,48 +94,48 @@ class BookQuotesFragment : Fragment() {
     }
 
     private fun showCustomDialog() {
-
-        val dialog = Dialog(this.context!!)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // before
-        dialog.setContentView(R.layout.dialog_book_quote_search)
-        dialog.setCancelable(true)
-
-        val lp = WindowManager.LayoutParams()
-        lp.copyFrom(dialog.window!!.attributes)
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
-
-        (dialog.findViewById(R.id.book_quote_search_button_cancel) as Button).setOnClickListener { dialog.dismiss() }
-        (dialog.findViewById(R.id.book_quote_search_button_save) as Button).setOnClickListener {
-            val title = dialog.findViewById<EditText>(R.id.book_quote_search_title)
-            val description = dialog.findViewById<EditText>(R.id.book_quote_search_content)
-            val userName = dialog.findViewById<EditText>(R.id.book_quote_search_user)
-            var list = mutableListOf<BookQuotesItem>()
-            list.addAll(bookQuotesMap)
-            bookQuotesMap.clear()
-            if (title.text.toString() != "") {
-                list = list.filter {
-                    it.bookTitle.toLowerCase().contains(title.text.toString().toLowerCase())
-                } as MutableList<BookQuotesItem>
-            }
-            if (description.text.toString() != "") {
-                list = list.filter {
-                    it.content.toLowerCase().contains(description.text.toString().toLowerCase())
-                } as MutableList<BookQuotesItem>
-            }
-            if (userName.text.toString() != "") {
-                list = list.filter {
-                    it.userName.toLowerCase().contains(userName.text.toString().toLowerCase())
-                } as MutableList<BookQuotesItem>
-            }
-
-            bookQuotesMap.addAll(list)
-            bookQuotesRecycler.getBookQuotesAdapter().notifyDataSetChanged()
-            dialog.dismiss()
-        }
-
-
-        dialog.show()
-        dialog.window!!.attributes = lp
+//
+//        val dialog = Dialog(this.context!!)
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE) // before
+//        dialog.setContentView(R.layout.dialog_book_quote_search)
+//        dialog.setCancelable(true)
+//
+//        val lp = WindowManager.LayoutParams()
+//        lp.copyFrom(dialog.window!!.attributes)
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT
+//        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+//
+//        (dialog.findViewById(R.id.book_quote_search_button_cancel) as Button).setOnClickListener { dialog.dismiss() }
+//        (dialog.findViewById(R.id.book_quote_search_button_save) as Button).setOnClickListener {
+//            val title = dialog.findViewById<EditText>(R.id.book_quote_search_title)
+//            val description = dialog.findViewById<EditText>(R.id.book_quote_search_content)
+//            val userName = dialog.findViewById<EditText>(R.id.book_quote_search_user)
+//            var list = mutableListOf<BookQuotesItem>()
+//            list.addAll(bookQuotesMap)
+//            bookQuotesMap.clear()
+//            if (title.text.toString() != "") {
+//                list = list.filter {
+//                    it.bookTitle.toLowerCase().contains(title.text.toString().toLowerCase())
+//                } as MutableList<BookQuotesItem>
+//            }
+//            if (description.text.toString() != "") {
+//                list = list.filter {
+//                    it.content.toLowerCase().contains(description.text.toString().toLowerCase())
+//                } as MutableList<BookQuotesItem>
+//            }
+//            if (userName.text.toString() != "") {
+//                list = list.filter {
+//                    it.userName.toLowerCase().contains(userName.text.toString().toLowerCase())
+//                } as MutableList<BookQuotesItem>
+//            }
+//
+//            bookQuotesMap.addAll(list)
+//            bookQuotesRecycler.getBookQuotesAdapter().notifyDataSetChanged()
+//            dialog.dismiss()
+//        }
+//
+//
+//        dialog.show()
+//        dialog.window!!.attributes = lp
     }
 }
