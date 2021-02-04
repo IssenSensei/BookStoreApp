@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "357904088885",
+    "project_id": "ebooker-21032",
+    "storage_bucket": "ebooker-21032.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357904088885:android:888aee051d4f5c36cfd67c",
+        "android_client_info": {
+          "package_name": "com.issen.ebooker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357904088885-kc6gi08a4jn80kduqp48r7vm3rldfg75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.issen.ebooker",
+            "certificate_hash": "09d60b48073d8c2c010b8380779446611679ada6"
+          }
+        },
+        {
+          "client_id": "357904088885-phn5klpps3bom7vk9sdsh0sao6cofs1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBukA3xDUiuXcxq2RC-pz_D4c3UuDCKU8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357904088885-phn5klpps3bom7vk9sdsh0sao6cofs1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
