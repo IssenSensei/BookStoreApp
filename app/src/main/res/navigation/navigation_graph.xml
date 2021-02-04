@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/nav_user_books"
-        android:name="com.example.bookstoreapp.books.BooksFragment"
+        android:name="com.issen.ebooker.books.BooksFragment"
         android:label="BooksFragment"
         tools:layout="@layout/layout_book_list" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_book_detail"
-        android:name="com.example.bookstoreapp.books.BookDetailFragment"
+        android:name="com.issen.ebooker.books.BookDetailFragment"
         android:label="BookDetailFragment"
         tools:layout="@layout/activity_book_details">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_books_quotes"
-        android:name="com.example.bookstoreapp.bookQuotes.BookQuotesFragment"
+        android:name="com.issen.ebooker.bookQuotes.BookQuotesFragment"
         android:label="BookQuotesFragment"
         tools:layout="@layout/layout_book_quote_list">
         <action
@@ -42,12 +42,12 @@
     </fragment>
     <fragment
         android:id="@+id/nav_book_quote_detail"
-        android:name="com.example.bookstoreapp.bookQuotes.BookQuoteDetailFragment"
+        android:name="com.issen.ebooker.bookQuotes.BookQuoteDetailFragment"
         android:label="BookQuoteDetailFragment"
         tools:layout="@layout/activity_book_quote_details"/>
     <fragment
         android:id="@+id/nav_news_detail"
-        android:name="com.example.bookstoreapp.news.NewsDetailFragment"
+        android:name="com.issen.ebooker.news.NewsDetailFragment"
         android:label="NewsDetailFragment"
         tools:layout="@layout/activity_news_details">
         <action
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_news"
-        android:name="com.example.bookstoreapp.news.NewsFragment"
+        android:name="com.issen.ebooker.news.NewsFragment"
         android:label="NewsFragment"
         tools:layout="@layout/layout_news_list">
         <action
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_author_books"
-        android:name="com.example.bookstoreapp.author.AuthorBooksFragment"
+        android:name="com.issen.ebooker.author.AuthorBooksFragment"
         android:label="AuthorBooksFragment"
         tools:layout="@layout/layout_book_list">
         <action
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_print_books"
-        android:name="com.example.bookstoreapp.print.PrintBooksFragment"
+        android:name="com.issen.ebooker.print.PrintBooksFragment"
         android:label="PrintBooksFragment"
         tools:layout="@layout/layout_book_list">
         <action
@@ -83,17 +83,17 @@
     </fragment>
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.bookstoreapp.menu.SettingsFragment"
+        android:name="com.issen.ebooker.menu.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/app_settings_activity_layout"/>
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.bookstoreapp.user.UserProfileFragment"
+        android:name="com.issen.ebooker.user.UserProfileFragment"
         android:label="UserProfileFragment"
         tools:layout="@layout/activity_profile"/>
     <fragment
         android:id="@+id/nav_user_quotes"
-        android:name="com.example.bookstoreapp.userQuotes.UserQuotesFragment"
+        android:name="com.issen.ebooker.userQuotes.UserQuotesFragment"
         android:label="UserQuotesFragment"
         tools:layout="@layout/layout_user_quotes_list">
         <action
@@ -102,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_user_quote_detail"
-        android:name="com.example.bookstoreapp.userQuotes.UserQuoteDetailFragment"
+        android:name="com.issen.ebooker.userQuotes.UserQuoteDetailFragment"
         android:label="UserQuoteDetailFragment"
         tools:layout="@layout/activity_user_quote_details"/>
 </navigation>

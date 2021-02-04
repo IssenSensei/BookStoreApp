@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:context="com.example.bookstoreapp.news.NewsFragment"
+        tools:context="com.issen.ebooker.news.NewsFragment"
         tools:listitem="@layout/news_item" />
 
     <ProgressBar

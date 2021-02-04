@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:context="com.example.bookstoreapp.bookQuotes.BookQuotesFragment"
+        tools:context="com.issen.ebooker.bookQuotes.BookQuotesFragment"
         tools:listitem="@layout/book_quotes_item" />
 
     <ProgressBar

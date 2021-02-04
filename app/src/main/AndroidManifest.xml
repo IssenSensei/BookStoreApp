@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.bookstoreapp">
+    package="com.issen.ebooker">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -18,28 +18,28 @@
         android:theme="@style/Theme.App.FullWhite"
         tools:replace="android:allowBackup">
 
-        <activity android:name=".author.AuthorBooksFragment" />
-        <activity android:name=".userQuotes.UserQuoteDetailFragment" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.issen.ebooker.author.AuthorBooksFragment" />
+        <activity android:name="com.issen.ebooker.userQuotes.UserQuoteDetailFragment" />
+        <activity android:name="com.issen.ebooker.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".news.NewsDetailFragment" />
-        <activity android:name=".bookQuotes.BookQuoteDetailFragment" />
-        <activity android:name=".user.UserProfileFragment" />
-        <activity android:name=".menu.SettingsFragment"
+        <activity android:name="com.issen.ebooker.news.NewsDetailFragment" />
+        <activity android:name="com.issen.ebooker.bookQuotes.BookQuoteDetailFragment" />
+        <activity android:name="com.issen.ebooker.user.UserProfileFragment" />
+        <activity android:name="com.issen.ebooker.menu.SettingsFragment"
             android:noHistory="true"
             />
-        <activity android:name=".menu.AboutFragment" />
-        <activity android:name=".auth.LoginActivity"></activity>
-        <activity android:name=".auth.RegisterActivity" />
-        <activity android:name=".BookReaderActivity" />
-        <activity android:name=".print.PrintBooksFragment" />
-        <activity android:name=".books.BookDetailFragment" />
-        <activity android:name=".auth.EmailRecoveryActivity" />
+        <activity android:name="com.issen.ebooker.menu.AboutFragment" />
+        <activity android:name="com.issen.ebooker.auth.LoginActivity"></activity>
+        <activity android:name="com.issen.ebooker.auth.RegisterActivity" />
+        <activity android:name="com.issen.ebooker.BookReaderActivity" />
+        <activity android:name="com.issen.ebooker.print.PrintBooksFragment" />
+        <activity android:name="com.issen.ebooker.books.BookDetailFragment" />
+        <activity android:name="com.issen.ebooker.auth.EmailRecoveryActivity" />
     </application>
 
 </manifest>
