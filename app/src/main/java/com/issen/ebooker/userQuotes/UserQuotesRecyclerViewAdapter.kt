@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.issen.ebooker.R
-import com.issen.ebooker.database.ApiInterface
 import com.issen.ebooker.utils.Tools
 import com.issen.ebooker.utils.ViewAnimation
 import retrofit2.Call
@@ -70,21 +69,21 @@ class UserQuotesRecyclerViewAdapter(
     }
 
     private fun delete(quoteId: Int) {
-        val apiInterface = ApiInterface.create().deleteQuote("deleteQuote", quoteId)
-
-        apiInterface.enqueue(object : Callback<Int> {
-
-            override fun onResponse(call: Call<Int>, response: Response<Int>) {
-                if(response.isSuccessful) {
-                    Log.i("addresponse", "post submitted to API." + response.body().toString())
-                }
-            }
-
-            override fun onFailure(call: Call<Int>, t: Throwable?) {
-                Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
-
-            }
-        })
+//        val apiInterface = ApiInterface.create().deleteQuote("deleteQuote", quoteId)
+//
+//        apiInterface.enqueue(object : Callback<Int> {
+//
+//            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+//                if(response.isSuccessful) {
+//                    Log.i("addresponse", "post submitted to API." + response.body().toString())
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<Int>, t: Throwable?) {
+//                Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
+//
+//            }
+//        })
     }
 
     private fun seeDetails(context: Context, data: UserQuotesItem){

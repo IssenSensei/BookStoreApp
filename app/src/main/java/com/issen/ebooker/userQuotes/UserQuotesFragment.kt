@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.issen.ebooker.R
-import com.issen.ebooker.database.ApiInterface
 import com.issen.ebooker.utils.LineItemDecoration
 import com.issen.ebooker.utils.getUserQuotesAdapter
 import kotlinx.android.synthetic.main.layout_user_quotes_list.*
@@ -59,33 +58,33 @@ class UserQuotesFragment: Fragment() {
     }
 
     private fun getData() {
-        val apiInterface = ApiInterface.create().getUserQuotes("getUserQuotes", ApiInterface.USER_ID)
-        apiInterface.enqueue(object : Callback<List<UserQuotesItem>> {
-
-            override fun onResponse(
-                call: Call<List<UserQuotesItem>>,
-                response: Response<List<UserQuotesItem>>?
-            ) {
-                if (response?.body() != null) {
-                    userQuotesMap = response.body() as MutableList<UserQuotesItem>
-                    if (userQuotesMap.size == 0) {
-                        no_user_quote_data_text_view.visibility = View.VISIBLE
-                    }
-                    else {
-                        userQuotesRecycler.getUserQuotesAdapter().updateList(userQuotesMap)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<List<UserQuotesItem>>?, t: Throwable?) {
-                Toast.makeText(
-                    context,
-                    "Wystąpił problem przy pobieraniu danych uk",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-        })
+//        val apiInterface = ApiInterface.create().getUserQuotes("getUserQuotes", ApiInterface.USER_ID)
+//        apiInterface.enqueue(object : Callback<List<UserQuotesItem>> {
+//
+//            override fun onResponse(
+//                call: Call<List<UserQuotesItem>>,
+//                response: Response<List<UserQuotesItem>>?
+//            ) {
+//                if (response?.body() != null) {
+//                    userQuotesMap = response.body() as MutableList<UserQuotesItem>
+//                    if (userQuotesMap.size == 0) {
+//                        no_user_quote_data_text_view.visibility = View.VISIBLE
+//                    }
+//                    else {
+//                        userQuotesRecycler.getUserQuotesAdapter().updateList(userQuotesMap)
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<UserQuotesItem>>?, t: Throwable?) {
+//                Toast.makeText(
+//                    context,
+//                    "Wystąpił problem przy pobieraniu danych uk",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//
+//            }
+//        })
     }
 
     private fun showCustomDialog() {

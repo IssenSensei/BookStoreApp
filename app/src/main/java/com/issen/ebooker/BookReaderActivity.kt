@@ -2,7 +2,6 @@ package com.issen.ebooker
 
 import android.os.Bundle
 import android.util.Log
-import com.issen.ebooker.database.ApiInterface
 import com.folioreader.Config
 import com.folioreader.Constants
 import com.folioreader.FolioReader
@@ -10,9 +9,6 @@ import com.folioreader.model.HighLight
 import com.folioreader.model.locators.ReadLocator.Companion.LOG_TAG
 import com.github.barteksc.pdfviewer.util.FitPolicy
 import kotlinx.android.synthetic.main.activity_book_reader.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.File
 
 
@@ -68,21 +64,21 @@ class BookReaderActivity : BaseActivity() {
                         highLight: HighLight,
                         highLightAction: HighLight.HighLightAction ->
                     if(highLightAction == HighLight.HighLightAction.NEW){
-                            val apiInterface = ApiInterface.create()
-                                .addBookQuote("addBookQuote", highLight.content,
-                                    bookId, ApiInterface.USER_ID)
-
-                            apiInterface.enqueue(object : Callback<Int> {
-                                override fun onResponse(call: Call<Int>, response: Response<Int>) {
-                                    if(response.isSuccessful) {
-                                        Log.i("addresponse",
-                                            "post submitted to API." + response.body().toString())
-                                    }
-                                }
-                                override fun onFailure(call: Call<Int>, t: Throwable?) {
-                                    Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
-                                }
-                            })
+//                            val apiInterface = ApiInterface.create()
+//                                .addBookQuote("addBookQuote", highLight.content,
+//                                    bookId, ApiInterface.USER_ID)
+//
+//                            apiInterface.enqueue(object : Callback<Int> {
+//                                override fun onResponse(call: Call<Int>, response: Response<Int>) {
+//                                    if(response.isSuccessful) {
+//                                        Log.i("addresponse",
+//                                            "post submitted to API." + response.body().toString())
+//                                    }
+//                                }
+//                                override fun onFailure(call: Call<Int>, t: Throwable?) {
+//                                    Log.d("Wystąpił błąd, spróbuj ponownie później", t.toString())
+//                                }
+//                            })
                     }
                 }
                 folioReader.setReadLocatorListener { readLocator ->

@@ -97,8 +97,10 @@ dependencies {
     implementation "com.folioreader:folioreader:0.5.4"
     implementation 'com.github.kk121:File-Loader:1.2'
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
-    implementation "com.squareup.retrofit2:retrofit:2.5.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
 
     //ktor
     implementation "io.ktor:ktor-client-android:1.2.5"

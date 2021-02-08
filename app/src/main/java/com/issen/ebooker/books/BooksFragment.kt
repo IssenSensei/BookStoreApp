@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.issen.ebooker.R
-import com.issen.ebooker.database.ApiInterface
 import com.issen.ebooker.utils.LineItemDecoration
 import com.issen.ebooker.utils.getBooksAdapter
 import kotlinx.android.synthetic.main.layout_book_list.*
@@ -61,34 +60,34 @@ class BooksFragment : Fragment() {
 
 
     private fun getData() {
-        val apiInterface = ApiInterface
-            .create().getBooks("getBooks", 1)
-        Log.d("qqqq", apiInterface.request().toString())
-        apiInterface.enqueue(object : Callback<List<BooksItem>> {
-            override fun onResponse(
-                call: Call<List<BooksItem>>?,
-                response: Response<List<BooksItem>>?
-            ) {
-                Log.d("qqqq", response?.body().toString())
-
-                if (response?.body() != null) {
-                    booksMap = response.body() as MutableList<BooksItem>
-                    if (booksMap.size == 0) {
-                        no_book_data_text_view.visibility = View.VISIBLE
-                    }
-                    else {
-                        booksRecycler.getBooksAdapter().updateList(booksMap)
-                    }
-                }
-            }
-            override fun onFailure(call: Call<List<BooksItem>>?, t: Throwable?) {
-                Toast.makeText(
-                    context,
-                    "Wystąpił problem przy pobieraniu danych",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+//        val apiInterface = ApiInterface
+//            .create().getBooks("getBooks", 1)
+//        Log.d("qqqq", apiInterface.request().toString())
+//        apiInterface.enqueue(object : Callback<List<BooksItem>> {
+//            override fun onResponse(
+//                call: Call<List<BooksItem>>?,
+//                response: Response<List<BooksItem>>?
+//            ) {
+//                Log.d("qqqq", response?.body().toString())
+//
+//                if (response?.body() != null) {
+//                    booksMap = response.body() as MutableList<BooksItem>
+//                    if (booksMap.size == 0) {
+//                        no_book_data_text_view.visibility = View.VISIBLE
+//                    }
+//                    else {
+//                        booksRecycler.getBooksAdapter().updateList(booksMap)
+//                    }
+//                }
+//            }
+//            override fun onFailure(call: Call<List<BooksItem>>?, t: Throwable?) {
+//                Toast.makeText(
+//                    context,
+//                    "Wystąpił problem przy pobieraniu danych",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        })
     }
 
     private fun showCustomDialog() {

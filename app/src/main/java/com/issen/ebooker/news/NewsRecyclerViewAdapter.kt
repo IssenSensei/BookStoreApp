@@ -11,7 +11,6 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.issen.ebooker.R
-import com.issen.ebooker.database.ApiInterface
 
 class NewsRecyclerViewAdapter(private var newsMap: MutableList<NewsItem>,
                               private val context: Context)
@@ -26,9 +25,9 @@ class NewsRecyclerViewAdapter(private var newsMap: MutableList<NewsItem>,
         holder.bookStore.text = second.bookStore
         holder.newsTitle.text = second.title
         holder.newsContent.text = second.content
-        Glide.with(holder.mView.context)
-            .load(ApiInterface.photoPath + second.photo)
-            .into(holder.image)
+//        Glide.with(holder.mView.context)
+//            .load(ApiInterface.photoPath + second.photo)
+//            .into(holder.image)
 
         holder.listener.setOnClickListener {
             seeDetails(context, second)

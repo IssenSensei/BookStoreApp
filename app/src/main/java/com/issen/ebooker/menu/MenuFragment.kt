@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.issen.ebooker.R
 import com.issen.ebooker.auth.LoginActivity
-import com.issen.ebooker.database.ApiInterface
 import com.issen.ebooker.user.UserProfileFragment
 import kotlinx.android.synthetic.main.fragment_menu.*
 
@@ -37,9 +36,9 @@ class MenuFragment: Fragment() {
         }
 
         logout_button.setOnClickListener{
-            ApiInterface.USER_ID = -1
-            val intent = Intent(context, LoginActivity::class.java)
-            context?.startActivity(intent)
+//            ApiInterface.USER_ID = -1
+//            val intent = Intent(context, LoginActivity::class.java)
+//            context?.startActivity(intent)
         }
     }
 }

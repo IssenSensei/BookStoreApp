@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.issen.ebooker.R
-import com.issen.ebooker.database.ApiInterface
 import com.issen.ebooker.utils.LineItemDecoration
 import com.issen.ebooker.utils.getNewsAdapter
 import kotlinx.android.synthetic.main.layout_news_list.*
@@ -58,28 +57,28 @@ class NewsFragment: Fragment() {
     }
 
     private fun getData() {
-        val apiInterface = ApiInterface.create().getNews("getNews")
-
-        apiInterface.enqueue( object : Callback<List<NewsItem>> {
-
-            override fun onResponse(call: Call<List<NewsItem>>, response: Response<List<NewsItem>>?) {
-                if(response?.body() != null) {
-                    newsMap = response.body() as MutableList<NewsItem>
-                    if (newsMap.size == 0) {
-                        no_news_data_text_view.visibility = View.VISIBLE
-                    }
-                    else {
-                        newsRecycler.getNewsAdapter().updateList(newsMap)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<List<NewsItem>>?, t: Throwable?) {
-                Toast.makeText(context, "Wystąpił problem przy pobieraniu danych nw", Toast.LENGTH_SHORT).show()
-                Log.d("qqqqqq", t.toString())
-
-            }
-        })
+//        val apiInterface = ApiInterface.create().getNews("getNews")
+//
+//        apiInterface.enqueue( object : Callback<List<NewsItem>> {
+//
+//            override fun onResponse(call: Call<List<NewsItem>>, response: Response<List<NewsItem>>?) {
+//                if(response?.body() != null) {
+//                    newsMap = response.body() as MutableList<NewsItem>
+//                    if (newsMap.size == 0) {
+//                        no_news_data_text_view.visibility = View.VISIBLE
+//                    }
+//                    else {
+//                        newsRecycler.getNewsAdapter().updateList(newsMap)
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<NewsItem>>?, t: Throwable?) {
+//                Toast.makeText(context, "Wystąpił problem przy pobieraniu danych nw", Toast.LENGTH_SHORT).show()
+//                Log.d("qqqqqq", t.toString())
+//
+//            }
+//        })
     }
 
     private fun showCustomDialog() {

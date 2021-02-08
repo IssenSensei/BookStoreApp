@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.issen.ebooker.R
-import com.issen.ebooker.database.ApiInterface
 import com.issen.ebooker.utils.LineItemDecoration
 import com.issen.ebooker.utils.getBookQuotesAdapter
 import kotlinx.android.synthetic.main.layout_book_quote_list.*
@@ -59,34 +58,34 @@ class BookQuotesFragment : Fragment() {
     }
 
     private fun getData() {
-        val apiInterface = ApiInterface.create().getBookQuotes("getBookQuotes", ApiInterface.USER_ID)
-
-        apiInterface.enqueue(object : Callback<List<BookQuotesItem>> {
-
-            override fun onResponse(
-                call: Call<List<BookQuotesItem>>,
-                response: Response<List<BookQuotesItem>>?
-            ) {
-                if (response?.body() != null) {
-                    bookQuotesMap = response.body() as MutableList<BookQuotesItem>
-                    if (bookQuotesMap.size == 0) {
-                        no_book_quote_data_text_view.visibility = View.VISIBLE
-                    }
-                    else {
-                        bookQuotesRecycler.getBookQuotesAdapter().updateList(bookQuotesMap)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<List<BookQuotesItem>>?, t: Throwable?) {
-                Toast.makeText(
-                    requireContext(),
-                    "Wystąpił problem przy pobieraniu danych bk",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            }
-        })
+//        val apiInterface = ApiInterface.create().getBookQuotes("getBookQuotes", ApiInterface.USER_ID)
+//
+//        apiInterface.enqueue(object : Callback<List<BookQuotesItem>> {
+//
+//            override fun onResponse(
+//                call: Call<List<BookQuotesItem>>,
+//                response: Response<List<BookQuotesItem>>?
+//            ) {
+//                if (response?.body() != null) {
+//                    bookQuotesMap = response.body() as MutableList<BookQuotesItem>
+//                    if (bookQuotesMap.size == 0) {
+//                        no_book_quote_data_text_view.visibility = View.VISIBLE
+//                    }
+//                    else {
+//                        bookQuotesRecycler.getBookQuotesAdapter().updateList(bookQuotesMap)
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<BookQuotesItem>>?, t: Throwable?) {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Wystąpił problem przy pobieraniu danych bk",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//
+//            }
+//        })
     }
 
     private fun showCustomDialog() {
