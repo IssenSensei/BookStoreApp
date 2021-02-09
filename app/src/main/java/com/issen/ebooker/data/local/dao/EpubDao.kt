@@ -9,5 +9,5 @@ import com.issen.ebooker.data.local.models.DatabaseEpub
 interface EpubDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(epub: DatabaseEpub): Int
+    fun insert(epub: DatabaseEpub): Long
 }

@@ -29,7 +29,7 @@ class BooksRepository(
                 val pdfId = pdfDao.insert(it.accessInfo.pdf.asDatabasePdf())
                 val epubId = epubDao.insert(it.accessInfo.epub.asDatabaseEpub())
                 val imageLinksId = imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
-                bookDao.insert(it.asDatabaseBookItem(pdfId, epubId, imageLinksId))
+                bookDao.insert(it.asDatabaseBookItem(pdfId.toInt(), epubId.toInt(), imageLinksId.toInt()))
             }
         }
     }

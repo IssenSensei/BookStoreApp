@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="book"
+            type="com.issen.ebooker.data.domain.Book" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/spacing_small"
+        app:cardCornerRadius="@dimen/spacing_small"
+        android:layout_margin="@dimen/spacing_medium">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_book_thumbnail"
+                thumbnail="@{book.domainImageLinks.thumbnail}"
+                android:layout_width="130dp"
+                android:layout_height="180dp"
+                android:contentDescription="@string/thumbnail"
+                android:scaleType="fitXY"
+                app:layout_constraintDimensionRatio="3:5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_book_title"
+                style="@style/TextAppearance.AppCompat.SearchResult.Title"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:text="@{book.title}"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_book_thumbnail"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_book_description"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:text="@{book.shorterDescription}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/item_book_thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/item_book_title" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/lyt_parent"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:clickable="true"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:background="@drawable/shape"-->
+    <!--        android:layout_marginBottom="2dp">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/linear_listener"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="?attr/actionBarSize"-->
+    <!--            android:gravity="center_vertical"-->
+    <!--            android:minHeight="?attr/actionBarSize"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <View-->
+    <!--                android:layout_width="@dimen/spacing_large"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imgvw"-->
+    <!--                android:layout_width="35dp"-->
+    <!--                android:layout_height="35dp"-->
+    <!--                android:background="@android:color/transparent" />-->
+
+    <!--            <View-->
+    <!--                android:layout_width="@dimen/spacing_large"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/bookTitle"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:ellipsize="end"-->
+    <!--                android:singleLine="true"-->
+    <!--                android:text="@{book.title}"-->
+    <!--                android:textAppearance="@style/TextAppearance.AppCompat.Medium"-->
+    <!--                android:textColor="?attr/primaryTextColor" />-->
+
+    <!--&lt;!&ndash;            <View&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_width="@dimen/spacing_large"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_height="wrap_content" />&ndash;&gt;-->
+
+    <!--&lt;!&ndash;            <ImageButton&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:id="@+id/bt_expand"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_width="?attr/actionBarSize"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:background="?attr/selectableItemBackgroundBorderless"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:tint="?attr/primaryTextColor"&ndash;&gt;-->
+    <!--&lt;!&ndash;                app:srcCompat="@drawable/ic_expand_arrow" />&ndash;&gt;-->
+
+    <!--        </LinearLayout>-->
+
+    <!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+    <!--&lt;!&ndash;            android:id="@+id/lyt_expand"&ndash;&gt;-->
+    <!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;            android:background="@drawable/inner_shape"&ndash;&gt;-->
+    <!--&lt;!&ndash;            android:orientation="horizontal"&ndash;&gt;-->
+    <!--&lt;!&ndash;            android:visibility="gone">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:id="@+id/bookDescription"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:textColor="?attr/primaryTextColor"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_margin="@dimen/spacing_large" />&ndash;&gt;-->
+
+    <!--&lt;!&ndash;            <ImageButton&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:id="@+id/book_list_delete"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_width="15dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_height="15dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_margin="@dimen/spacing_large"&ndash;&gt;-->
+    <!--&lt;!&ndash;                app:srcCompat="@drawable/delete" />&ndash;&gt;-->
+
+    <!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+
+    <!--    </LinearLayout>-->
+</layout>

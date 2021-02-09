@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface GoogleApiService{
 
-    @GET("v1/")
+    @GET("v1/volumes?q=intitle:flower")
     suspend fun getBooks(): BooksApiResponse
 
 }

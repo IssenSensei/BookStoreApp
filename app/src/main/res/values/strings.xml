@@ -23,4 +23,5 @@
     <string name="navigation_settings">Ustawienia</string>
     <string name="navigation_logout">Wyloguj</string>
     <string name="navigation_menu">Menu</string>
+    <string name="thumbnail">thumbnail</string>
 </resources>

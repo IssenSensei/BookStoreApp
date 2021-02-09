@@ -1,62 +1,74 @@
 package com.issen.ebooker.books
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.issen.ebooker.EBookerApplication
 import com.issen.ebooker.R
+import com.issen.ebooker.databinding.FragmentBookListBinding
 import com.issen.ebooker.utils.LineItemDecoration
-import com.issen.ebooker.utils.getBooksAdapter
-import kotlinx.android.synthetic.main.layout_book_list.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class BooksFragment : Fragment() {
 
-    private lateinit var booksMap: MutableList<BooksItem>
-    private lateinit var booksRecycler: RecyclerView
+    private lateinit var binding: FragmentBookListBinding
+//    private lateinit var booksMap: MutableList<BooksItem>
+//    private lateinit var booksRecycler: RecyclerView
+
+    private val viewModel: BooksFragmentViewModel by viewModels {
+        BooksFragmentViewModelFactory(
+            (requireActivity().application as EBookerApplication).booksRepository
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.layout_book_list,
-            container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_list, container, false)
+
+        val adapter = BooksRecyclerViewAdapter()
+        viewModel.bookList.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
+
+        binding.booksRecyclerView.adapter = adapter
+
+        return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        appbarlayout.visibility = View.GONE
-        booksRecycler = view!!.findViewById(R.id.books_recycler_view)
-        setUpRecycler()
-        getData()
-
-        book_fab.setOnClickListener {
-            showCustomDialog()
-        }
-
-        book_swipe_layout.setOnRefreshListener {
-            getData()
-            book_swipe_layout.isRefreshing = false
-        }
-    }
-
-    private fun setUpRecycler() {
-        booksRecycler.layoutManager = LinearLayoutManager(context)
-        booksRecycler.addItemDecoration(
-            LineItemDecoration(
-                this.context,
-                LinearLayout.VERTICAL
-            )
-        )
-        booksRecycler.adapter = BooksRecyclerViewAdapter(mutableListOf(), this.context!!)
-    }
+//
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        booksRecycler = view!!.findViewById(R.id.books_recycler_view)
+//        setUpRecycler()
+//        getData()
+//
+//        book_fab.setOnClickListener {
+//            showCustomDialog()
+//        }
+//
+//        book_swipe_layout.setOnRefreshListener {
+//            getData()
+//            book_swipe_layout.isRefreshing = false
+//        }
+//    }
+//
+//    private fun setUpRecycler() {
+//        booksRecycler.layoutManager = LinearLayoutManager(context)
+//        booksRecycler.addItemDecoration(
+//            LineItemDecoration(
+//                this.context,
+//                LinearLayout.VERTICAL
+//            )
+//        )
+//        booksRecycler.adapter = BooksRecyclerViewAdapter(mutableListOf(), this.context!!)
+//    }
 
 
     private fun getData() {

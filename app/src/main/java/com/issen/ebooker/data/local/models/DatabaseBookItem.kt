@@ -11,9 +11,9 @@ data class DatabaseBookItem constructor(
     @PrimaryKey
     val bookId: String,
     val title: String,
-    val authors: List<String>,
-    val publisher: String,
-    val description: String,
+    val authors: List<String>?,
+    val publisher: String?,
+    val description: String?,
 
     @ColumnInfo(name = "image_links_id")
     val imageLinksId: Int?,

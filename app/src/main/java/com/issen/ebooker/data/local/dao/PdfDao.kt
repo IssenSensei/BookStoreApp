@@ -9,5 +9,5 @@ import com.issen.ebooker.data.local.models.DatabasePdf
 interface PdfDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(pdf: DatabasePdf): Int
+    fun insert(pdf: DatabasePdf): Long
 }

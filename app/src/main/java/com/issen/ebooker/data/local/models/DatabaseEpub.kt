@@ -9,7 +9,7 @@ data class DatabaseEpub(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val isAvailable: Boolean,
-    val acsTokenLink: String
+    val acsTokenLink: String?
 )
 
 

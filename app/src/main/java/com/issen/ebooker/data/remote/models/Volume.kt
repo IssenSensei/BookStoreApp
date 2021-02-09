@@ -8,5 +8,5 @@ data class Volume(
     val volumeInfo: VolumeInfo,
     val saleInfo: SaleInfo,
     val accessInfo: AccessInfo,
-    val searchInfo: SearchInfo
+    val searchInfo: SearchInfo?
 )
