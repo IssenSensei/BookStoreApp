@@ -33,6 +33,12 @@ abstract class BaseActivity : AppCompatActivity() {
         if (currentTheme != theme)
             recreate()
     }
+
+
+    //todo quick solution, to refactor, probably using dependency injection and interceptor
+    companion object{
+        var token = ""
+    }
 }
 
 

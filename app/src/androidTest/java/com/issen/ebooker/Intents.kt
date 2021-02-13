@@ -9,8 +9,8 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.issen.ebooker.books.BookDetailFragment
-import com.issen.ebooker.books.BooksRecyclerViewAdapter
+import com.issen.ebooker.bookDetail.BookDetailFragment
+import com.issen.ebooker.bookList.BookListRecyclerViewAdapter
 import com.issen.ebooker.matcher.RecyclerViewWithIdAction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.hamcrest.core.AllOf.allOf
@@ -67,9 +67,9 @@ class ActivityStackTraceInstrumentedTest {
 
         mainActivityRule.activity
 
-        onView(withId(R.id.books_recycler_view)).perform(
+        onView(withId(R.id.book_list_recycler_view)).perform(
             RecyclerViewActions
-                .actionOnItemAtPosition<BooksRecyclerViewAdapter.ViewHolder>(
+                .actionOnItemAtPosition<BookListRecyclerViewAdapter.ViewHolder>(
                 0,
                 RecyclerViewWithIdAction.clickChildViewWithId(R.id.lyt_parent)
             )

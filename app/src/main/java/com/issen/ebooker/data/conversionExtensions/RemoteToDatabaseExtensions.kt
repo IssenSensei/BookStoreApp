@@ -33,8 +33,8 @@ fun Pdf.asDatabasePdf(): DatabasePdf {
     return DatabasePdf(0, isAvailable, acsTokenLink)
 }
 
-fun BooksApiResponse.asDatabaseModel(): List<DatabaseBook> {
-    return items.map {
+fun ResponseVolumeList.asDatabaseModel(): List<DatabaseBook> {
+    return items?.map {
         DatabaseBook(
             DatabaseBookItem(
                 it.id,
@@ -62,5 +62,5 @@ fun BooksApiResponse.asDatabaseModel(): List<DatabaseBook> {
                 it.volumeInfo.imageLinks.thumbnail
             )
         )
-    }
+    } ?: listOf()
 }

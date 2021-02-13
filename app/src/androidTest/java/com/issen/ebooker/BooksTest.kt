@@ -51,7 +51,7 @@ class NewsFeedInstrumentedTest {
         Thread.sleep(3000L)
 
         onView(
-            withRecyclerView(R.id.books_recycler_view)
+            withRecyclerView(R.id.book_list_recycler_view)
                 .atPositionOnView(0, R.id.lyt_expand)
         ).perform(click())
 

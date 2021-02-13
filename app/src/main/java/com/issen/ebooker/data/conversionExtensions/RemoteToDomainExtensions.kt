@@ -4,7 +4,10 @@ import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.data.domain.DomainEpub
 import com.issen.ebooker.data.domain.DomainImageLinks
 import com.issen.ebooker.data.domain.DomainPdf
-import com.issen.ebooker.data.remote.models.*
+import com.issen.ebooker.data.remote.models.ResponseVolumeList
+import com.issen.ebooker.data.remote.models.Epub
+import com.issen.ebooker.data.remote.models.ImageLinks
+import com.issen.ebooker.data.remote.models.Pdf
 
 fun Epub.asDomainEpub(): DomainEpub {
     return DomainEpub(0, isAvailable, acsTokenLink)
@@ -22,8 +25,9 @@ fun Pdf.asDomainPdf(): DomainPdf {
     return DomainPdf(0, isAvailable, acsTokenLink)
 }
 
-fun BooksApiResponse.asDomainModel(): List<Book> {
-    return items.map {
+fun ResponseVolumeList.asDomainModel(): List<Book> {
+    
+    return items?.map {
         Book(
             bookId = it.id,
             title = it.volumeInfo.title,
@@ -34,5 +38,5 @@ fun BooksApiResponse.asDomainModel(): List<Book> {
             domainPdf = it.accessInfo.pdf.asDomainPdf(),
             domainEpub = it.accessInfo.epub.asDomainEpub()
         )
-    }
+    } ?: listOf()
 }

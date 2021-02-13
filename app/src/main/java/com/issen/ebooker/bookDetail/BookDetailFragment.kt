@@ -1,4 +1,4 @@
-package com.issen.ebooker.books
+package com.issen.ebooker.bookDetail
 
 import androidx.fragment.app.Fragment
 

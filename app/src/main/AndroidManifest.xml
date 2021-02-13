@@ -40,7 +40,7 @@
         <activity android:name="com.issen.ebooker.auth.RegisterActivity" />
         <activity android:name="com.issen.ebooker.BookReaderActivity" />
         <activity android:name="com.issen.ebooker.print.PrintBooksFragment" />
-        <activity android:name="com.issen.ebooker.books.BookDetailFragment" />
+        <activity android:name="com.issen.ebooker.bookDetail.BookDetailFragment" />
         <activity android:name="com.issen.ebooker.auth.EmailRecoveryActivity" />
     </application>
 

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.issen.ebooker.bookLibrary.BookLibraryViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".bookLibrary.BookLibraryFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/library_reading_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/reading_now_header"
+                app:layout_constraintEnd_toStartOf="@id/library_reading_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/library_reading_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_reading_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_reading_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_reading_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_reading_header"
+                tools:listitem="@layout/item_book_library" />
+
+            <TextView
+                android:id="@+id/library_to_read_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/to_read_header"
+                app:layout_constraintEnd_toStartOf="@id/library_to_read_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_reading_recycler" />
+
+            <ImageButton
+                android:id="@+id/library_to_read_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_to_read_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_to_read_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_to_read_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_to_read_header"
+                tools:listitem="@layout/item_book_library" />
+
+            <TextView
+                android:id="@+id/library_favourites_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/favourites_header"
+                app:layout_constraintEnd_toStartOf="@id/library_favourites_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_to_read_recycler" />
+
+            <ImageButton
+                android:id="@+id/library_favourites_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_favourites_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_favourites_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_favourites_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_favourites_header"
+                tools:listitem="@layout/item_book_library" />
+
+            <TextView
+                android:id="@+id/library_have_read_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/have_read_header"
+                app:layout_constraintEnd_toStartOf="@id/library_have_read_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_favourites_recycler" />
+
+            <ImageButton
+                android:id="@+id/library_have_read_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_have_read_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_have_read_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_have_read_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_have_read_header"
+                tools:listitem="@layout/item_book_library" />
+
+            <TextView
+                android:id="@+id/library_purchased_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/purchased_header"
+                app:layout_constraintEnd_toStartOf="@id/library_purchased_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_have_read_recycler" />
+
+            <ImageButton
+                android:id="@+id/library_purchased_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_purchased_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_purchased_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_purchased_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_purchased_header"
+                tools:listitem="@layout/item_book_library" />
+
+            <TextView
+                android:id="@+id/library_ebooks_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/ebooks_header"
+                app:layout_constraintEnd_toStartOf="@id/library_ebooks_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_purchased_recycler" />
+
+            <ImageButton
+                android:id="@+id/library_ebooks_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_ebooks_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_ebooks_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_ebooks_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_ebooks_header"
+                tools:listitem="@layout/item_book_library" />
+
+            <TextView
+                android:id="@+id/library_reviewed_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/reviewed_header"
+                app:layout_constraintEnd_toStartOf="@id/library_reviewed_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_ebooks_recycler" />
+
+            <ImageButton
+                android:id="@+id/library_reviewed_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_reviewed_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_reviewed_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_reviewed_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_reviewed_header"
+                tools:listitem="@layout/item_book_library" />
+
+            <TextView
+                android:id="@+id/library_recommendations_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/recommendations_header"
+                app:layout_constraintEnd_toStartOf="@id/library_recommendations_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_reviewed_recycler" />
+
+            <ImageButton
+                android:id="@+id/library_recommendations_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_recommendations_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_recommendations_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_recommendations_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_recommendations_header"
+                tools:listitem="@layout/item_book_library" />
+
+            <TextView
+                android:id="@+id/library_recently_viewed_header"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/recently_viewed_header"
+                app:layout_constraintEnd_toStartOf="@id/library_recently_viewed_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_recommendations_recycler" />
+
+            <ImageButton
+                android:id="@+id/library_recently_viewed_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_arrow_right"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/library_recently_viewed_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/library_recently_viewed_header" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/library_recently_viewed_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_recently_viewed_header"
+                tools:listitem="@layout/item_book_library" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

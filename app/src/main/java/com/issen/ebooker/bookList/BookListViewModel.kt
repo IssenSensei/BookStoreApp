@@ -1,4 +1,4 @@
-package com.issen.ebooker.books
+package com.issen.ebooker.bookList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -7,7 +7,7 @@ import com.issen.ebooker.data.BooksRepository
 import com.issen.ebooker.data.domain.Book
 import kotlinx.coroutines.launch
 
-class BooksFragmentViewModel(private val booksRepository: BooksRepository) : ViewModel() {
+class BookListViewModel(private val booksRepository: BooksRepository) : ViewModel() {
 
     val bookList: LiveData<List<Book>> = booksRepository.books
 

@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph"
-    app:startDestination="@id/nav_user_books">
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/nav_book_library">
 
     <fragment
-        android:id="@+id/nav_user_books"
-        android:name="com.issen.ebooker.books.BooksFragment"
-        android:label="BooksFragment"
-        tools:layout="@layout/fragment_book_list" >
+        android:id="@+id/nav_book_library"
+        android:name="com.issen.ebooker.bookLibrary.BookLibraryFragment"
+        android:label="fragment_book_library"
+        tools:layout="@layout/fragment_book_library">
         <action
-            android:id="@+id/action_nav_user_books_to_nav_book_detail"
+            android:id="@+id/action_nav_book_library_to_nav_book_list"
+            app:destination="@id/nav_book_list" />
+        <action
+            android:id="@+id/action_nav_book_library_to_nav_book_detail"
             app:destination="@id/nav_book_detail" />
     </fragment>
     <fragment
+        android:id="@+id/nav_book_list"
+        android:name="com.issen.ebooker.bookList.BookListFragment"
+        android:label="BookListFragment"
+        tools:layout="@layout/fragment_book_list">
+        <action
+            android:id="@+id/action_nav_book_list_to_nav_book_detail"
+            app:destination="@id/nav_book_detail" />
+        <argument
+            android:name="shelfId"
+            android:defaultValue="-1"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+    <fragment
         android:id="@+id/nav_book_detail"
-        android:name="com.issen.ebooker.books.BookDetailFragment"
+        android:name="com.issen.ebooker.bookDetail.BookDetailFragment"
         android:label="BookDetailFragment"
         tools:layout="@layout/activity_book_details">
         <action
@@ -30,6 +48,11 @@
         <action
             android:id="@+id/action_nav_book_detail_to_nav_user_quotes"
             app:destination="@id/nav_user_quotes" />
+        <argument
+            android:name="book"
+            android:defaultValue="@null"
+            app:argType="com.issen.ebooker.data.domain.Book"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/nav_books_quotes"
@@ -44,7 +67,7 @@
         android:id="@+id/nav_book_quote_detail"
         android:name="com.issen.ebooker.bookQuotes.BookQuoteDetailFragment"
         android:label="BookQuoteDetailFragment"
-        tools:layout="@layout/activity_book_quote_details"/>
+        tools:layout="@layout/activity_book_quote_details" />
     <fragment
         android:id="@+id/nav_news_detail"
         android:name="com.issen.ebooker.news.NewsDetailFragment"
@@ -85,12 +108,12 @@
         android:id="@+id/nav_settings"
         android:name="com.issen.ebooker.menu.SettingsFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/app_settings_activity_layout"/>
+        tools:layout="@layout/app_settings_activity_layout" />
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.issen.ebooker.user.UserProfileFragment"
         android:label="UserProfileFragment"
-        tools:layout="@layout/activity_profile"/>
+        tools:layout="@layout/activity_profile" />
     <fragment
         android:id="@+id/nav_user_quotes"
         android:name="com.issen.ebooker.userQuotes.UserQuotesFragment"
@@ -104,5 +127,5 @@
         android:id="@+id/nav_user_quote_detail"
         android:name="com.issen.ebooker.userQuotes.UserQuoteDetailFragment"
         android:label="UserQuoteDetailFragment"
-        tools:layout="@layout/activity_user_quote_details"/>
+        tools:layout="@layout/activity_user_quote_details" />
 </navigation>

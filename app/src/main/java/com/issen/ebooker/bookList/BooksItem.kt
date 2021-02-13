@@ -1,4 +1,4 @@
-package com.issen.ebooker.books
+package com.issen.ebooker.bookList
 
 import java.io.Serializable
 
