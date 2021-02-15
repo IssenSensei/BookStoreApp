@@ -44,4 +44,6 @@
     <string name="recommendations_description">Recommendations book list</string>
     <string name="recently_viewed_description">Recently viewed book list</string>
     <string name="nav_library_header">Biblioteka</string>
+    <string name="book_read_fab">Book read button</string>
+    <string name="book_detail_cover">Book detail cover</string>
 </resources>

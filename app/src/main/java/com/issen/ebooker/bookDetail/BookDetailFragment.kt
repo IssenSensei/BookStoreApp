@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 
 
 class BookDetailFragment : Fragment() {
+
+
 //
 //    private lateinit var commentsMap: MutableList<CommentItem>
 //    private lateinit var recyclerView: RecyclerView
