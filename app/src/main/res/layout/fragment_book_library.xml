@@ -5,9 +5,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.issen.ebooker.bookLibrary.BookLibraryViewModel" />
+
+        <variable
+            name="listener"
+            type="com.issen.ebooker.bookLibrary.LibraryListener" />
     </data>
 
     <ScrollView
@@ -15,32 +21,40 @@
         android:layout_height="match_parent"
         tools:context=".bookLibrary.BookLibraryFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/library_reading_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/reading_now_header"
-                app:layout_constraintEnd_toStartOf="@id/library_reading_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/library_reading_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_reading_header"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_reading_header" />
+                <TextView
+                    android:id="@+id/library_reading_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/reading_now_header" />
+
+                <ImageButton
+                    android:id="@+id/library_reading_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/reading_description"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.readingShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_reading_recycler"
@@ -48,33 +62,43 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_reading_header"
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
-                android:id="@+id/library_to_read_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/to_read_header"
-                app:layout_constraintEnd_toStartOf="@id/library_to_read_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_reading_recycler" />
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.readingList.size() == 0? View.VISIBLE : View.GONE}" />
 
-            <ImageButton
-                android:id="@+id/library_to_read_button"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_to_read_header"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_to_read_header" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/library_to_read_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/to_read_header" />
+
+                <ImageButton
+                    android:id="@+id/library_to_read_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/to_read_description"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.toReadShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_to_read_recycler"
@@ -88,27 +112,43 @@
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
-                android:id="@+id/library_favourites_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/favourites_header"
-                app:layout_constraintEnd_toStartOf="@id/library_favourites_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_to_read_recycler" />
-
-            <ImageButton
-                android:id="@+id/library_favourites_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_favourites_header"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.toReadList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_favourites_header" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_to_read_header" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/library_favourites_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/favourites_header" />
+
+                <ImageButton
+                    android:id="@+id/library_favourites_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/favourites_description"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.favouriteShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_favourites_recycler"
@@ -122,27 +162,43 @@
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
-                android:id="@+id/library_have_read_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/have_read_header"
-                app:layout_constraintEnd_toStartOf="@id/library_have_read_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_favourites_recycler" />
-
-            <ImageButton
-                android:id="@+id/library_have_read_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_have_read_header"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.favouriteList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_have_read_header" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_favourites_header" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/library_have_read_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/have_read_header" />
+
+                <ImageButton
+                    android:id="@+id/library_have_read_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/have_read_description"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.haveReadShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_have_read_recycler"
@@ -156,27 +212,43 @@
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
-                android:id="@+id/library_purchased_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/purchased_header"
-                app:layout_constraintEnd_toStartOf="@id/library_purchased_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_have_read_recycler" />
-
-            <ImageButton
-                android:id="@+id/library_purchased_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_purchased_header"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.haveReadList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_purchased_header" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_have_read_header" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/library_purchased_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/purchased_header" />
+
+                <ImageButton
+                    android:id="@+id/library_purchased_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/purchased_description"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.purchasedShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_purchased_recycler"
@@ -190,27 +262,43 @@
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
-                android:id="@+id/library_ebooks_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/ebooks_header"
-                app:layout_constraintEnd_toStartOf="@id/library_ebooks_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_purchased_recycler" />
-
-            <ImageButton
-                android:id="@+id/library_ebooks_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_ebooks_header"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.purchasedList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_ebooks_header" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_purchased_header" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/library_ebooks_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/ebooks_header" />
+
+                <ImageButton
+                    android:id="@+id/library_ebooks_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/e_books_description"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.myEBooksShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_ebooks_recycler"
@@ -224,27 +312,43 @@
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
-                android:id="@+id/library_reviewed_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/reviewed_header"
-                app:layout_constraintEnd_toStartOf="@id/library_reviewed_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_ebooks_recycler" />
-
-            <ImageButton
-                android:id="@+id/library_reviewed_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_reviewed_header"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.eBooksList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_reviewed_header" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_ebooks_header" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/library_reviewed_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/reviewed_header" />
+
+                <ImageButton
+                    android:id="@+id/library_reviewed_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/reviewed_description"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.reviewedShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_reviewed_recycler"
@@ -258,27 +362,43 @@
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
-                android:id="@+id/library_recommendations_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/recommendations_header"
-                app:layout_constraintEnd_toStartOf="@id/library_recommendations_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_reviewed_recycler" />
-
-            <ImageButton
-                android:id="@+id/library_recommendations_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_recommendations_header"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.reviewedList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_recommendations_header" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_reviewed_header" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/library_recommendations_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/recommendations_header" />
+
+                <ImageButton
+                    android:id="@+id/library_recommendations_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/recommendations_header"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.recommendationsShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_recommendations_recycler"
@@ -292,27 +412,43 @@
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
-                android:id="@+id/library_recently_viewed_header"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@string/recently_viewed_header"
-                app:layout_constraintEnd_toStartOf="@id/library_recently_viewed_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/library_recommendations_recycler" />
-
-            <ImageButton
-                android:id="@+id/library_recently_viewed_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/library_recently_viewed_header"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.recommendationsList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/library_recently_viewed_header" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_recommendations_header" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/library_recently_viewed_header"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:text="@string/recently_viewed_header" />
+
+                <ImageButton
+                    android:id="@+id/library_recently_viewed_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/recently_viewed_description"
+                    android:onClick="@{() -> listener.onShelfSelected(viewModel.recentlyViewedShelfId)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/library_recently_viewed_recycler"
@@ -325,8 +461,16 @@
                 app:layout_constraintTop_toBottomOf="@id/library_recently_viewed_header"
                 tools:listitem="@layout/item_book_library" />
 
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <TextView
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:text="@string/no_books_to_show"
+                android:visibility="@{viewModel.recentlyViewedList.size() == 0? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/library_recently_viewed_header" />
+        </LinearLayout>
     </ScrollView>
 </layout>

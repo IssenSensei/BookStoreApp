@@ -27,7 +27,7 @@ class BooksRepository(
     }
 
     suspend fun getShelfBooks(id: Int): List<Book> {
-        return googleApi.getShelfBooks(id).asDomainModel()
+        return googleApi.getShelfBooks("Bearer $token", id).asDomainModel()
     }
 
     suspend fun refreshBooks() {
@@ -42,6 +42,6 @@ class BooksRepository(
     }
 
     suspend fun getUserShelves(): ResponseBookshelfList {
-        return googleApi.getUserShelves()
+        return googleApi.getUserShelves("Bearer $token")
     }
 }

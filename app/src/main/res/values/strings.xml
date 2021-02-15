@@ -33,4 +33,14 @@
     <string name="reviewed_header">Zrecenzowane</string>
     <string name="recommendations_header">Rekomendacje</string>
     <string name="recently_viewed_header">Ostatnio przeglądane</string>
+    <string name="no_books_to_show">Brak książek na liście</string>
+    <string name="reading_description">Reading book list</string>
+    <string name="to_read_description">To read book list</string>
+    <string name="favourites_description">Favourites book list</string>
+    <string name="have_read_description">Have read book list</string>
+    <string name="purchased_description">Purchased book list</string>
+    <string name="e_books_description">EBooks book list</string>
+    <string name="reviewed_description">Reviewed book list</string>
+    <string name="recommendations_description">Recommendations book list</string>
+    <string name="recently_viewed_description">Recently viewed book list</string>
 </resources>

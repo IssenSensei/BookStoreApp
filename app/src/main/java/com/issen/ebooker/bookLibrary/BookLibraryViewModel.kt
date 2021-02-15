@@ -8,15 +8,15 @@ import com.issen.ebooker.data.domain.Book
 import kotlinx.coroutines.launch
 
 class BookLibraryViewModel(private val booksRepository: BooksRepository) : ViewModel() {
-    private val favouriteShelfId = 0
-    private val purchasedShelfId = 1
-    private val toReadShelfId = 2
-    private val readingShelfId = 3
-    private val haveReadShelfId = 4
-    private val reviewedShelfId = 5
-    private val recentlyViewedShelfId = 6
-    private val myEBooksShelfId = 7
-    private val recommendationsShelfId = 8
+    val favouriteShelfId = 0
+    val purchasedShelfId = 1
+    val toReadShelfId = 2
+    val readingShelfId = 3
+    val haveReadShelfId = 4
+    val reviewedShelfId = 5
+    val recentlyViewedShelfId = 6
+    val myEBooksShelfId = 7
+    val recommendationsShelfId = 8
 
     val readingList = MutableLiveData<List<Book>>()
     val toReadList = MutableLiveData<List<Book>>()
