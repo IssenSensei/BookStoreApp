@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_book_library"
         android:name="com.issen.ebooker.bookLibrary.BookLibraryFragment"
-        android:label="fragment_book_library"
+        android:label="@string/nav_library_header"
         tools:layout="@layout/fragment_book_library">
         <action
             android:id="@+id/action_nav_book_library_to_nav_book_list"

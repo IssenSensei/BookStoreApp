@@ -4,7 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.issen.ebooker.bookList.BookListViewModel" />
     </data>
         <FrameLayout
             android:layout_width="match_parent"
@@ -22,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center|center_horizontal|center_vertical"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
                 android:text="@string/no_data_to_show"
-                android:visibility="gone" />
+                android:visibility="@{viewModel.bookList.size() > 0 ? View.GONE : View.VISIBLE}" />
         </FrameLayout>
 </layout>
