@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="listener"
+            type="com.issen.ebooker.bookDetail.AuthorListener" />
+
+        <variable
+            name="author"
+            type="String" />
+    </data>
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        android:onClick="@{() -> listener.onAuthorClicked(author)}"
+        android:text="@{author}"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
+</layout>

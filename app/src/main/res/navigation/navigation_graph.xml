@@ -34,7 +34,6 @@
     <fragment
         android:id="@+id/nav_book_detail"
         android:name="com.issen.ebooker.bookDetail.BookDetailFragment"
-        android:label="BookDetailFragment"
         tools:layout="@layout/fragment_book_detail">
         <action
             android:id="@+id/action_nav_book_detail_to_nav_books_quotes"
@@ -50,9 +49,8 @@
             app:destination="@id/nav_user_quotes" />
         <argument
             android:name="book"
-            android:defaultValue="@null"
             app:argType="com.issen.ebooker.data.domain.Book"
-            app:nullable="true" />
+            app:nullable="false" />
     </fragment>
     <fragment
         android:id="@+id/nav_books_quotes"

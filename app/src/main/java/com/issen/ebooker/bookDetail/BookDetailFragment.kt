@@ -1,11 +1,58 @@
 package com.issen.ebooker.bookDetail
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import com.issen.ebooker.EBookerApplication
+import com.issen.ebooker.databinding.FragmentBookDetailBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 
-class BookDetailFragment : Fragment() {
+class BookDetailFragment : Fragment(), AuthorListener, BookDetailListener {
 
+    private val viewModel: BookDetailViewModel by viewModels {
+        BookDetailViewModelFactory(
+            (requireActivity().application as EBookerApplication).booksRepository
+        )
+    }
+    private val navArgs: BookDetailFragmentArgs by navArgs()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentBookDetailBinding.inflate(inflater, container, false)
+        viewModel.book = navArgs.book
+        requireActivity().toolbar.title = viewModel.book.title
+
+        val adapter = BookAuthorsRecyclerViewAdapter(viewModel.book.authors ?: listOf(), this)
+        binding.bookDetailAuthorRecycler.adapter = adapter
+
+        binding.viewModel = viewModel
+        binding.listener = this
+        binding.lifecycleOwner = this
+        return binding.root
+    }
+
+    override fun onAuthorClicked(name: String) {
+        //todo display books with this author name
+    }
+
+    override fun onThumbnailClicked(url: String) {
+        //todo show full-scale image
+    }
+
+    override fun onPublisherClicked(publisher: String) {
+        //todo display books with this publisher
+    }
+
+    override fun onShowMoreClicked() {
+        //todo display bottom menu
+    }
 //
 //    private lateinit var commentsMap: MutableList<CommentItem>
 //    private lateinit var recyclerView: RecyclerView
@@ -173,21 +220,5 @@ class BookDetailFragment : Fragment() {
 //        })
 //    }
 //
-//    private fun initToolbar() {
-//        val toolbar: Toolbar = findViewById(R.id.book_detail_toolbar)
-//        setSupportActionBar(toolbar)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar?.title = "Powrót"
-//
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == android.R.id.home) {
-//            setResult(Activity.RESULT_CANCELED)
-//            finish()
-//        } else {
-//            Toast.makeText(applicationContext, item.title, Toast.LENGTH_SHORT).show()
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
+
 }
