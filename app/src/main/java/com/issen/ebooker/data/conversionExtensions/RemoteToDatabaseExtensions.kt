@@ -15,7 +15,7 @@ fun ImageLinks.asDatabaseImageLinks(): DatabaseImageLinks {
     )
 }
 
-fun Volume.asDatabaseBookItem(pdfId: Int, epubId: Int, imageLinksId: Int): DatabaseBookItem {
+fun Volume.asDatabaseBookItem(pdfId: Int, epubId: Int, imageLinksId: Int?): DatabaseBookItem {
     return DatabaseBookItem(
         bookId = id,
         title = volumeInfo.title,
@@ -58,8 +58,8 @@ fun ResponseVolumeList.asDatabaseModel(): List<DatabaseBook> {
             ),
             DatabaseImageLinks(
                 0,
-                it.volumeInfo.imageLinks.smallThumbnail,
-                it.volumeInfo.imageLinks.thumbnail
+                it.volumeInfo.imageLinks?.smallThumbnail,
+                it.volumeInfo.imageLinks?.thumbnail
             )
         )
     } ?: listOf()

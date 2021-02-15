@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.issen.ebooker.EBookerApplication
 import com.issen.ebooker.databinding.FragmentBookDetailBinding
@@ -39,7 +40,7 @@ class BookDetailFragment : Fragment(), AuthorListener, BookDetailListener {
     }
 
     override fun onAuthorClicked(name: String) {
-        //todo display books with this author name
+        findNavController().navigate(BookDetailFragmentDirections.actionNavBookDetailToNavBookList(author = name))
     }
 
     override fun onThumbnailClicked(url: String) {
@@ -47,7 +48,7 @@ class BookDetailFragment : Fragment(), AuthorListener, BookDetailListener {
     }
 
     override fun onPublisherClicked(publisher: String) {
-        //todo display books with this publisher
+        findNavController().navigate(BookDetailFragmentDirections.actionNavBookDetailToNavBookList(publisher = publisher))
     }
 
     override fun onShowMoreClicked() {

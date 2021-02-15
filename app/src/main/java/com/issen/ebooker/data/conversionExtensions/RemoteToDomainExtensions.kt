@@ -34,7 +34,7 @@ fun ResponseVolumeList.asDomainModel(): List<Book> {
             authors = it.volumeInfo.authors,
             publisher = it.volumeInfo.publisher,
             description = it.volumeInfo.description,
-            domainImageLinks = it.volumeInfo.imageLinks.asDomainImageLinks(),
+            domainImageLinks = it.volumeInfo.imageLinks?.asDomainImageLinks(),
             domainPdf = it.accessInfo.pdf.asDomainPdf(),
             domainEpub = it.accessInfo.epub.asDomainEpub()
         )

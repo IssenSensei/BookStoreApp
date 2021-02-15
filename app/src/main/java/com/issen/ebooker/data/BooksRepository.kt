@@ -30,18 +30,28 @@ class BooksRepository(
         return googleApi.getShelfBooks("Bearer $token", id).asDomainModel()
     }
 
+    suspend fun getUserShelves(): ResponseBookshelfList {
+        return googleApi.getUserShelves("Bearer $token")
+    }
+
+    suspend fun getAuthorBooks(author: String): List<Book> {
+        return googleApi.getQueriedBooks("inauthor:$author", "Bearer $token").asDomainModel()
+    }
+
+    suspend fun getPublisherBooks(publisher: String): List<Book> {
+        return googleApi.getQueriedBooks("inpublisher$publisher", "Bearer $token").asDomainModel()
+    }
+
     suspend fun refreshBooks() {
         withContext(Dispatchers.IO) {
             googleApi.getBooks().items?.forEach {
                 val pdfId = pdfDao.insert(it.accessInfo.pdf.asDatabasePdf())
                 val epubId = epubDao.insert(it.accessInfo.epub.asDatabaseEpub())
-                val imageLinksId = imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
-                bookDao.insert(it.asDatabaseBookItem(pdfId.toInt(), epubId.toInt(), imageLinksId.toInt()))
+                val imageLinksId = if (it.volumeInfo.imageLinks != null) {
+                    imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
+                } else null
+                bookDao.insert(it.asDatabaseBookItem(pdfId.toInt(), epubId.toInt(), imageLinksId?.toInt()))
             }
         }
-    }
-
-    suspend fun getUserShelves(): ResponseBookshelfList {
-        return googleApi.getUserShelves("Bearer $token")
     }
 }

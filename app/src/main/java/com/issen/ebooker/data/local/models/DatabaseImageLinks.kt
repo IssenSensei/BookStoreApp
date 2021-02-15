@@ -8,7 +8,7 @@ data class DatabaseImageLinks(
 
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val smallThumbnail: String,
-    val thumbnail: String
+    val smallThumbnail: String?,
+    val thumbnail: String?
 )
 

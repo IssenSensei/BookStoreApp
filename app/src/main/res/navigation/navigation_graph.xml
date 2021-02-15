@@ -28,8 +28,18 @@
         <argument
             android:name="shelfId"
             android:defaultValue="-1"
-            app:argType="integer"
+            app:argType="integer" />
+        <argument
+            android:name="author"
+            android:defaultValue=""
+            app:argType="string"
             app:nullable="false" />
+        <argument
+            android:name="publisher"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="false" />
+
     </fragment>
     <fragment
         android:id="@+id/nav_book_detail"
@@ -51,6 +61,9 @@
             android:name="book"
             app:argType="com.issen.ebooker.data.domain.Book"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_nav_book_detail_to_nav_book_list"
+            app:destination="@id/nav_book_list" />
     </fragment>
     <fragment
         android:id="@+id/nav_books_quotes"

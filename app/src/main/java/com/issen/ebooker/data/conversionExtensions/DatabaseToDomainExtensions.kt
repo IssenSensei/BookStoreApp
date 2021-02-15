@@ -26,7 +26,7 @@ fun List<DatabaseBook>.asDomainModel(): List<Book> {
             authors = it.databaseBookItem.authors,
             publisher = it.databaseBookItem.publisher,
             description = it.databaseBookItem.description,
-            domainImageLinks = it.databaseImageLinks.asDomainImageLinks(),
+            domainImageLinks = it.databaseImageLinks?.asDomainImageLinks(),
             domainPdf = it.databasePdf.asDomainPdf(),
             domainEpub = it.databaseEpub.asDomainEpub()
         )

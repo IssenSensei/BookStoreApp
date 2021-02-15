@@ -46,4 +46,17 @@
     <string name="nav_library_header">Biblioteka</string>
     <string name="show_more_options">Więcej opcji</string>
     <string name="book_detail_cover">Zdjęcie</string>
+    <string name="no_description">Brak opisu</string>
+
+    <string-array name="shelves">
+        <item>Ulubione</item>
+        <item>Zakupione</item>
+        <item>Do przeczytania</item>
+        <item>Właśnie czytam</item>
+        <item>Przeczytane</item>
+        <item>Zrecenzowane</item>
+        <item>Ostatnio przeglądane</item>
+        <item>Ebooki</item>
+        <item>Rekomendacje</item>
+    </string-array>
 </resources>

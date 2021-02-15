@@ -10,11 +10,17 @@ import kotlinx.coroutines.launch
 
 class BookListViewModel(private val booksRepository: BooksRepository) : ViewModel() {
 
+    var shelfId = -1
+    var author = ""
+    var publisher = ""
+
     private val _bookList = MutableLiveData<List<Book>>()
     val bookList: LiveData<List<Book>>
         get() {
            return _bookList
         }
+
+
 
     init {
         viewModelScope.launch {
@@ -25,6 +31,18 @@ class BookListViewModel(private val booksRepository: BooksRepository) : ViewMode
     fun getShelfBooks(id: Int) {
         viewModelScope.launch {
             _bookList.value = booksRepository.getShelfBooks(id)
+        }
+    }
+
+    fun getAuthorBooks(author: String) {
+        viewModelScope.launch {
+            _bookList.value = booksRepository.getAuthorBooks(author)
+        }
+    }
+
+    fun getPublisherBooks(publisher: String) {
+        viewModelScope.launch {
+            _bookList.value = booksRepository.getPublisherBooks(publisher)
         }
     }
 

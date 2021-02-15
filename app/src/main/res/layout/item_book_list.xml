@@ -12,9 +12,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="@dimen/spacing_small"
+        android:layout_margin="@dimen/spacing_medium"
         app:cardCornerRadius="@dimen/spacing_small"
-        android:layout_margin="@dimen/spacing_medium">
+        app:cardElevation="@dimen/spacing_small">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -34,13 +34,13 @@
             <TextView
                 android:id="@+id/item_book_title"
                 style="@style/TextAppearance.AppCompat.SearchResult.Title"
-                android:textStyle="bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_medium"
-                android:text="@{book.title}"
-                android:maxLines="2"
                 android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{book.title}"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_book_thumbnail"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_medium"
                 android:layout_marginBottom="@dimen/spacing_small"
-                android:text="@{book.shorterDescription}"
+                android:text="@{book.shorterDescription != `` ? book.shorterDescription : @string/no_description}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_book_thumbnail"
                 app:layout_constraintTop_toBottomOf="@id/item_book_title" />

@@ -23,7 +23,7 @@ data class DatabaseBook constructor(
         parentColumn = "image_links_id",
         entityColumn = "id"
     )
-    val databaseImageLinks: DatabaseImageLinks
+    val databaseImageLinks: DatabaseImageLinks?
 )
 
 

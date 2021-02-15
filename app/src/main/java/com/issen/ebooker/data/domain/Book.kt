@@ -1,5 +1,6 @@
 package com.issen.ebooker.data.domain
 
+import com.issen.ebooker.R
 import java.io.Serializable
 
 data class Book(
@@ -8,7 +9,7 @@ data class Book(
     val authors: List<String>?,
     val publisher: String?,
     val description: String?,
-    val domainImageLinks: DomainImageLinks,
+    val domainImageLinks: DomainImageLinks?,
     val domainPdf: DomainPdf,
     val domainEpub: DomainEpub
 ) : Serializable {
@@ -20,7 +21,7 @@ data class Book(
                 description
             }
         } else {
-            "No description"
+            ""
         }
     }
 }
