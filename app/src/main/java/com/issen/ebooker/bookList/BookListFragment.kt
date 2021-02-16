@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.issen.ebooker.EBookerApplication
 import com.issen.ebooker.R
+import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.databinding.FragmentBookListBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
-class BookListFragment : Fragment() {
+class BookListFragment : Fragment(), BookListListener {
 
     private lateinit var binding: FragmentBookListBinding
     private val safeArgs: BookListFragmentArgs by navArgs()
@@ -48,7 +50,7 @@ class BookListFragment : Fragment() {
             }
         }
 
-        val adapter = BookListRecyclerViewAdapter()
+        val adapter = BookListRecyclerViewAdapter(this)
         viewModel.bookList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
@@ -58,5 +60,9 @@ class BookListFragment : Fragment() {
         binding.bookListRecyclerView.adapter = adapter
 
         return binding.root
+    }
+
+    override fun onBookSelected(book: Book) {
+        findNavController().navigate(BookListFragmentDirections.actionNavBookListToNavBookDetail(book))
     }
 }

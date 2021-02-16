@@ -8,7 +8,7 @@ import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.databinding.ItemBookListBinding
 import com.issen.ebooker.utils.BookListDiffCallback
 
-class BookListRecyclerViewAdapter : ListAdapter<Book, BookListRecyclerViewAdapter.ViewHolder>(BookListDiffCallback()) {
+class BookListRecyclerViewAdapter(private val listener: BookListListener) : ListAdapter<Book, BookListRecyclerViewAdapter.ViewHolder>(BookListDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -17,13 +17,14 @@ class BookListRecyclerViewAdapter : ListAdapter<Book, BookListRecyclerViewAdapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!)
+        holder.bind(getItem(position)!!, listener)
     }
 
     class ViewHolder(private val binding: ItemBookListBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Book) {
+        fun bind(item: Book, listener: BookListListener) {
             binding.book = item
+            binding.listener = listener
             binding.executePendingBindings()
         }
     }

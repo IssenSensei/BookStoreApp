@@ -7,12 +7,17 @@
         <variable
             name="book"
             type="com.issen.ebooker.data.domain.Book" />
+
+        <variable
+            name="listener"
+            type="com.issen.ebooker.bookList.BookListListener" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_medium"
+        android:onClick="@{() -> listener.onBookSelected(book)}"
         app:cardCornerRadius="@dimen/spacing_small"
         app:cardElevation="@dimen/spacing_small">
 
