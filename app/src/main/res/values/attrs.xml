@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="primaryTextColor" format="reference"/>
-    <attr name="buttonNormalColor" format="reference"/>
+    <attr name="primaryTextColor" format="reference" />
+    <attr name="buttonNormalColor" format="reference" />
     <attr name="buttonHighlightColor" format="reference" />
     <attr name="colorPrimaryBookStore" format="reference" />
     <attr name="colorPrimaryDarkBookStore" format="reference" />
     <attr name="colorAccentBookStore" format="reference" />
     <attr name="buttonTextColor" format="reference" />
     <attr name="primaryButtonTheme" format="reference" />
+    <declare-styleable name="FullscreenAttrs">
+        <attr name="fullscreenBackgroundColor" format="color" />
+        <attr name="fullscreenTextColor" format="color" />
+    </declare-styleable>
 </resources>

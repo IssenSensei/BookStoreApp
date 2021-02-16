@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_nav_book_detail_to_nav_book_list"
             app:destination="@id/nav_book_list" />
+        <action
+            android:id="@+id/action_nav_book_detail_to_nav_book_cover"
+            app:destination="@id/nav_book_cover" />
     </fragment>
     <fragment
         android:id="@+id/nav_books_quotes"
@@ -139,4 +142,12 @@
         android:name="com.issen.ebooker.userQuotes.UserQuoteDetailFragment"
         android:label="UserQuoteDetailFragment"
         tools:layout="@layout/activity_user_quote_details" />
+    <fragment
+        android:id="@+id/nav_book_cover"
+        android:name="com.issen.ebooker.bookDetail.BookCoverFragment"
+        tools:layout="@layout/fragment_book_cover">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

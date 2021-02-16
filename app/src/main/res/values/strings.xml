@@ -59,4 +59,7 @@
         <item>Ebooki</item>
         <item>Rekomendacje</item>
     </string-array>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="full_scale_cover">Okładka</string>
 </resources>
