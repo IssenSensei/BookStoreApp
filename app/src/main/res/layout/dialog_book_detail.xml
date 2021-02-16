@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.issen.ebooker.bookDetailDialog.BookDetailDialogViewModel" />
+
+        <variable
+            name="listener"
+            type="com.issen.ebooker.bookDetailDialog.BookDetailDialogListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium"
+            android:orientation="vertical"
+            tools:context=".bookDetailDialog.BookDetailDialog">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:enabled="@{viewModel.book.domainEpub.available}"
+                android:gravity="center"
+                android:onClick="@{() -> listener.readAsEPub(viewModel.book.domainEpub.acsTokenLink)}"
+                android:text="@string/read_as_epub" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:enabled="@{viewModel.book.domainPdf.available}"
+                android:gravity="center"
+                android:onClick="@{() -> listener.readAsPdf(viewModel.book.domainPdf.acsTokenLink)}"
+                android:text="@string/read_as_pdf" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:gravity="center"
+                android:onClick="@{() -> listener.toggleFavourite()}"
+                android:text="@{viewModel.isFavourite? @string/remove_from_favourites : @string/add_to_favourites }" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:gravity="center"
+                android:onClick="@{() -> listener.showQuotes(viewModel.book.bookId)}"
+                android:text="@string/show_quotes" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:gravity="center"
+                android:onClick="@{() -> listener.showReviews(viewModel.book.bookId)}"
+                android:text="@string/show_reviews" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

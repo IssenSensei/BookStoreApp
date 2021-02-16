@@ -90,7 +90,7 @@
                 android:layout_marginEnd="@dimen/spacing_medium"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/show_more_options"
-                android:onClick="@{() -> listener.onShowMoreClicked()}"
+                android:onClick="@{() -> listener.onShowMoreClicked(viewModel.book)}"
                 android:src="@drawable/ic_more"
                 app:layout_constraintBottom_toBottomOf="@id/book_detail_title"
                 app:layout_constraintEnd_toEndOf="parent"

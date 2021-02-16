@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.issen.ebooker.EBookerApplication
+import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.databinding.FragmentBookDetailBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -54,8 +55,8 @@ class BookDetailFragment : Fragment(), AuthorListener, BookDetailListener {
         findNavController().navigate(BookDetailFragmentDirections.actionNavBookDetailToNavBookList(publisher = publisher))
     }
 
-    override fun onShowMoreClicked() {
-        //todo display bottom menu
+    override fun onShowMoreClicked(book: Book) {
+        findNavController().navigate(BookDetailFragmentDirections.actionNavBookDetailToNavBookDetailDialog(book))
     }
 //
 //    private lateinit var commentsMap: MutableList<CommentItem>

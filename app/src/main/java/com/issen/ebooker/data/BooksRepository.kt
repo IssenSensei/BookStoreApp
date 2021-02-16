@@ -54,4 +54,17 @@ class BooksRepository(
             }
         }
     }
+
+    fun checkIsFavourite(bookId: String): Boolean {
+        //todo check if book is on user's favourites shelf
+        return false
+    }
+
+    fun deleteFromFavourites(bookId: String) {
+        //todo delete book from user's favourites shelf
+    }
+
+    fun addToFavourites(bookId: String) {
+        //todo add book to user's favourites shelf
+    }
 }
