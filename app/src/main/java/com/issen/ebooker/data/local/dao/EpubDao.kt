@@ -8,6 +8,6 @@ import com.issen.ebooker.data.local.models.DatabaseEpub
 @Dao
 interface EpubDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(epub: DatabaseEpub): Long
 }

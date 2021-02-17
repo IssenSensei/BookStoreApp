@@ -8,6 +8,6 @@ import com.issen.ebooker.data.local.models.DatabasePdf
 @Dao
 interface PdfDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(pdf: DatabasePdf): Long
 }

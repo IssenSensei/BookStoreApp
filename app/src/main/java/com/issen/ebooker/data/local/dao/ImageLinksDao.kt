@@ -8,6 +8,6 @@ import com.issen.ebooker.data.local.models.DatabaseImageLinks
 @Dao
 interface ImageLinksDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(imageLinks: DatabaseImageLinks): Long
 }

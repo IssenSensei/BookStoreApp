@@ -3,7 +3,7 @@ package com.issen.ebooker.data.local.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "epub_table")
 data class DatabaseEpub(
 
     @PrimaryKey(autoGenerate = true)

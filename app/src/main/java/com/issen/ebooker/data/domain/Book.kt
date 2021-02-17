@@ -1,6 +1,5 @@
 package com.issen.ebooker.data.domain
 
-import com.issen.ebooker.R
 import java.io.Serializable
 
 data class Book(
