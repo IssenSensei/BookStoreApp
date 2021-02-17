@@ -6,6 +6,6 @@ import com.issen.ebooker.data.local.EBookerDatabase
 
 class EBookerApplication : Application() {
 
-    val database by lazy { EBookerDatabase.getDatabase(this) }
+    private val database by lazy { EBookerDatabase.getDatabase(this) }
     val booksRepository by lazy { BooksRepository(database.bookDao, database.pdfDao, database.epubDao, database.imageLinksDao) }
 }

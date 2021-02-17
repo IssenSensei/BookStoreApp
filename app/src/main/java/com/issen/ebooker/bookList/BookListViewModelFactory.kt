@@ -14,6 +14,4 @@ class BookListViewModelFactory(private val booksRepository: BooksRepository) : V
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-
-
 }

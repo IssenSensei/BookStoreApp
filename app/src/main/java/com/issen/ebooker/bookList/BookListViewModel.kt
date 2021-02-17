@@ -20,8 +20,6 @@ class BookListViewModel(private val booksRepository: BooksRepository) : ViewMode
            return _bookList
         }
 
-
-
     init {
         viewModelScope.launch {
             booksRepository.refreshBooks()
