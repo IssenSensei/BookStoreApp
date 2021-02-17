@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.issen.ebooker.EBookerApplication
@@ -26,16 +28,17 @@ class BookDetailDialog : BottomSheetDialogFragment(), BookDetailDialogListener {
         val binding = DialogBookDetailBinding.inflate(inflater, container, false)
         viewModel.book = safeArgs.book
         binding.viewModel = viewModel
+        binding.listener = this
         binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun readAsEPub(link: String) {
-        //todo download epub and start reader
+        findNavController().navigate(BookDetailDialogDirections.actionNavBookDetailDialogToNavBookEPubReader(link))
     }
 
     override fun readAsPdf(link: String) {
-        //todo download pdf and start reader
+        findNavController().navigate(BookDetailDialogDirections.actionNavBookDetailDialogToNavBookPdfReader(link))
     }
 
     override fun toggleFavourite() {
@@ -43,11 +46,11 @@ class BookDetailDialog : BottomSheetDialogFragment(), BookDetailDialogListener {
     }
 
     override fun showQuotes(id: String) {
-        //todo navigate to book quotes list
+        findNavController().navigate(BookDetailDialogDirections.actionNavBookDetailDialogToNavBookQuoteList(id))
     }
 
     override fun showReviews(id: String) {
-        //todo navigate to book reviews list(fragment or dialog)
+        findNavController().navigate(BookDetailDialogDirections.actionNavBookDetailDialogToNavBookReviewsList(id))
     }
 
 }
