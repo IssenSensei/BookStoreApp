@@ -40,7 +40,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/reading_now_header" />
+                    android:text="@string/reading_now_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_reading_button"
@@ -70,6 +71,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.readingList.size() == 0? View.VISIBLE : View.GONE}" />
 
             <LinearLayout
@@ -85,7 +87,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/to_read_header" />
+                    android:text="@string/to_read_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_to_read_button"
@@ -117,6 +120,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.toReadList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +139,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/favourites_header" />
+                    android:text="@string/favourites_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_favourites_button"
@@ -167,6 +172,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.favouriteList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +191,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/have_read_header" />
+                    android:text="@string/have_read_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_have_read_button"
@@ -217,6 +224,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.haveReadList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -235,7 +243,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/purchased_header" />
+                    android:text="@string/purchased_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_purchased_button"
@@ -267,6 +276,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.purchasedList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -285,7 +295,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/ebooks_header" />
+                    android:text="@string/ebooks_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_ebooks_button"
@@ -317,6 +328,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.eBooksList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -335,7 +347,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/reviewed_header" />
+                    android:text="@string/reviewed_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_reviewed_button"
@@ -367,6 +380,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.reviewedList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -385,7 +399,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/recommendations_header" />
+                    android:text="@string/recommendations_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_recommendations_button"
@@ -417,6 +432,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.recommendationsList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -435,7 +451,8 @@
                     android:layout_margin="@dimen/spacing_medium"
                     android:layout_weight="1"
                     android:maxLines="1"
-                    android:text="@string/recently_viewed_header" />
+                    android:text="@string/recently_viewed_header"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageButton
                     android:id="@+id/library_recently_viewed_button"
@@ -467,6 +484,7 @@
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
+                android:textColor="@color/colorAccent"
                 android:visibility="@{viewModel.recentlyViewedList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

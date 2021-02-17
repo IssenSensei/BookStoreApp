@@ -17,31 +17,15 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App.FullWhite"
+        android:theme="@style/EBookerTheme"
         tools:replace="android:allowBackup">
-
-        <activity android:name="com.issen.ebooker.author.AuthorBooksFragment" />
-        <activity android:name="com.issen.ebooker.userQuotes.UserQuoteDetailFragment" />
         <activity android:name="com.issen.ebooker.MainActivity" />
-        <activity android:name="com.issen.ebooker.news.NewsDetailFragment" />
-        <activity android:name="com.issen.ebooker.bookQuotes.BookQuoteDetailFragment" />
-        <activity android:name="com.issen.ebooker.user.UserProfileFragment" />
-        <activity
-            android:name="com.issen.ebooker.menu.SettingsFragment"
-            android:noHistory="true" />
-        <activity android:name="com.issen.ebooker.menu.AboutFragment" />
         <activity android:name="com.issen.ebooker.auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.issen.ebooker.auth.RegisterActivity" />
-        <activity android:name="com.issen.ebooker.BookReaderActivity" />
-        <activity android:name="com.issen.ebooker.print.PrintBooksFragment" />
-        <activity android:name="com.issen.ebooker.bookDetail.BookDetailFragment" />
-        <activity android:name="com.issen.ebooker.auth.EmailRecoveryActivity" />
     </application>
 
 </manifest>

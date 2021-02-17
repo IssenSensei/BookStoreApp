@@ -15,12 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:background="?attr/fullscreenBackgroundColor"
         android:contentDescription="@string/full_scale_cover"
         android:gravity="center"
         android:keepScreenOn="true"
         android:scaleType="fitXY"
         thumbnail="@{url}"
-        android:theme="@style/ThemeOverlay.BookStoreApp.FullscreenContainer"
         tools:context=".bookDetail.BookCoverFragment" />
 </layout>
