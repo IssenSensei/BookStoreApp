@@ -1,46 +1,84 @@
 package com.issen.ebooker.bookList
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import com.google.firebase.auth.FirebaseAuth
+import com.issen.ebooker.R
 import com.issen.ebooker.data.BooksRepository
 import com.issen.ebooker.data.domain.Book
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 
-class BookListViewModel(private val booksRepository: BooksRepository) : ViewModel() {
+class BookListViewModel(
+    private val booksRepository: BooksRepository,
+    val shelfId: Int,
+    val author: String,
+    val publisher: String,
+    application: Application
+) :
+    AndroidViewModel(application) {
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    var shelfId = -1
-    var author = ""
-    var publisher = ""
+    private lateinit var bookListSource: LiveData<List<Book>>
+    val bookList: MediatorLiveData<List<Book>> = MediatorLiveData()
 
-    private val _bookList = MutableLiveData<List<Book>>()
-    val bookList: LiveData<List<Book>>
-        get() {
-           return _bookList
-        }
+    private val _listTitle = MutableLiveData<String>()
+    val listTitle: LiveData<String>
+        get() = _listTitle
 
     init {
+        when {
+            shelfId != -1 -> {
+                getShelfBooks()
+                _listTitle.value = application.resources.getStringArray(R.array.shelves)[shelfId]
+            }
+            author != "" -> {
+                getAuthorBooks(author)
+                _listTitle.value = author
+                viewModelScope.launch {
+                    booksRepository.refreshAuthorBooks(author)
+                }
+            }
+            publisher != "" -> {
+                getPublisherBooks(publisher)
+                _listTitle.value = publisher
+                viewModelScope.launch {
+                    booksRepository.refreshPublisherBooks(publisher)
+                }
+            }
+        }
         viewModelScope.launch {
             booksRepository.refreshBooks()
         }
     }
 
-    fun getShelfBooks(id: Int) {
-        viewModelScope.launch {
-            _bookList.value = booksRepository.getShelfBooks(id)
+    private fun getShelfBooks() {
+        clearSource()
+        bookListSource = booksRepository.getShelfBooks(shelfId, auth.currentUser!!.uid)
+        bookList.addSource(bookListSource) {
+            bookList.value = it
         }
     }
 
-    fun getAuthorBooks(author: String) {
-        viewModelScope.launch {
-            _bookList.value = booksRepository.getAuthorBooks(author)
+    private fun getAuthorBooks(author: String) {
+        clearSource()
+        bookListSource = booksRepository.getAuthorBooks(author)
+        bookList.addSource(bookListSource) {
+            bookList.value = it
         }
     }
 
-    fun getPublisherBooks(publisher: String) {
-        viewModelScope.launch {
-            _bookList.value = booksRepository.getPublisherBooks(publisher)
+    private fun getPublisherBooks(publisher: String) {
+        clearSource()
+        bookListSource = booksRepository.getPublisherBooks(publisher)
+        bookList.addSource(bookListSource) {
+            bookList.value = it
+        }
+    }
+
+    private fun clearSource(){
+        if(::bookListSource.isInitialized){
+            bookList.removeSource(bookListSource)
         }
     }
 

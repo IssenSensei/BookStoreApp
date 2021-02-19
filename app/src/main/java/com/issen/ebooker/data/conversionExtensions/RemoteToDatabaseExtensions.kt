@@ -28,6 +28,13 @@ fun Volume.asDatabaseBookItem(pdfId: Int, epubId: Int, imageLinksId: Int?): Data
     )
 }
 
+fun Volume.asDatabaseUserBookItem(shelfIid: Int, uid: String): DatabaseUserBookItem {
+    return DatabaseUserBookItem(
+        id,
+        shelfIid,
+        uid
+    )
+}
 
 fun Pdf.asDatabasePdf(): DatabasePdf {
     return DatabasePdf(0, isAvailable, acsTokenLink)

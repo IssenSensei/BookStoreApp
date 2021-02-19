@@ -8,15 +8,12 @@ import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-private val okHttpClient = OkHttpClient.Builder()
-    .build()
-//
-//private val okHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
-//    val newRequest: Request = chain.request().newBuilder()
-//        .addHeader("Authorization", "Bearer ${BaseActivity.token}")
-//        .build()
-//    chain.proceed(newRequest)
-//}.build()
+private val okHttpClient = OkHttpClient.Builder().addInterceptor { chain ->
+    val newRequest: Request = chain.request().newBuilder()
+        .addHeader("Authorization", "Bearer ${BaseActivity.token}")
+        .build()
+    chain.proceed(newRequest)
+}.build()
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

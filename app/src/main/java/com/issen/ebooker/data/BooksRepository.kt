@@ -1,45 +1,51 @@
 package com.issen.ebooker.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.issen.ebooker.BaseActivity.Companion.token
-import com.issen.ebooker.BuildConfig
+import androidx.lifecycle.map
 import com.issen.ebooker.data.conversionExtensions.*
 import com.issen.ebooker.data.domain.Book
-import com.issen.ebooker.data.local.dao.BookDao
-import com.issen.ebooker.data.local.dao.EpubDao
-import com.issen.ebooker.data.local.dao.ImageLinksDao
-import com.issen.ebooker.data.local.dao.PdfDao
+import com.issen.ebooker.data.local.dao.*
 import com.issen.ebooker.data.remote.GoogleApiNetwork.googleApi
 import com.issen.ebooker.data.remote.models.ResponseBookshelfList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import com.issen.ebooker.EBookerApplication.Companion.favouriteShelfId
+import com.issen.ebooker.data.local.models.DatabaseUserBookItem
 
 class BooksRepository(
     private val bookDao: BookDao,
     private val pdfDao: PdfDao,
     private val epubDao: EpubDao,
-    private val imageLinksDao: ImageLinksDao
+    private val imageLinksDao: ImageLinksDao,
+    private val userBookDao: UserBookDao
 ) {
 
     val books: LiveData<List<Book>> = Transformations.map(bookDao.getBooks()) {
         it.asDomainModel()
     }
 
-    suspend fun getShelfBooks(id: Int): List<Book> {
-        return googleApi.getShelfBooks("Bearer $token", id).asDomainModel()
+    fun getShelfBooks(id: Int, uid: String): LiveData<List<Book>> {
+        return bookDao.getShelfBooks(id, uid).map {
+            it.asDomainModel()
+        }
     }
 
     suspend fun getUserShelves(): ResponseBookshelfList {
-        return googleApi.getUserShelves("Bearer $token")
+        return googleApi.getUserShelves()
     }
 
-    suspend fun getAuthorBooks(author: String): List<Book> {
-        return googleApi.getQueriedBooks("inauthor:$author", "Bearer $token").asDomainModel()
+    fun getAuthorBooks(author: String): LiveData<List<Book>> {
+        return bookDao.getAuthorBooks(author).map {
+            it.asDomainModel()
+        }
     }
 
-    suspend fun getPublisherBooks(publisher: String): List<Book> {
-        return googleApi.getQueriedBooks("inpublisher$publisher", "Bearer $token").asDomainModel()
+    fun getPublisherBooks(publisher: String): LiveData<List<Book>> {
+        return bookDao.getPublisherBooks(publisher).map {
+            it.asDomainModel()
+        }
     }
 
     suspend fun refreshBooks() {
@@ -50,30 +56,76 @@ class BooksRepository(
                 val imageLinksId = if (it.volumeInfo.imageLinks != null) {
                     imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
                 } else null
+                Log.e("wwwwww", it.toString())
                 bookDao.insert(it.asDatabaseBookItem(pdfId.toInt(), epubId.toInt(), imageLinksId?.toInt()))
             }
         }
     }
 
-    fun checkIsFavourite(bookId: String): Boolean {
-        //todo check if book is on user's favourites shelf
-        return false
+    suspend fun refreshShelves(uid: String) {
+        withContext(Dispatchers.IO) {
+            googleApi.getUserShelves().items?.forEach { bookshelf ->
+                if (bookshelf.id < 9) {
+                    val bookList = mutableListOf<DatabaseUserBookItem>()
+                    googleApi.getShelfBooks(bookshelf.id).items?.forEach {
+                        Log.e("qqqqqq", it.toString())
+                        bookList.add(DatabaseUserBookItem(it.id, bookshelf.id, uid))
+                        val pdfId = pdfDao.insert(it.accessInfo.pdf.asDatabasePdf())
+                        val epubId = epubDao.insert(it.accessInfo.epub.asDatabaseEpub())
+                        val imageLinksId = if (it.volumeInfo.imageLinks != null) {
+                            imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
+                        } else null
+                        bookDao.insert(it.asDatabaseBookItem(pdfId.toInt(), epubId.toInt(), imageLinksId?.toInt()))
+                    }
+                    userBookDao.refreshShelfBooks(bookList)
+                }
+            }
+        }
     }
 
-    fun deleteFromFavourites(bookId: String) {
-        //todo delete book from user's favourites shelf
+    suspend fun refreshAuthorBooks(author: String) {
+        googleApi.getQueriedBooks("inauthor:$author").items?.forEach {
+            val pdfId = pdfDao.insert(it.accessInfo.pdf.asDatabasePdf())
+            val epubId = epubDao.insert(it.accessInfo.epub.asDatabaseEpub())
+            val imageLinksId = if (it.volumeInfo.imageLinks != null) {
+                imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
+            } else null
+            bookDao.insert(it.asDatabaseBookItem(pdfId.toInt(), epubId.toInt(), imageLinksId?.toInt()))
+        }
     }
 
-    fun addToFavourites(bookId: String) {
-        //todo add book to user's favourites shelf
+    suspend fun refreshPublisherBooks(publisher: String) {
+        withContext(Dispatchers.IO) {
+            googleApi.getQueriedBooks("inpublisher$publisher").items?.forEach {
+                val pdfId = pdfDao.insert(it.accessInfo.pdf.asDatabasePdf())
+                val epubId = epubDao.insert(it.accessInfo.epub.asDatabaseEpub())
+                val imageLinksId = if (it.volumeInfo.imageLinks != null) {
+                    imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
+                } else null
+                bookDao.insert(it.asDatabaseBookItem(pdfId.toInt(), epubId.toInt(), imageLinksId?.toInt()))
+            }
+        }
     }
 
-    fun getBookTitle(bookId: String): String {
-        //todo get book title from room if it is cashed, google api otherwise
-        return "Hello world title"
+    suspend fun checkIsFavourite(bookId: String, uid: String): Boolean {
+        return userBookDao.checkIsFavourite(bookId, favouriteShelfId, uid)
     }
 
-    fun getBookRating(bookId: String): Float {
+    suspend fun deleteFromFavourites(bookId: String, uid: String) {
+        userBookDao.removeFromFavourites(DatabaseUserBookItem(bookId, favouriteShelfId, uid))
+        googleApi.removeFromUserShelf(favouriteShelfId, bookId)
+    }
+
+    suspend fun addToFavourites(bookId: String, uid: String) {
+        userBookDao.addToFavourites(DatabaseUserBookItem(bookId, favouriteShelfId, uid))
+        googleApi.addToUserShelf(favouriteShelfId, bookId)
+    }
+
+    suspend fun getBookTitle(bookId: String): String {
+        return bookDao.getBookTitle(bookId) ?: ""
+    }
+
+    suspend fun getBookRating(bookId: String): Float {
         //todo get book average rating
         return 2.5f
     }

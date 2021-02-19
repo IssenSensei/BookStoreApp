@@ -17,7 +17,8 @@ import com.issen.ebooker.data.local.models.*
         DatabaseShelf::class,
         DatabaseUserBookItem::class,
         DatabaseQuotationItem::class,
-        DatabaseReviewItem::class],
+        DatabaseReviewItem::class,
+        DatabaseUser::class],
     version = 1
 )
 @TypeConverters(com.issen.ebooker.data.local.TypeConverters::class)

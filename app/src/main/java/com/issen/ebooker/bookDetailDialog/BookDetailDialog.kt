@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,7 +16,8 @@ class BookDetailDialog : BottomSheetDialogFragment(), BookDetailDialogListener {
     private val safeArgs: BookDetailDialogArgs by navArgs()
     val viewModel: BookDetailDialogViewModel by viewModels {
         BookDetailDialogViewModelFactory(
-            (requireActivity().application as EBookerApplication).booksRepository
+            (requireActivity().application as EBookerApplication).booksRepository,
+            safeArgs.book
         )
     }
 
@@ -26,7 +26,6 @@ class BookDetailDialog : BottomSheetDialogFragment(), BookDetailDialogListener {
         savedInstanceState: Bundle?
     ): View {
         val binding = DialogBookDetailBinding.inflate(inflater, container, false)
-        viewModel.book = safeArgs.book
         binding.viewModel = viewModel
         binding.listener = this
         binding.lifecycleOwner = this
