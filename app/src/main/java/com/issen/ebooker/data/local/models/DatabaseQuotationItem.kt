@@ -9,15 +9,15 @@ data class DatabaseQuotationItem constructor(
 
     @ColumnInfo(name = "quotation_id")
     @PrimaryKey(autoGenerate = true)
-    val quotationId: Int,
+    val quotationId: Int = 0,
 
-    val content: String,
+    val content: String = "",
 
     @ColumnInfo(name = "book_id")
-    val bookId: String,
+    val bookId: String = "",
 
     @ColumnInfo(name = "user_id")
-    val userId: String
+    val userId: String = ""
 )
 
 

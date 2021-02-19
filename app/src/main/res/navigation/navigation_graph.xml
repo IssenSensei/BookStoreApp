@@ -192,7 +192,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_book_quote_list"
-        android:name="com.issen.ebooker.bookQuoteList.BookQuoteListFragment"
+        android:name="com.issen.ebooker.bookQuoteList.BookQuotesListFragment"
         android:label="fragment_book_quote_list"
         tools:layout="@layout/fragment_book_quote_list">
         <argument

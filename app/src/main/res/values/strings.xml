@@ -1,10 +1,12 @@
 <resources>
+    <string name="app_name">EBooker</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="menu_profile_edit">Edytuj profil</string>
     <string name="logout">Wyloguj</string>
     <string name="menu_profile">Zobacz profil</string>
     <string name="no_book_data_to_show">Brak książek do wyświetlenia</string>
     <string name="no_review_data_to_show">Ta pozycja nie ma jeszcze recenzji</string>
+    <string name="no_quotation_data_to_show">Ta pozycja nie posiada jeszcze wyróżnionych cytatów</string>
     <string name="profile_edit_button">Edytuj profil</string>
     <string name="profile_change_password">Zmień hasło</string>
     <string name="profile_delete_account">Usuń konto</string>
