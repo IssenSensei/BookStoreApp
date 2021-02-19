@@ -48,12 +48,6 @@
             android:id="@+id/action_nav_book_detail_to_nav_books_quotes"
             app:destination="@id/nav_books_quotes" />
         <action
-            android:id="@+id/action_nav_book_detail_to_nav_author_books"
-            app:destination="@id/nav_author_books" />
-        <action
-            android:id="@+id/action_nav_book_detail_to_nav_print_books"
-            app:destination="@id/nav_print_books" />
-        <action
             android:id="@+id/action_nav_book_detail_to_nav_user_quotes"
             app:destination="@id/nav_user_quotes" />
         <argument
@@ -70,80 +64,6 @@
             android:id="@+id/action_nav_book_detail_to_nav_book_detail_dialog"
             app:destination="@id/nav_book_detail_dialog" />
     </fragment>
-    <fragment
-        android:id="@+id/nav_books_quotes"
-        android:name="com.issen.ebooker.bookQuotes.BookQuotesFragment"
-        android:label="BookQuotesFragment"
-        tools:layout="@layout/layout_book_quote_list">
-        <action
-            android:id="@+id/action_nav_books_quotes_to_nav_book_quote_detail"
-            app:destination="@id/nav_book_quote_detail" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_book_quote_detail"
-        android:name="com.issen.ebooker.bookQuotes.BookQuoteDetailFragment"
-        android:label="BookQuoteDetailFragment"
-        tools:layout="@layout/activity_book_quote_details" />
-    <fragment
-        android:id="@+id/nav_news_detail"
-        android:name="com.issen.ebooker.news.NewsDetailFragment"
-        android:label="NewsDetailFragment"
-        tools:layout="@layout/activity_news_details">
-        <action
-            android:id="@+id/action_nav_news_detail_to_nav_book_detail"
-            app:destination="@id/nav_book_detail" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_news"
-        android:name="com.issen.ebooker.news.NewsFragment"
-        android:label="NewsFragment"
-        tools:layout="@layout/layout_news_list">
-        <action
-            android:id="@+id/action_nav_news_to_nav_news_detail"
-            app:destination="@id/nav_news_detail" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_author_books"
-        android:name="com.issen.ebooker.author.AuthorBooksFragment"
-        android:label="AuthorBooksFragment"
-        tools:layout="@layout/fragment_book_list">
-        <action
-            android:id="@+id/action_nav_author_books_to_nav_book_detail"
-            app:destination="@id/nav_book_detail" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_print_books"
-        android:name="com.issen.ebooker.print.PrintBooksFragment"
-        android:label="PrintBooksFragment"
-        tools:layout="@layout/fragment_book_list">
-        <action
-            android:id="@+id/action_nav_print_books_to_nav_book_detail"
-            app:destination="@id/nav_book_detail" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_settings"
-        android:name="com.issen.ebooker.menu.SettingsFragment"
-        android:label="SettingsFragment"
-        tools:layout="@layout/app_settings_activity_layout" />
-    <fragment
-        android:id="@+id/nav_profile"
-        android:name="com.issen.ebooker.user.UserProfileFragment"
-        android:label="UserProfileFragment"
-        tools:layout="@layout/activity_profile" />
-    <fragment
-        android:id="@+id/nav_user_quotes"
-        android:name="com.issen.ebooker.userQuotes.UserQuotesFragment"
-        android:label="UserQuotesFragment"
-        tools:layout="@layout/layout_user_quotes_list">
-        <action
-            android:id="@+id/action_nav_user_quotes_to_nav_user_quote_detail"
-            app:destination="@id/nav_user_quote_detail" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_user_quote_detail"
-        android:name="com.issen.ebooker.userQuotes.UserQuoteDetailFragment"
-        android:label="UserQuoteDetailFragment"
-        tools:layout="@layout/activity_user_quote_details" />
     <fragment
         android:id="@+id/nav_book_cover"
         android:name="com.issen.ebooker.bookDetail.BookCoverFragment"
