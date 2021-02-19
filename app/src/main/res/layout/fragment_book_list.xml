@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center|center_horizontal|center_vertical"
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-                android:text="@string/no_data_to_show"
+                android:text="@string/no_book_data_to_show"
                 android:visibility="@{viewModel.bookList.size() > 0 ? View.GONE : View.VISIBLE}" />
         </FrameLayout>
 </layout>

@@ -67,4 +67,14 @@ class BooksRepository(
     fun addToFavourites(bookId: String) {
         //todo add book to user's favourites shelf
     }
+
+    fun getBookTitle(bookId: String): String {
+        //todo get book title from room if it is cashed, google api otherwise
+        return "Hello world title"
+    }
+
+    fun getBookRating(bookId: String): Float {
+        //todo get book average rating
+        return 2.5f
+    }
 }

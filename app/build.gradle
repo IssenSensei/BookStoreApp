@@ -50,10 +50,12 @@ dependencies {
     implementation "androidx.core:core-ktx:$version_core"
 
     //firebase
-    implementation platform('com.google.firebase:firebase-bom:26.4.0')
+    implementation platform('com.google.firebase:firebase-bom:26.5.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
 
     // google maps library ------------------------------------------------------------------------
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
