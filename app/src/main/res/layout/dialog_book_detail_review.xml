@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.issen.ebooker.bookDetail.BookDetailViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_xlarge"
+        android:padding="@dimen/spacing_xlarge">
+
+        <RatingBar
+            android:id="@+id/dialog_book_detail_review_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:secondaryProgressTint="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dialog_book_detail_review_rating_text"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            roundedRatingText="@{viewModel.rating}"
+            app:layout_constraintEnd_toEndOf="@id/dialog_book_detail_review_rating"
+            app:layout_constraintStart_toStartOf="@id/dialog_book_detail_review_rating"
+            app:layout_constraintTop_toBottomOf="@id/dialog_book_detail_review_rating" />
+
+        <EditText
+            android:id="@+id/dialog_book_detail_review_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:background="@android:color/transparent"
+            android:hint="@string/add_comment"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_book_detail_review_rating_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

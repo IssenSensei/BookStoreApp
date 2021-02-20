@@ -4,13 +4,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
-            type="com.issen.ebooker.bookDetailDialog.BookDetailDialogViewModel" />
+            type="com.issen.ebooker.bookDetail.BookDetailViewModel" />
 
         <variable
             name="listener"
-            type="com.issen.ebooker.bookDetailDialog.BookDetailDialogListener" />
+            type="com.issen.ebooker.bookDetail.BookDetailDialogListener" />
 
     </data>
 
@@ -23,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium"
             android:orientation="vertical"
-            tools:context=".bookDetailDialog.BookDetailDialog">
+            tools:context=".bookDetail.BookDetailDialog">
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Title"
@@ -71,6 +73,16 @@
                 android:gravity="center"
                 android:onClick="@{() -> listener.showReviews(viewModel.book.bookId)}"
                 android:text="@string/show_reviews" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_medium"
+                android:gravity="center"
+                android:onClick="@{() -> listener.addReview(viewModel.book.bookId)}"
+                android:text="@string/add_review"
+                android:visibility="@{viewModel.reviewedByUser ? View.GONE : View.VISIBLE}" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

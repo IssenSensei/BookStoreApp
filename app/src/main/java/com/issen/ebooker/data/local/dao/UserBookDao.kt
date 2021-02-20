@@ -18,12 +18,12 @@ interface UserBookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun refreshShelfBooks(bookList: MutableList<DatabaseUserBookItem>)
 
-    @Query("SELECT EXISTS (SELECT * from user_books_table where book_id = :bookId and shelf_id = :favouriteShelfId and user_id = :uid)")
-    suspend fun checkIsFavourite(bookId: String, favouriteShelfId: Int, uid: String): Boolean
+    @Query("SELECT EXISTS (SELECT * from user_books_table where book_id = :bookId and shelf_id = :shelfId and user_id = :uid)")
+    fun checkIsOnShelf(bookId: String, shelfId: Int, uid: String): LiveData<Boolean>
 
     @Insert
-    suspend fun addToFavourites(databaseUserBookItem: DatabaseUserBookItem)
+    suspend fun addToShelf(databaseUserBookItem: DatabaseUserBookItem)
 
     @Delete
-    suspend fun removeFromFavourites(databaseUserBookItem: DatabaseUserBookItem)
+    suspend fun removeFromShelf(databaseUserBookItem: DatabaseUserBookItem)
 }

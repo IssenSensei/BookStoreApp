@@ -12,6 +12,7 @@ import com.issen.ebooker.data.remote.models.ResponseBookshelfList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.issen.ebooker.EBookerApplication.Companion.favouriteShelfId
+import com.issen.ebooker.data.local.models.DatabaseReviewItem
 import com.issen.ebooker.data.local.models.DatabaseUserBookItem
 
 class BooksRepository(
@@ -19,7 +20,8 @@ class BooksRepository(
     private val pdfDao: PdfDao,
     private val epubDao: EpubDao,
     private val imageLinksDao: ImageLinksDao,
-    private val userBookDao: UserBookDao
+    private val userBookDao: UserBookDao,
+    private val reviewDao: ReviewDao
 ) {
 
     val books: LiveData<List<Book>> = Transformations.map(bookDao.getBooks()) {
@@ -56,7 +58,6 @@ class BooksRepository(
                 val imageLinksId = if (it.volumeInfo.imageLinks != null) {
                     imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
                 } else null
-                Log.e("wwwwww", it.toString())
                 bookDao.insert(it.asDatabaseBookItem(pdfId.toInt(), epubId.toInt(), imageLinksId?.toInt()))
             }
         }
@@ -68,7 +69,6 @@ class BooksRepository(
                 if (bookshelf.id < 9) {
                     val bookList = mutableListOf<DatabaseUserBookItem>()
                     googleApi.getShelfBooks(bookshelf.id).items?.forEach {
-                        Log.e("qqqqqq", it.toString())
                         bookList.add(DatabaseUserBookItem(it.id, bookshelf.id, uid))
                         val pdfId = pdfDao.insert(it.accessInfo.pdf.asDatabasePdf())
                         val epubId = epubDao.insert(it.accessInfo.epub.asDatabaseEpub())
@@ -107,18 +107,22 @@ class BooksRepository(
         }
     }
 
-    suspend fun checkIsFavourite(bookId: String, uid: String): Boolean {
-        return userBookDao.checkIsFavourite(bookId, favouriteShelfId, uid)
+    suspend fun removeFromShelf(bookId: String, shelfId: Int, uid: String) {
+        userBookDao.removeFromShelf(DatabaseUserBookItem(bookId, shelfId, uid))
+        googleApi.removeFromUserShelf(shelfId, bookId)
     }
 
-    suspend fun deleteFromFavourites(bookId: String, uid: String) {
-        userBookDao.removeFromFavourites(DatabaseUserBookItem(bookId, favouriteShelfId, uid))
-        googleApi.removeFromUserShelf(favouriteShelfId, bookId)
+    fun checkIsOnShelf(bookId: String, shelfId: Int, uid: String): LiveData<Boolean> {
+        return userBookDao.checkIsOnShelf(bookId, shelfId, uid)
     }
 
-    suspend fun addToFavourites(bookId: String, uid: String) {
-        userBookDao.addToFavourites(DatabaseUserBookItem(bookId, favouriteShelfId, uid))
-        googleApi.addToUserShelf(favouriteShelfId, bookId)
+    suspend fun addToShelf(bookId: String, shelfId: Int, uid: String) {
+        userBookDao.addToShelf(DatabaseUserBookItem(bookId, shelfId, uid))
+        googleApi.addToUserShelf(shelfId, bookId)
+    }
+
+    suspend fun addToLocalShelf(bookId: String, shelfId: Int, uid: String) {
+        userBookDao.addToShelf(DatabaseUserBookItem(bookId, shelfId, uid))
     }
 
     suspend fun getBookTitle(bookId: String): String {
@@ -128,5 +132,9 @@ class BooksRepository(
     suspend fun getBookRating(bookId: String): Float {
         //todo get book average rating
         return 2.5f
+    }
+
+    suspend fun saveReview(databaseReviewItem: DatabaseReviewItem) {
+        reviewDao.saveReview(databaseReviewItem)
     }
 }

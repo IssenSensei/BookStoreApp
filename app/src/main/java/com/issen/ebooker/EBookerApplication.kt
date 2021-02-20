@@ -14,7 +14,8 @@ class EBookerApplication : Application() {
             database.pdfDao,
             database.epubDao,
             database.imageLinksDao,
-            database.userBookDao
+            database.userBookDao,
+            database.reviewDao
         )
     }
 

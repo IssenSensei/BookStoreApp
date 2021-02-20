@@ -74,7 +74,7 @@
     </fragment>
     <dialog
         android:id="@+id/nav_book_detail_dialog"
-        android:name="com.issen.ebooker.bookDetailDialog.BookDetailDialog"
+        android:name="com.issen.ebooker.bookDetail.BookDetailDialog"
         tools:layout="@layout/dialog_book_detail">
         <argument
             android:name="book"
@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_nav_book_detail_dialog_to_nav_book_reviews_list"
             app:destination="@id/nav_book_reviews_list" />
+        <action
+            android:id="@+id/action_nav_book_detail_dialog_to_nav_book_detail_review_dialog"
+            app:destination="@id/nav_book_detail_review_dialog" />
     </dialog>
     <fragment
         android:id="@+id/nav_book_e_pub_reader"
@@ -128,4 +131,9 @@
             android:name="bookId"
             app:argType="string" />
     </fragment>
+    <dialog
+        android:id="@+id/nav_book_detail_review_dialog"
+        android:name="com.issen.ebooker.bookDetail.BookDetailReviewDialog"
+        android:label="BookDetailReviewDialog"
+        tools:layout="@layout/dialog_book_detail_review" />
 </navigation>

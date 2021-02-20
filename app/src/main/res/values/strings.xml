@@ -70,4 +70,10 @@
     <string name="show_reviews">Zobacz opinie</string>
     <string name="read_as_epub">Czytaj (epub)</string>
     <string name="read_as_pdf">Czytaj (pdf)</string>
+    <string name="add_comment">Dodaj komentarz..</string>
+    <string name="add_review">Dodaj opinię</string>
+    <string name="rating_text">%1$s/5</string>
+    <string name="set_rating">Dodaj ocenę</string>
+    <string name="save">Zapisz</string>
+    <string name="cancel">Anuluj</string>
 </resources>

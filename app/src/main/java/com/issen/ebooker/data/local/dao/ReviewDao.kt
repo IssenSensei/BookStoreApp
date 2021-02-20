@@ -12,5 +12,5 @@ interface ReviewDao {
     fun getReviews(): LiveData<List<DatabaseReviewItem>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(databaseReviewItem: DatabaseReviewItem)
+    suspend fun saveReview(databaseReviewItem: DatabaseReviewItem)
 }

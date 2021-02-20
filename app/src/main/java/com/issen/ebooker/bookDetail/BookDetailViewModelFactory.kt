@@ -3,6 +3,7 @@ package com.issen.ebooker.bookDetail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.issen.ebooker.data.BooksRepository
+import com.issen.ebooker.data.domain.Book
 import java.lang.IllegalArgumentException
 
 class BookDetailViewModelFactory(private val booksRepository: BooksRepository) : ViewModelProvider.Factory {
@@ -14,6 +15,4 @@ class BookDetailViewModelFactory(private val booksRepository: BooksRepository) :
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-
-
 }

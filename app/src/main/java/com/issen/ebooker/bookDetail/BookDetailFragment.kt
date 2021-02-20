@@ -5,38 +5,51 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.issen.ebooker.EBookerApplication
+import com.issen.ebooker.R
 import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.databinding.FragmentBookDetailBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 class BookDetailFragment : Fragment(), AuthorListener, BookDetailListener {
 
-    private val viewModel: BookDetailViewModel by viewModels {
+    private val navArgs: BookDetailFragmentArgs by navArgs()
+    private val sharedViewModel: BookDetailViewModel by activityViewModels {
         BookDetailViewModelFactory(
             (requireActivity().application as EBookerApplication).booksRepository
         )
     }
-    private val navArgs: BookDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding = FragmentBookDetailBinding.inflate(inflater, container, false)
-        viewModel.book = navArgs.book
-        requireActivity().toolbar.title = viewModel.book.title
+        sharedViewModel.setSelectedBook(navArgs.book)
+        requireActivity().toolbar.title = sharedViewModel.book.title
 
-        val adapter = BookAuthorsRecyclerViewAdapter(viewModel.book.authors ?: listOf(), this)
+        val adapter = BookAuthorsRecyclerViewAdapter(sharedViewModel.book.authors ?: listOf(), this)
         binding.bookDetailAuthorRecycler.adapter = adapter
 
-        binding.viewModel = viewModel
+        sharedViewModel.addReview.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                sharedViewModel.setAddReview(false)
+                addReview()
+            }
+        })
+
+        binding.viewModel = sharedViewModel
         binding.listener = this
         binding.lifecycleOwner = this
         return binding.root
+    }
+
+    private fun addReview() {
+        findNavController().navigate(R.id.nav_book_detail_review_dialog)
     }
 
     override fun onAuthorClicked(name: String) {
