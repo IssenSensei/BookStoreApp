@@ -30,8 +30,4 @@ interface BookDao {
     @Transaction
     @Query("SELECT * FROM book_table WHERE authors like :author")
     fun getAuthorBooks(author: String): LiveData<List<DatabaseBook>>
-
-    fun saveReview(rating: Float, content: String) {
-        TODO("Not yet implemented")
-    }
 }

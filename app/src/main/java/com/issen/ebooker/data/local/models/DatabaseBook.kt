@@ -8,18 +8,6 @@ data class DatabaseBook constructor(
     val databaseBookItem: DatabaseBookItem,
 
     @Relation(
-        parentColumn = "pdf_id",
-        entityColumn = "id"
-    )
-    val databasePdf: DatabasePdf,
-
-    @Relation(
-        parentColumn = "epub_id",
-        entityColumn = "id"
-    )
-    val databaseEpub: DatabaseEpub,
-
-    @Relation(
         parentColumn = "image_links_id",
         entityColumn = "id"
     )

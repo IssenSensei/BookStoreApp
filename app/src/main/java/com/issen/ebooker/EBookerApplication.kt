@@ -1,7 +1,6 @@
 package com.issen.ebooker
 
 import android.app.Application
-import com.google.firebase.auth.FirebaseAuth
 import com.issen.ebooker.data.BooksRepository
 import com.issen.ebooker.data.local.EBookerDatabase
 
@@ -11,8 +10,6 @@ class EBookerApplication : Application() {
     val booksRepository by lazy {
         BooksRepository(
             database.bookDao,
-            database.pdfDao,
-            database.epubDao,
             database.imageLinksDao,
             database.userBookDao,
             database.reviewDao

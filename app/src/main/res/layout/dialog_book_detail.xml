@@ -32,26 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_medium"
-                android:enabled="@{viewModel.book.domainEpub.available}"
-                android:gravity="center"
-                android:onClick="@{() -> listener.readAsEPub(viewModel.book.domainEpub.acsTokenLink)}"
-                android:text="@string/read_as_epub" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_medium"
-                android:enabled="@{viewModel.book.domainPdf.available}"
-                android:gravity="center"
-                android:onClick="@{() -> listener.readAsPdf(viewModel.book.domainPdf.acsTokenLink)}"
-                android:text="@string/read_as_pdf" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_medium"
                 android:gravity="center"
                 android:onClick="@{() -> listener.toggleFavourite()}"
                 android:text="@{viewModel.isFavourite? @string/remove_from_favourites : @string/add_to_favourites }" />

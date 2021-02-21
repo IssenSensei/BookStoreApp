@@ -16,13 +16,7 @@ data class DatabaseBookItem constructor(
     val description: String?,
 
     @ColumnInfo(name = "image_links_id")
-    val imageLinksId: Int?,
-
-    @ColumnInfo(name = "pdf_id")
-    val pdfId: Int?,
-
-    @ColumnInfo(name = "epub_id")
-    val epubId: Int?
+    val imageLinksId: Int?
 )
 
 

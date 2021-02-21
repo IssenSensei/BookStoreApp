@@ -8,7 +8,7 @@ import com.issen.ebooker.R
 
 @BindingAdapter("thumbnail")
 fun setThumbnail(view: ImageView, url: String?) {
-    Glide.with(view.context).load(url).placeholder(R.drawable.ic_search).into(view)
+    Glide.with(view.context).load(url).placeholder(R.drawable.ic_more).into(view)
 }
 
 @BindingAdapter("roundedRatingText")

@@ -29,14 +29,6 @@ class BookDetailDialog : BottomSheetDialogFragment(), BookDetailDialogListener {
         return binding.root
     }
 
-    override fun readAsEPub(link: String) {
-        findNavController().navigate(BookDetailDialogDirections.actionNavBookDetailDialogToNavBookEPubReader(link))
-    }
-
-    override fun readAsPdf(link: String) {
-        findNavController().navigate(BookDetailDialogDirections.actionNavBookDetailDialogToNavBookPdfReader(link))
-    }
-
     override fun toggleFavourite() {
         sharedViewModel.toggleFavourite()
     }

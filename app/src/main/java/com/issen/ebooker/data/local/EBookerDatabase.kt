@@ -11,8 +11,6 @@ import com.issen.ebooker.data.local.models.*
 @Database(
     entities = [
         DatabaseBookItem::class,
-        DatabasePdf::class,
-        DatabaseEpub::class,
         DatabaseImageLinks::class,
         DatabaseShelf::class,
         DatabaseUserBookItem::class,
@@ -24,8 +22,6 @@ import com.issen.ebooker.data.local.models.*
 @TypeConverters(com.issen.ebooker.data.local.TypeConverters::class)
 abstract class EBookerDatabase : RoomDatabase() {
     abstract val bookDao: BookDao
-    abstract val pdfDao: PdfDao
-    abstract val epubDao: EpubDao
     abstract val imageLinksDao: ImageLinksDao
     abstract val shelfDao: ShelfDao
     abstract val userBookDao: UserBookDao

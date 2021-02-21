@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -25,7 +26,8 @@ class LoginActivity : BaseActivity() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-    private val viewModel = AuthViewModel(this)
+    private val viewModel : AuthViewModel by viewModels()
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,8 +101,6 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun launchMain() {
-        val resultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
         resultLauncher.launch(Intent(this, MainActivity::class.java))
     }
 

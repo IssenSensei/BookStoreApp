@@ -8,9 +8,7 @@ data class Book(
     val authors: List<String>?,
     val publisher: String?,
     val description: String?,
-    val domainImageLinks: DomainImageLinks?,
-    val domainPdf: DomainPdf,
-    val domainEpub: DomainEpub
+    val domainImageLinks: DomainImageLinks?
 ) : Serializable {
     fun getShorterDescription(): String {
         return if (description != null) {

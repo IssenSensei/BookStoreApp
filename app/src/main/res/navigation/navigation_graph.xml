@@ -80,12 +80,6 @@
             android:name="book"
             app:argType="com.issen.ebooker.data.domain.Book" />
         <action
-            android:id="@+id/action_nav_book_detail_dialog_to_nav_book_e_pub_reader"
-            app:destination="@id/nav_book_e_pub_reader" />
-        <action
-            android:id="@+id/action_nav_book_detail_dialog_to_nav_book_pdf_reader"
-            app:destination="@id/nav_book_pdf_reader" />
-        <action
             android:id="@+id/action_nav_book_detail_dialog_to_nav_book_quote_list"
             app:destination="@id/nav_book_quote_list" />
         <action
@@ -95,24 +89,6 @@
             android:id="@+id/action_nav_book_detail_dialog_to_nav_book_detail_review_dialog"
             app:destination="@id/nav_book_detail_review_dialog" />
     </dialog>
-    <fragment
-        android:id="@+id/nav_book_e_pub_reader"
-        android:name="com.issen.ebooker.bookEPubReader.BookEPubReaderFragment"
-        android:label="fragment_book_e_pub_reader"
-        tools:layout="@layout/fragment_book_e_pub_reader">
-        <argument
-            android:name="url"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_book_pdf_reader"
-        android:name="com.issen.ebooker.bookPdfReader.BookPdfReaderFragment"
-        android:label="fragment_book_pdf_reader"
-        tools:layout="@layout/fragment_book_pdf_reader">
-        <argument
-            android:name="url"
-            app:argType="string" />
-    </fragment>
     <fragment
         android:id="@+id/nav_book_quote_list"
         android:name="com.issen.ebooker.bookQuoteList.BookQuotesListFragment"
