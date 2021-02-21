@@ -32,7 +32,6 @@
                 android:contentDescription="@string/book_detail_cover"
                 android:onClick="@{() -> listener.onThumbnailClicked(viewModel.book.domainImageLinks.thumbnail)}"
                 android:scaleType="center"
-                android:src="@drawable/background"
                 app:layout_collapseMode="parallax"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

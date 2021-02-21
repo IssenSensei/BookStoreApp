@@ -33,6 +33,14 @@ class BookDetailDialog : BottomSheetDialogFragment(), BookDetailDialogListener {
         sharedViewModel.toggleFavourite()
     }
 
+    override fun toggleToRead() {
+        sharedViewModel.toggleToRead()
+    }
+
+    override fun toggleHaveRead() {
+        sharedViewModel.toggleHaveRead()
+    }
+
     override fun showQuotes(id: String) {
         findNavController().navigate(BookDetailDialogDirections.actionNavBookDetailDialogToNavBookQuoteList(id))
     }

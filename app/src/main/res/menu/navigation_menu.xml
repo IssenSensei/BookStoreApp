@@ -9,11 +9,11 @@
             <menu>
                 <item
                     android:id="@+id/nav_book_library"
-                    android:icon="@drawable/books"
+                    android:icon="@drawable/ic_library"
                     android:title="@string/navigation_library"/>
                 <item
                     android:id="@+id/nav_book_search"
-                    android:icon="@drawable/books"
+                    android:icon="@drawable/ic_book_search"
                     android:title="@string/navigation_book_search"/>
             </menu>
         </item>
@@ -23,11 +23,11 @@
             <menu>
                 <item
                     android:id="@+id/nav_user_quotes"
-                    android:icon="@drawable/userquotes"
+                    android:icon="@drawable/ic_my_quotes"
                     android:title="@string/navigation_user_quotes"/>
                 <item
                     android:id="@+id/nav_books_quotes"
-                    android:icon="@drawable/bookquotes"
+                    android:icon="@drawable/ic_book_quotes"
                     android:title="@string/navigation_book_quotes" />
             </menu>
         </item>
@@ -37,11 +37,11 @@
             <menu>
                 <item
                     android:id="@+id/nav_settings"
-                    android:icon="@drawable/news"
+                    android:icon="@drawable/ic_settings"
                     android:title="@string/navigation_settings"/>
                 <item
                     android:id="@+id/nav_logout"
-                    android:icon="@drawable/menu"
+                    android:icon="@drawable/ic_logout"
                     android:title="@string/navigation_logout"/>
             </menu>
         </item>
