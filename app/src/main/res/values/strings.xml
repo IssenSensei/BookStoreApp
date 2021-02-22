@@ -47,6 +47,9 @@
     <string name="recommendations_description">Recommendations book list</string>
     <string name="recently_viewed_description">Recently viewed book list</string>
     <string name="nav_library_header">Biblioteka</string>
+    <string name="nav_quotes_header">Biblioteka</string>
+    <string name="nav_reviews_header">Opinie</string>
+    <string name="nav_settings_header">Ustawienia</string>
     <string name="show_more_options">Więcej opcji</string>
     <string name="book_detail_cover">Zdjęcie</string>
     <string name="no_description">Brak opisu</string>
@@ -86,4 +89,24 @@
     <string name="quotes_option_icon">Quotes option icon</string>
     <string name="reviews_option_icon">Reviews option icon</string>
     <string name="add_review_option_icon">Add review option icon</string>
+
+    <string name="list_visibility_header">Biblioteka</string>
+    <string name="favourites_summary_on">Pokazuj listę ulubionych</string>
+    <string name="favourites_summary_off">Nie pokazuj listy ulubionych</string>
+    <string name="reading_now_summary_on">Pokazuj listę obecnie czytanych</string>
+    <string name="reading_now_summary_off">Nie pokazuj listy obecnie czytanych</string>
+    <string name="to_read_summary_on">Pokazuj listę do przeczytania</string>
+    <string name="to_read_summary_off">Nie pokazuj listy do przeczytania</string>
+    <string name="have_read_summary_on">Pokazuj listę przeczytanych</string>
+    <string name="have_read_summary_off">Nie pokazuj listy przeczytanych</string>
+    <string name="purchased_summary_on">Pokazuj listę zakupionych</string>
+    <string name="purchased_summary_off">Nie pokazuj listy zakupionych</string>
+    <string name="ebooks_summary_on">Pokazuj listę eBooków</string>
+    <string name="ebooks_summary_off">Nie pokazuj listy eBooków</string>
+    <string name="reviewed_summary_on">Pokazuj listę zrecenzowanych</string>
+    <string name="reviewed_summary_off">Nie pokazuj listy zrecenzowanych</string>
+    <string name="recommendations_summary_on">Pokazuj listę polecanych</string>
+    <string name="recommendations_summary_off">Nie pokazuj listy polecanych</string>
+    <string name="recently_viewed_summary_on">Pokazuj listę ostatnio przeglądanych</string>
+    <string name="recently_viewed_summary_off">Nie pokazuj listy ostatnio przeglądanych</string>
 </resources>

@@ -1,0 +1,70 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/list_visibility_header">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="favourites"
+            app:summaryOff="@string/favourites_summary_off"
+            app:summaryOn="@string/favourites_summary_on"
+            app:title="@string/favourites_header" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="reading_now"
+            app:summaryOff="@string/reading_now_summary_off"
+            app:summaryOn="@string/reading_now_summary_on"
+            app:title="@string/reading_now_header" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="to_read"
+            app:summaryOff="@string/to_read_summary_off"
+            app:summaryOn="@string/to_read_summary_on"
+            app:title="@string/to_read_header" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="have_read"
+            app:summaryOff="@string/have_read_summary_off"
+            app:summaryOn="@string/have_read_summary_on"
+            app:title="@string/have_read_header" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="purchased"
+            app:summaryOff="@string/purchased_summary_off"
+            app:summaryOn="@string/purchased_summary_on"
+            app:title="@string/purchased_header" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="ebooks"
+            app:summaryOff="@string/ebooks_summary_off"
+            app:summaryOn="@string/ebooks_summary_on"
+            app:title="@string/ebooks_header" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="reviewed"
+            app:summaryOff="@string/reviewed_summary_off"
+            app:summaryOn="@string/reviewed_summary_on"
+            app:title="@string/reviewed_header" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="recommendations"
+            app:summaryOff="@string/recommendations_summary_off"
+            app:summaryOn="@string/recommendations_summary_on"
+            app:title="@string/recommendations_header" />
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="recently_viewed"
+            app:summaryOff="@string/recently_viewed_summary_off"
+            app:summaryOn="@string/recently_viewed_summary_on"
+            app:title="@string/recently_viewed_header" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

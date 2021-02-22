@@ -20,7 +20,6 @@
     <fragment
         android:id="@+id/nav_book_list"
         android:name="com.issen.ebooker.bookList.BookListFragment"
-        android:label="BookListFragment"
         tools:layout="@layout/fragment_book_list">
         <action
             android:id="@+id/action_nav_book_list_to_nav_book_detail"
@@ -92,7 +91,7 @@
     <fragment
         android:id="@+id/nav_book_quote_list"
         android:name="com.issen.ebooker.bookQuoteList.BookQuotesListFragment"
-        android:label="fragment_book_quote_list"
+        android:label="@string/nav_quotes_header"
         tools:layout="@layout/fragment_book_quote_list">
         <argument
             android:name="bookId"
@@ -101,7 +100,7 @@
     <fragment
         android:id="@+id/nav_book_reviews_list"
         android:name="com.issen.ebooker.bookReviewsList.BookReviewsListFragment"
-        android:label="fragment_book_reviews_list"
+        android:label="@string/nav_reviews_header"
         tools:layout="@layout/fragment_book_reviews_list">
         <argument
             android:name="bookId"
@@ -110,6 +109,9 @@
     <dialog
         android:id="@+id/nav_book_detail_review_dialog"
         android:name="com.issen.ebooker.bookDetail.BookDetailReviewDialog"
-        android:label="BookDetailReviewDialog"
         tools:layout="@layout/dialog_book_detail_review" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.issen.ebooker.settings.SettingsFragment"
+        android:label="@string/nav_settings_header" />
 </navigation>
