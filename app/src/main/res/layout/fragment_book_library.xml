@@ -30,7 +30,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.readingShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.areReadingNowObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_reading_header"
@@ -50,7 +52,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/reading_description"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.readingShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -61,23 +62,27 @@
                 android:id="@+id/library_reading_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_book_library" />
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.areReadingNowObserved}"
+                listSize="@{viewModel.readingList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
-                android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.readingList.size() == 0? View.VISIBLE : View.GONE}" />
+                android:textColor="@color/colorAccent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.toReadShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.areToReadObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_to_read_header"
@@ -97,7 +102,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/to_read_description"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.toReadShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -107,6 +111,7 @@
                 android:id="@+id/library_to_read_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -116,12 +121,13 @@
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.areToReadObserved}"
+                listSize="@{viewModel.toReadList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.toReadList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/library_to_read_header" />
@@ -129,7 +135,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.favouriteShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.areFavouritesObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_favourites_header"
@@ -149,7 +157,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/favourites_description"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.favouriteShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -159,6 +166,7 @@
                 android:id="@+id/library_favourites_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -168,12 +176,13 @@
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.areFavouritesObserved}"
+                listSize="@{viewModel.favouriteList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.favouriteList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/library_favourites_header" />
@@ -181,7 +190,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.haveReadShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.areHaveReadObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_have_read_header"
@@ -201,7 +212,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/have_read_description"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.haveReadShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -211,6 +221,7 @@
                 android:id="@+id/library_have_read_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -220,12 +231,13 @@
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.areHaveReadObserved}"
+                listSize="@{viewModel.haveReadList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.haveReadList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/library_have_read_header" />
@@ -233,7 +245,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.purchasedShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.arePurchasedObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_purchased_header"
@@ -253,7 +267,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/purchased_description"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.purchasedShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -263,6 +276,7 @@
                 android:id="@+id/library_purchased_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -272,12 +286,13 @@
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.arePurchasedObserved}"
+                listSize="@{viewModel.purchasedList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.purchasedList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/library_purchased_header" />
@@ -285,7 +300,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.myEBooksShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.areEBooksObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_ebooks_header"
@@ -305,7 +322,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/e_books_description"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.myEBooksShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -315,6 +331,7 @@
                 android:id="@+id/library_ebooks_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -324,12 +341,13 @@
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.areEBooksObserved}"
+                listSize="@{viewModel.eBooksList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.eBooksList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/library_ebooks_header" />
@@ -337,7 +355,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.reviewedShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.areReviewedObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_reviewed_header"
@@ -357,7 +377,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/reviewed_description"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.reviewedShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -367,6 +386,7 @@
                 android:id="@+id/library_reviewed_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -376,12 +396,13 @@
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.areReviewedObserved}"
+                listSize="@{viewModel.reviewedList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.reviewedList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/library_reviewed_header" />
@@ -389,7 +410,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.recommendationsShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.areRecommendationsObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_recommendations_header"
@@ -409,7 +432,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/recommendations_header"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.recommendationsShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -419,6 +441,7 @@
                 android:id="@+id/library_recommendations_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -428,12 +451,13 @@
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.areRecommendationsObserved}"
+                listSize="@{viewModel.recommendationsList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.recommendationsList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/library_recommendations_header" />
@@ -441,7 +465,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="@{() -> listener.onShelfSelected(viewModel.recentlyViewedShelfId)}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.areRecentlyViewedObserved? View.VISIBLE : View.GONE}">
 
                 <TextView
                     android:id="@+id/library_recently_viewed_header"
@@ -461,7 +487,6 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/recently_viewed_description"
-                    android:onClick="@{() -> listener.onShelfSelected(viewModel.recentlyViewedShelfId)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_arrow_right"
                     android:tint="@color/colorPrimary" />
@@ -471,6 +496,7 @@
                 android:id="@+id/library_recently_viewed_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -480,12 +506,13 @@
 
             <TextView
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                isObserving="@{viewModel.areRecentlyViewedObserved}"
+                listSize="@{viewModel.recentlyViewedList.size()}"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:gravity="center"
                 android:text="@string/no_books_to_show"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{viewModel.recentlyViewedList.size() == 0? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/library_recently_viewed_header" />
