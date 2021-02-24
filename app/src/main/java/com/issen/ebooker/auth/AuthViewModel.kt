@@ -28,4 +28,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
         _accessTokenObtained.value = true
     }
+
+    fun clearAccessTokenObtained(){
+        _accessTokenObtained.value = false
+    }
 }

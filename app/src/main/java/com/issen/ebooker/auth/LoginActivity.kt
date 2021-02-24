@@ -3,9 +3,9 @@ package com.issen.ebooker.auth
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -20,19 +20,22 @@ import com.issen.ebooker.MainActivity
 import com.issen.ebooker.R
 import kotlinx.android.synthetic.main.activity_login.*
 
-
-//todo fast made auth solution, may be full of errors and is inelegant, to fix
 class LoginActivity : BaseActivity() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-    private val viewModel : AuthViewModel by viewModels()
-    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
+    private val viewModel: AuthViewModel by viewModels()
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
+
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
+            handleSignInResult(task)
+        }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestScopes(Scope(viewModel.bookScope))
@@ -42,48 +45,23 @@ class LoginActivity : BaseActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        viewModel.accessTokenObtained.observe(this, Observer {
+        viewModel.accessTokenObtained.observe(this, {
             if (it) {
                 launchMain()
+                viewModel.clearAccessTokenObtained()
             }
         })
 
         sign_in_button.setOnClickListener {
-            val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-                handleSignInResult(task)
-            }
             resultLauncher.launch(Intent(googleSignInClient.signInIntent))
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-        val account = GoogleSignIn.getLastSignedInAccount(this)
-        if (account != null) {
-            viewModel.getAccessToken(account)
-        }
-    }
-
-//
-//    googleSignInClient.silentSignIn()
-//    .addOnFailureListener {
-//        sign_in_button.setOnClickListener {
-//
-//        }
-//    }
-//    .addOnCompleteListener {
-//        handleSignInResult(it)
-//    }
-//    auth = Firebase.auth
 
     private fun handleSignInResult(task: Task<GoogleSignInAccount?>) {
         try {
             val account: GoogleSignInAccount = task.getResult(ApiException::class.java)!!
             firebaseAuthWithGoogle(account)
-            viewModel.getAccessToken(account)
         } catch (e: ApiException) {
-            Toast.makeText(baseContext, "Google sign in failed", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -95,7 +73,7 @@ class LoginActivity : BaseActivity() {
                 if (task.isSuccessful) {
                     viewModel.getAccessToken(account)
                 } else {
-                    Toast.makeText(baseContext, "Authentication Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Problem z logowaniem, spróbuj ponownie", Toast.LENGTH_SHORT).show()
                 }
             }
     }
