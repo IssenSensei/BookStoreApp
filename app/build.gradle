@@ -87,6 +87,9 @@ dependencies {
     //Views buttons progressbars
     implementation 'com.google.android.material:material:1.3.0'
 
+    //data generation
+    implementation 'com.github.blocoio:faker:1.2.8'
+
     // Testing
     androidTestImplementation "androidx.navigation:navigation-testing:2.3.3"
     testImplementation 'junit:junit:4.13.1'

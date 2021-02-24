@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.issen.ebooker.data.local.models.DatabaseQuotationItem
+import com.issen.ebooker.data.domain.Quotation
 import com.issen.ebooker.databinding.ItemBookQuotationBinding
 
-class BookQuotesFirebaseRecyclerAdapter(options: FirebaseRecyclerOptions<DatabaseQuotationItem>) :
-    FirebaseRecyclerAdapter<DatabaseQuotationItem, BookQuotesFirebaseRecyclerAdapter.ViewHolder>(
+class BookQuotesFirebaseRecyclerAdapter(options: FirebaseRecyclerOptions<Quotation>) :
+    FirebaseRecyclerAdapter<Quotation, BookQuotesFirebaseRecyclerAdapter.ViewHolder>(
         options
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,14 +21,14 @@ class BookQuotesFirebaseRecyclerAdapter(options: FirebaseRecyclerOptions<Databas
     override fun onBindViewHolder(
         holder: ViewHolder,
         position: Int,
-        model: DatabaseQuotationItem
+        model: Quotation
     ) {
         holder.bind(getItem(position))
     }
 
     class ViewHolder(private val binding: ItemBookQuotationBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: DatabaseQuotationItem) {
+        fun bind(item: Quotation) {
             binding.quotation = item
             binding.executePendingBindings()
         }

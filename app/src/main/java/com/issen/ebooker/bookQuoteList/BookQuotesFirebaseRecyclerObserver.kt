@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 
-
 class BookQuotesFirebaseRecyclerObserver(
     private val mRecycler: RecyclerView,
     private val mAdapter: RecyclerView.Adapter<*>,

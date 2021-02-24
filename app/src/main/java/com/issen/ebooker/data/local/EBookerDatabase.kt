@@ -13,10 +13,7 @@ import com.issen.ebooker.data.local.models.*
         DatabaseBookItem::class,
         DatabaseImageLinks::class,
         DatabaseShelf::class,
-        DatabaseUserBookItem::class,
-        DatabaseQuotationItem::class,
-        DatabaseReviewItem::class,
-        DatabaseUser::class],
+        DatabaseUserBookItem::class],
     version = 1
 )
 @TypeConverters(com.issen.ebooker.data.local.TypeConverters::class)
@@ -25,8 +22,6 @@ abstract class EBookerDatabase : RoomDatabase() {
     abstract val imageLinksDao: ImageLinksDao
     abstract val shelfDao: ShelfDao
     abstract val userBookDao: UserBookDao
-    abstract val quotationDao: QuotationDao
-    abstract val reviewDao: ReviewDao
 
     companion object {
         private var INSTANCE: EBookerDatabase? = null
@@ -38,7 +33,6 @@ abstract class EBookerDatabase : RoomDatabase() {
                     EBookerDatabase::class.java,
                     "ebooker_database"
                 )
-                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

@@ -11,8 +11,7 @@ class EBookerApplication : Application() {
         BooksRepository(
             database.bookDao,
             database.imageLinksDao,
-            database.userBookDao,
-            database.reviewDao
+            database.userBookDao
         )
     }
 

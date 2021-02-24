@@ -2,12 +2,12 @@ package com.issen.ebooker.data.conversionExtensions
 
 import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.data.domain.DomainImageLinks
+import com.issen.ebooker.data.domain.Quotation
 import com.issen.ebooker.data.local.models.*
 
 fun DatabaseImageLinks.asDomainImageLinks(): DomainImageLinks {
     return DomainImageLinks(id, smallThumbnail, thumbnail)
 }
-
 
 fun List<DatabaseBook>.asDomainModel(): List<Book> {
     return map {

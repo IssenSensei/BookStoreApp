@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.issen.ebooker.data.BooksRepository
+import com.issen.ebooker.data.domain.Review
+import io.bloco.faker.Faker
 import kotlinx.coroutines.launch
-
+import kotlin.random.Random
 
 class BookReviewsListViewModel(private val booksRepository: BooksRepository, val bookId: String) : ViewModel() {
 
-    private val _rating = MutableLiveData<Float>()
-    val rating: LiveData<Float>
-        get() = _rating
+    private val faker = Faker()
 
     private val _bookTitle = MutableLiveData<String>()
     val bookTitle: LiveData<String>
@@ -27,7 +27,18 @@ class BookReviewsListViewModel(private val booksRepository: BooksRepository, val
         databaseRef = databaseRef.child(bookId)
         viewModelScope.launch {
             _bookTitle.value = booksRepository.getBookTitle(bookId)
-            _rating.value = booksRepository.getBookRating(bookId)
+            for (i in 0..Random.nextInt(0, 15)) {
+                val key = databaseRef.push().key
+                databaseRef.child(key!!).setValue(
+                    Review(
+                        key,
+                        faker.name.name(),
+                        bookTitle.value ?: "",
+                        faker.lorem.sentence(Random.nextInt(1, 50)),
+                        0 + Random.nextFloat() * (5)
+                    )
+                )
+            }
         }
     }
 }

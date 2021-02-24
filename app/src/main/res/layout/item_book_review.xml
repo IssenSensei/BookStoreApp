@@ -6,25 +6,45 @@
 
         <variable
             name="review"
-            type="com.issen.ebooker.data.local.models.DatabaseReviewItem" />
+            type="com.issen.ebooker.data.domain.Review" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_xmedium">
 
         <TextView
-            style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:id="@+id/review_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:text="@{review.user}"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toStartOf="@id/review_rating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/review_rating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="@{review.rating}"
+            app:layout_constraintBottom_toBottomOf="@id/review_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/review_user" />
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{review.content}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toBottomOf="@id/review_user" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>
 

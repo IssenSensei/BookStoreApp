@@ -2,7 +2,6 @@ package com.issen.ebooker.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.data.local.models.DatabaseUserBookItem
 
 @Dao

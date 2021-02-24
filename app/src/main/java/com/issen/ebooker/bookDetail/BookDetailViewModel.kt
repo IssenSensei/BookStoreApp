@@ -15,7 +15,7 @@ import com.issen.ebooker.EBookerApplication.Companion.haveReadShelfId
 import com.issen.ebooker.EBookerApplication.Companion.toReadShelfId
 import com.issen.ebooker.data.BooksRepository
 import com.issen.ebooker.data.domain.Book
-import com.issen.ebooker.data.local.models.DatabaseReviewItem
+import com.issen.ebooker.data.domain.Review
 import kotlinx.coroutines.launch
 
 class BookDetailViewModel(private val booksRepository: BooksRepository) : ViewModel() {
@@ -81,14 +81,14 @@ class BookDetailViewModel(private val booksRepository: BooksRepository) : ViewMo
 
     fun saveReview(content: String) {
         viewModelScope.launch {
-            val reviewItem = DatabaseReviewItem(
+            val reviewItem = Review(
                 auth.currentUser!!.uid,
-                book.bookId,
+                auth.currentUser!!.displayName ?: "Anonimowy",
+                book.title,
                 content,
                 _rating.value!!
             )
             databaseReviewRef.child(book.bookId).child(auth.currentUser!!.uid).setValue(reviewItem)
-            booksRepository.saveReview(reviewItem)
             _reviewedByUser.value = true
         }
     }

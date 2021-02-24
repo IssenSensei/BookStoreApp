@@ -21,31 +21,3 @@ fun Volume.asDatabaseBookItem(imageLinksId: Int?): DatabaseBookItem {
         imageLinksId = imageLinksId
     )
 }
-
-fun Volume.asDatabaseUserBookItem(shelfIid: Int, uid: String): DatabaseUserBookItem {
-    return DatabaseUserBookItem(
-        id,
-        shelfIid,
-        uid
-    )
-}
-
-fun ResponseVolumeList.asDatabaseModel(): List<DatabaseBook> {
-    return items?.map {
-        DatabaseBook(
-            DatabaseBookItem(
-                it.id,
-                it.volumeInfo.title,
-                it.volumeInfo.authors,
-                it.volumeInfo.publisher,
-                it.volumeInfo.description,
-                null
-            ),
-            DatabaseImageLinks(
-                0,
-                it.volumeInfo.imageLinks?.smallThumbnail,
-                it.volumeInfo.imageLinks?.thumbnail
-            )
-        )
-    } ?: listOf()
-}

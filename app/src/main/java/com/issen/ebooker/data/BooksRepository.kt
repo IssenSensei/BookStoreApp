@@ -10,14 +10,12 @@ import com.issen.ebooker.data.remote.GoogleApiNetwork.googleApi
 import com.issen.ebooker.data.remote.models.ResponseBookshelfList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import com.issen.ebooker.data.local.models.DatabaseReviewItem
 import com.issen.ebooker.data.local.models.DatabaseUserBookItem
 
 class BooksRepository(
     private val bookDao: BookDao,
     private val imageLinksDao: ImageLinksDao,
-    private val userBookDao: UserBookDao,
-    private val reviewDao: ReviewDao
+    private val userBookDao: UserBookDao
 ) {
 
     val books: LiveData<List<Book>> = Transformations.map(bookDao.getBooks()) {
@@ -111,14 +109,5 @@ class BooksRepository(
 
     suspend fun getBookTitle(bookId: String): String {
         return bookDao.getBookTitle(bookId) ?: ""
-    }
-
-    suspend fun getBookRating(bookId: String): Float {
-        //todo get book average rating
-        return 2.5f
-    }
-
-    suspend fun saveReview(databaseReviewItem: DatabaseReviewItem) {
-        reviewDao.saveReview(databaseReviewItem)
     }
 }

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.issen.ebooker.data.local.models.DatabaseReviewItem
+import com.issen.ebooker.data.domain.Review
 import com.issen.ebooker.databinding.ItemBookReviewBinding
 
 
-class BookReviewsFirebaseRecyclerAdapter(options: FirebaseRecyclerOptions<DatabaseReviewItem>) :
-    FirebaseRecyclerAdapter<DatabaseReviewItem, BookReviewsFirebaseRecyclerAdapter.ViewHolder>(
+class BookReviewsFirebaseRecyclerAdapter(options: FirebaseRecyclerOptions<Review>) :
+    FirebaseRecyclerAdapter<Review, BookReviewsFirebaseRecyclerAdapter.ViewHolder>(
         options
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,14 +22,14 @@ class BookReviewsFirebaseRecyclerAdapter(options: FirebaseRecyclerOptions<Databa
     override fun onBindViewHolder(
         holder: ViewHolder,
         position: Int,
-        model: DatabaseReviewItem
+        model: Review
     ) {
         holder.bind(getItem(position))
     }
 
     class ViewHolder(private val binding: ItemBookReviewBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: DatabaseReviewItem) {
+        fun bind(item: Review) {
             binding.review = item
             binding.executePendingBindings()
         }
