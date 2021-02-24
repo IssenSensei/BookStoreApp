@@ -109,4 +109,6 @@
     <string name="recommendations_summary_off">Nie pokazuj listy polecanych</string>
     <string name="recently_viewed_summary_on">Pokazuj listę ostatnio przeglądanych</string>
     <string name="recently_viewed_summary_off">Nie pokazuj listy ostatnio przeglądanych</string>
+    <string name="transition_image_to_full_scale">image_to_full_scale</string>
+    <string name="transition_full_scale_to_image">full_scale_to_image</string>
 </resources>

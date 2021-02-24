@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.issen.ebooker.EBookerApplication
+import com.issen.ebooker.R
 import com.issen.ebooker.databinding.DialogBookDetailBinding
 
 class BookDetailDialog : BottomSheetDialogFragment(), BookDetailDialogListener {
@@ -23,6 +24,7 @@ class BookDetailDialog : BottomSheetDialogFragment(), BookDetailDialogListener {
         savedInstanceState: Bundle?
     ): View {
         val binding = DialogBookDetailBinding.inflate(inflater, container, false)
+        dialog?.window?.attributes?.windowAnimations = R.style.BottomSheetDialogAnimation
         binding.viewModel = sharedViewModel
         binding.listener = this
         binding.lifecycleOwner = this

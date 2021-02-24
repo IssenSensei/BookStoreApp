@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.issen.ebooker.EBookerApplication
@@ -23,12 +24,13 @@ class BookDetailFragment : Fragment(), AuthorListener, BookDetailListener {
             (requireActivity().application as EBookerApplication).booksRepository
         )
     }
+    private lateinit var binding: FragmentBookDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentBookDetailBinding.inflate(inflater, container, false)
+        binding = FragmentBookDetailBinding.inflate(inflater, container, false)
         sharedViewModel.setSelectedBook(navArgs.book)
         requireActivity().toolbar.title = sharedViewModel.book.title
 

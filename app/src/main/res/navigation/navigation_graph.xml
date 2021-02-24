@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_book_library">
         <action
             android:id="@+id/action_nav_book_library_to_nav_book_list"
-            app:destination="@id/nav_book_list" />
+            app:destination="@id/nav_book_list"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_nav_book_library_to_nav_book_detail"
-            app:destination="@id/nav_book_detail" />
+            app:destination="@id/nav_book_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/nav_book_list"
@@ -23,7 +31,11 @@
         tools:layout="@layout/fragment_book_list">
         <action
             android:id="@+id/action_nav_book_list_to_nav_book_detail"
-            app:destination="@id/nav_book_detail" />
+            app:destination="@id/nav_book_detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="shelfId"
             android:defaultValue="-1"
@@ -45,20 +57,36 @@
         tools:layout="@layout/fragment_book_detail">
         <action
             android:id="@+id/action_nav_book_detail_to_nav_books_quotes"
-            app:destination="@id/nav_books_quotes" />
+            app:destination="@id/nav_books_quotes"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_nav_book_detail_to_nav_user_quotes"
-            app:destination="@id/nav_user_quotes" />
+            app:destination="@id/nav_user_quotes"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="book"
             app:argType="com.issen.ebooker.data.domain.Book"
             app:nullable="false" />
         <action
             android:id="@+id/action_nav_book_detail_to_nav_book_list"
-            app:destination="@id/nav_book_list" />
+            app:destination="@id/nav_book_list"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_nav_book_detail_to_nav_book_cover"
-            app:destination="@id/nav_book_cover" />
+            app:destination="@id/nav_book_cover"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_nav_book_detail_to_nav_book_detail_dialog"
             app:destination="@id/nav_book_detail_dialog" />
@@ -80,13 +108,25 @@
             app:argType="com.issen.ebooker.data.domain.Book" />
         <action
             android:id="@+id/action_nav_book_detail_dialog_to_nav_book_quote_list"
-            app:destination="@id/nav_book_quote_list" />
+            app:destination="@id/nav_book_quote_list"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_nav_book_detail_dialog_to_nav_book_reviews_list"
-            app:destination="@id/nav_book_reviews_list" />
+            app:destination="@id/nav_book_reviews_list"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_nav_book_detail_dialog_to_nav_book_detail_review_dialog"
-            app:destination="@id/nav_book_detail_review_dialog" />
+            app:destination="@id/nav_book_detail_review_dialog"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </dialog>
     <fragment
         android:id="@+id/nav_book_quote_list"
