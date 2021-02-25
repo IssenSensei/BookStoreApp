@@ -2,64 +2,60 @@ package com.issen.ebooker
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
+import android.view.Menu
+import android.view.MenuItem
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.issen.ebooker.auth.LoginActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var auth: FirebaseAuth
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController: NavController = navHostFragment.navController
+        navController = navHostFragment.navController
 
         appBarConfiguration = AppBarConfiguration(
-            navController.graph, drawerLayout
+            navController.graph
         )
 
         auth = FirebaseAuth.getInstance()
 
-        setupNavigationMenu(navController)
-        setupActionBar(navController, appBarConfiguration)
+        toolbar.setupWithNavController(navController, appBarConfiguration)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.navigation_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
-    private fun setupNavigationMenu(navController: NavController) {
-        val sideNavView = findViewById<NavigationView>(R.id.nav_view)
-        sideNavView?.setupWithNavController(navController)
-
-        sideNavView.menu.findItem(R.id.nav_logout)
-            .setOnMenuItemClickListener {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.nav_logout -> {
                 logout()
                 true
             }
-    }
-
-    private fun setupActionBar(
-        navController: NavController,
-        appBarConfig: AppBarConfiguration
-    ) {
-        setupActionBarWithNavController(navController, appBarConfig)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+            R.id.nav_settings -> {
+                navController.navigate(R.id.nav_settings)
+                true
+            }
+            R.id.nav_book_search -> {
+                navController.navigate(R.id.nav_book_search)
+                true
+            }
+            else -> {
+                true
+            }
+        }
     }
 
     private fun logout() {

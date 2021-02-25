@@ -55,20 +55,6 @@
         android:id="@+id/nav_book_detail"
         android:name="com.issen.ebooker.bookDetail.BookDetailFragment"
         tools:layout="@layout/fragment_book_detail">
-        <action
-            android:id="@+id/action_nav_book_detail_to_nav_books_quotes"
-            app:destination="@id/nav_books_quotes"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
-        <action
-            android:id="@+id/action_nav_book_detail_to_nav_user_quotes"
-            app:destination="@id/nav_user_quotes"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
         <argument
             android:name="book"
             app:argType="com.issen.ebooker.data.domain.Book"

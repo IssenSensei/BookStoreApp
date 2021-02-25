@@ -1,51 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_task_books_title"
-            android:title="@string/navigation_books_title">
-            <menu>
-                <item
-                    android:id="@+id/nav_book_library"
-                    android:icon="@drawable/ic_library"
-                    android:title="@string/navigation_library"/>
-                <item
-                    android:id="@+id/nav_book_search"
-                    android:icon="@drawable/ic_book_search"
-                    android:title="@string/navigation_book_search"/>
-            </menu>
-        </item>
-        <item
-            android:id="@+id/nav_task_quotes_title"
-            android:title="@string/navigation_quotes_title">
-            <menu>
-                <item
-                    android:id="@+id/nav_user_quotes"
-                    android:icon="@drawable/ic_my_quotes"
-                    android:title="@string/navigation_user_quotes"/>
-                <item
-                    android:id="@+id/nav_books_quotes"
-                    android:icon="@drawable/ic_book_quotes"
-                    android:title="@string/navigation_book_quotes" />
-            </menu>
-        </item>
-        <item
-            android:id="@+id/nav_others_title"
-            android:title="@string/navigation_others_title">
-            <menu>
-                <item
-                    android:id="@+id/nav_settings"
-                    android:icon="@drawable/ic_settings"
-                    android:title="@string/navigation_settings"/>
-                <item
-                    android:id="@+id/nav_logout"
-                    android:icon="@drawable/ic_logout"
-                    android:title="@string/navigation_logout"/>
-            </menu>
-        </item>
-    </group>
+    tools:showIn="toolbar">
+    <item
+        android:id="@+id/nav_book_search"
+        android:icon="@drawable/ic_book_search"
+        android:orderInCategory="1"
+        android:title="@string/navigation_book_search"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings"
+        android:orderInCategory="2"
+        android:title="@string/navigation_settings"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/navigation_logout" />
 </menu>
 
 
