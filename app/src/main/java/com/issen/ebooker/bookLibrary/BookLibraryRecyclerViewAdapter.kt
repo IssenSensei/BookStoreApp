@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.databinding.ItemBookLibraryBinding
-import com.issen.ebooker.utils.BookListDiffCallback
+import com.issen.ebooker.common.BookListDiffCallback
 
 class BookLibraryRecyclerViewAdapter(private val libraryListener: LibraryListener) : ListAdapter<Book, BookLibraryRecyclerViewAdapter.ViewHolder>(BookListDiffCallback()) {
 

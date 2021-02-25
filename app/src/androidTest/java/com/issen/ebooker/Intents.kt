@@ -10,7 +10,7 @@ import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.issen.ebooker.bookDetail.BookDetailFragment
-import com.issen.ebooker.bookList.BookListRecyclerViewAdapter
+import com.issen.ebooker.common.BookListRecyclerViewAdapter
 import com.issen.ebooker.matcher.RecyclerViewWithIdAction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.hamcrest.core.AllOf.allOf
@@ -47,41 +47,41 @@ class ActivityStackTraceInstrumentedTest {
         mainActivityRule.finishActivity()
     }
 
-
-    @Test
-    fun goToBookListAndThenDetails() {
-        Thread.sleep(3000L)
-
-        onView(
-            allOf(
-                withText(mainActivityRule.activity.resources.getString(R.string.navigation_books)),
-                isDescendantOfA(withId(R.id.navigation_graph)),
-                isDisplayed()
-            )
-        )
-            .perform(click())
-        Thread.sleep(3000L)
-
-        assertTrue(
-            bottomNavigation!!.menu.findItem(R.id.navigation_books).isChecked)
-
-        mainActivityRule.activity
-
-        onView(withId(R.id.book_list_recycler_view)).perform(
-            RecyclerViewActions
-                .actionOnItemAtPosition<BookListRecyclerViewAdapter.ViewHolder>(
-                0,
-                RecyclerViewWithIdAction.clickChildViewWithId(R.id.lyt_parent)
-            )
-        )
-        Thread.sleep(3000L)
-
-        Log.d("Current activity", mainActivityRule.activity.toString())
-        Thread.sleep(3000L)
-
-
-        intended(hasComponent(BookDetailFragment::class.java.name))
-    }
+//
+//    @Test
+//    fun goToBookListAndThenDetails() {
+//        Thread.sleep(3000L)
+//
+//        onView(
+//            allOf(
+//                withText(mainActivityRule.activity.resources.getString(R.string.navigation_books)),
+//                isDescendantOfA(withId(R.id.navigation_graph)),
+//                isDisplayed()
+//            )
+//        )
+//            .perform(click())
+//        Thread.sleep(3000L)
+//
+//        assertTrue(
+//            bottomNavigation!!.menu.findItem(R.id.navigation_books).isChecked)
+//
+//        mainActivityRule.activity
+//
+//        onView(withId(R.id.book_list_recycler_view)).perform(
+//            RecyclerViewActions
+//                .actionOnItemAtPosition<BookListRecyclerViewAdapter.ViewHolder>(
+//                0,
+//                RecyclerViewWithIdAction.clickChildViewWithId(R.id.lyt_parent)
+//            )
+//        )
+//        Thread.sleep(3000L)
+//
+//        Log.d("Current activity", mainActivityRule.activity.toString())
+//        Thread.sleep(3000L)
+//
+//
+//        intended(hasComponent(BookDetailFragment::class.java.name))
+//    }
 }
 
 

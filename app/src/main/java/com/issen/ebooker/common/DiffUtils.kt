@@ -1,4 +1,4 @@
-package com.issen.ebooker.utils
+package com.issen.ebooker.common
 
 import androidx.recyclerview.widget.DiffUtil
 import com.issen.ebooker.data.domain.Book

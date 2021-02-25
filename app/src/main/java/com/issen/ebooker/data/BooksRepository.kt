@@ -44,6 +44,12 @@ class BooksRepository(
         }
     }
 
+    fun getQueriedBooks(filter: String): LiveData<List<Book>> {
+        return bookDao.getQueriedBooks(filter).map {
+            it.asDomainModel()
+        }
+    }
+
     suspend fun refreshBooks() {
         withContext(Dispatchers.IO) {
             googleApi.getBooks().items?.forEach {
@@ -109,5 +115,14 @@ class BooksRepository(
 
     suspend fun getBookTitle(bookId: String): String {
         return bookDao.getBookTitle(bookId) ?: ""
+    }
+
+    suspend fun refreshFilteredBooks(query: String) {
+        googleApi.getQueriedBooks(query).items?.forEach {
+            val imageLinksId = if (it.volumeInfo.imageLinks != null) {
+                imageLinksDao.insert(it.volumeInfo.imageLinks.asDatabaseImageLinks())
+            } else null
+            bookDao.insert(it.asDatabaseBookItem(imageLinksId?.toInt()))
+        }
     }
 }

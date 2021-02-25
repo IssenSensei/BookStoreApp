@@ -1,4 +1,4 @@
-package com.issen.ebooker.bookList
+package com.issen.ebooker.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.databinding.ItemBookListBinding
-import com.issen.ebooker.utils.BookListDiffCallback
 
 class BookListRecyclerViewAdapter(private val listener: BookListListener) : ListAdapter<Book, BookListRecyclerViewAdapter.ViewHolder>(BookListDiffCallback()) {
 

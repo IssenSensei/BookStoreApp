@@ -12,6 +12,8 @@ import androidx.navigation.fragment.navArgs
 import com.issen.ebooker.EBookerApplication
 import com.issen.ebooker.data.domain.Book
 import com.issen.ebooker.databinding.FragmentBookListBinding
+import com.issen.ebooker.common.BookListListener
+import com.issen.ebooker.common.BookListRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class BookListFragment : Fragment(), BookListListener {
@@ -37,11 +39,11 @@ class BookListFragment : Fragment(), BookListListener {
         binding = FragmentBookListBinding.inflate(inflater, container, false)
 
         val adapter = BookListRecyclerViewAdapter(this)
-        viewModel.bookList.observe(viewLifecycleOwner, Observer {
+        viewModel.bookList.observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
 
-        viewModel.listTitle.observe(viewLifecycleOwner, Observer {
+        viewModel.listTitle.observe(viewLifecycleOwner, {
             requireActivity().toolbar.title = it
         })
 

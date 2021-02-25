@@ -1,4 +1,4 @@
-package com.issen.ebooker.bookList
+package com.issen.ebooker.common
 
 import com.issen.ebooker.data.domain.Book
 

@@ -10,7 +10,7 @@
 
         <variable
             name="listener"
-            type="com.issen.ebooker.bookList.BookListListener" />
+            type="com.issen.ebooker.common.BookListListener" />
     </data>
 
     <androidx.cardview.widget.CardView

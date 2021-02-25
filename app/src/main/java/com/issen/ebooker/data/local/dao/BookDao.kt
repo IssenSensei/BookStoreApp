@@ -13,7 +13,7 @@ interface BookDao {
     @Query("select * from book_table")
     fun getBooks(): LiveData<List<DatabaseBook>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(databaseBookItem: DatabaseBookItem)
 
     @Query("SELECT title from book_table where book_id = :bookId")
@@ -30,4 +30,8 @@ interface BookDao {
     @Transaction
     @Query("SELECT * FROM book_table WHERE authors like :author")
     fun getAuthorBooks(author: String): LiveData<List<DatabaseBook>>
+
+    @Transaction
+    @Query("SELECT * FROM book_table WHERE title like '%' || :filter || '%' or authors like '%' || :filter || '%' or publisher like '%' || :filter || '%'")
+    fun getQueriedBooks(filter: String): LiveData<List<DatabaseBook>>
 }

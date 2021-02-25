@@ -140,4 +140,13 @@
         android:id="@+id/nav_settings"
         android:name="com.issen.ebooker.settings.SettingsFragment"
         android:label="@string/nav_settings_header" />
+    <fragment
+        android:id="@+id/nav_book_search"
+        android:name="com.issen.ebooker.bookSearch.BookSearchFragment"
+        android:label="@string/nav_book_search"
+        tools:layout="@layout/fragment_book_search" >
+        <action
+            android:id="@+id/action_nav_book_search_to_nav_book_detail"
+            app:destination="@id/nav_book_detail" />
+    </fragment>
 </navigation>

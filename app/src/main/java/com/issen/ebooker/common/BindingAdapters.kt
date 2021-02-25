@@ -1,4 +1,4 @@
-package com.issen.ebooker.utils
+package com.issen.ebooker.common
 
 import android.view.View
 import android.widget.ImageView
